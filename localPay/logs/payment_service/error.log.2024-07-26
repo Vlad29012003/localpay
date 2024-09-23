@@ -1,0 +1,12 @@
+2024-07-26 09:49:23,535 - payment_service_error - ERROR - Error creating payment: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "localpay_payments_pkey"
+DETAIL:  Key (id)=(28508) already exists.
+
+[SQL: INSERT INTO localpay_payments (payment_number, payment_date, payment_accept, ls_abon, money, payment_status, user_id, annulment, document_number, comment, updated_at) VALUES (%(payment_number)s, %(payment_date)s, %(payment_accept)s, %(ls_abon)s, %(money)s, %(payment_status)s, %(user_id)s, %(annulment)s, %(document_number)s, %(comment)s, %(updated_at)s) RETURNING localpay_payments.id]
+[parameters: {'payment_number': '20240726094923175050620', 'payment_date': '2024-07-26 09:49:23.37', 'payment_accept': '2024-07-26 09:49:23.51', 'ls_abon': '175050620', 'money': 12.0, 'payment_status': 'Выполнен', 'user_id': 245, 'annulment': False, 'document_number': None, 'comment': None, 'updated_at': datetime.datetime(2024, 7, 26, 3, 49, 23, 525113)}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2024-07-26 09:50:02,901 - payment_service_error - ERROR - Error creating payment: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "localpay_payments_pkey"
+DETAIL:  Key (id)=(28959) already exists.
+
+[SQL: INSERT INTO localpay_payments (payment_number, payment_date, payment_accept, ls_abon, money, payment_status, user_id, annulment, document_number, comment, updated_at) VALUES (%(payment_number)s, %(payment_date)s, %(payment_accept)s, %(ls_abon)s, %(money)s, %(payment_status)s, %(user_id)s, %(annulment)s, %(document_number)s, %(comment)s, %(updated_at)s) RETURNING localpay_payments.id]
+[parameters: {'payment_number': '20240726095002175050620', 'payment_date': '2024-07-26 09:50:02.79', 'payment_accept': '2024-07-26 09:50:02.89', 'ls_abon': '175050620', 'money': 12.0, 'payment_status': 'Выполнен', 'user_id': 245, 'annulment': False, 'document_number': None, 'comment': None, 'updated_at': datetime.datetime(2024, 7, 26, 3, 50, 2, 895546)}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)

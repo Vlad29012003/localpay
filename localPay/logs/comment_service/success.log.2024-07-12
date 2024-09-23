@@ -1,0 +1,11 @@
+2024-07-12 15:13:29,318 - comment_service_success - INFO - Creating new comment for user ID 239
+2024-07-12 15:13:29,352 - comment_service_success - INFO - New comment created with ID 3583 for user ID 239
+2024-07-12 15:13:57,906 - comment_service_success - INFO - Fetching comments for page 1 with 10 comments per page
+2024-07-12 15:13:57,912 - comment_service_success - INFO - Fetched 2 comments out of 2 total comments
+2024-07-12 15:15:36,721 - comment_service_success - INFO - Deleting comment with ID 42524524
+2024-07-12 15:15:36,722 - comment_service_success - INFO - Fetching comment with ID 42524524
+2024-07-12 15:18:17,459 - comment_service_success - INFO - Deleting comment with ID 42524524
+2024-07-12 15:18:17,459 - comment_service_success - INFO - Fetching comment with ID 42524524
+2024-07-12 15:18:23,243 - comment_service_success - INFO - Updating comment with ID 342332
+2024-07-12 15:18:23,243 - comment_service_success - INFO - Fetching comment with ID 342332
+2024-07-12 16:46:05,418 - comment_service_success - INFO - Retrieved 2 comments, total count: 2

@@ -1,0 +1,8 @@
+2024-07-19 11:42:12,667 - auth_service_error - ERROR - Invalid token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjEzNjc2MzZ9.Pb5RGxkTP7pYgmUzl2xH4KYsED4AdahqHmulViZDfzw
+2024-07-19 11:42:12,667 - auth_service_error - ERROR - Error fetching current user: 401: Could not validate credentials
+2024-07-19 13:02:32,898 - auth_service_error - ERROR - Invalid token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjEzNjg2NTV9.1qmmeFKQ8NGn9wA6mINvnbPl9PCfA1WzwvnO4qFDUTA
+2024-07-19 13:02:32,899 - auth_service_error - ERROR - Error fetching current user: 401: Could not validate credentials
+2024-07-19 13:23:36,584 - auth_service_error - ERROR - Invalid token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjEzNzM2NjZ9.J-Umdjvmj6vt4HkmaoPPNeo_9fz5KREaySe3rIKodb0
+2024-07-19 13:23:36,585 - auth_service_error - ERROR - Error fetching current user: 401: Could not validate credentials
+2024-07-19 13:47:13,614 - auth_service_error - ERROR - Invalid token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjEzNzQ3Mjl9.jtCrLlrH7DfmgheEVLQcNE5SU3etEFvcKV1vcvj7pno
+2024-07-19 13:47:13,614 - auth_service_error - ERROR - Error fetching current user: 401: Could not validate credentials

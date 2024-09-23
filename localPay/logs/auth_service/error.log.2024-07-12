@@ -1,0 +1,8 @@
+2024-07-12 15:29:02,286 - auth_service_error - ERROR - Error during authentication for user тшл1е7т: 404: User with login тшл1е7т not found
+2024-07-12 15:29:02,286 - auth_service_error - ERROR - Error during login for user тшл1е7т: 404: User with login тшл1е7т not found
+2024-07-12 15:29:10,769 - auth_service_error - ERROR - Error during login for user nik1t7n: 401: Incorrect username or password
+2024-07-12 15:30:01,469 - auth_service_error - ERROR - Error refreshing token: 'Query' object has no attribute 'fiter'
+2024-07-12 15:30:20,525 - auth_service_error - ERROR - Error refreshing token: 'NoneType' object has no attribute 'user_id'
+2024-07-12 15:30:54,244 - auth_service_error - ERROR - Error refreshing token: 400: Invalid or expired token
+2024-07-12 15:31:28,434 - auth_service_error - ERROR - Error refreshing token: 400: Invalid or expired token
+2024-07-12 15:31:43,529 - auth_service_error - ERROR - Error refreshing token: 400: Invalid or expired token

@@ -1,0 +1,14 @@
+2024-07-22 12:35:38,014 - auth_service_error - ERROR - Error during login for user nik1t7n: 401: Incorrect username or password
+2024-07-22 12:36:06,562 - auth_service_error - ERROR - Invalid token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjE2Mjk3MDh9.yXfQacIS7S9Ey-eyrEKXbXOBbbXCglkg7pNaWdDGBoo
+2024-07-22 12:36:06,562 - auth_service_error - ERROR - Error fetching current user: 401: Could not validate credentials
+2024-07-22 12:38:30,750 - auth_service_error - ERROR - Error during authentication for user sup: 404: User with login sup not found
+2024-07-22 12:38:30,750 - auth_service_error - ERROR - Error during login for user sup: 404: User with login sup not found
+2024-07-22 12:38:35,729 - auth_service_error - ERROR - Error during authentication for user sup: 404: User with login sup not found
+2024-07-22 12:38:35,729 - auth_service_error - ERROR - Error during login for user sup: 404: User with login sup not found
+2024-07-22 12:41:30,188 - auth_service_error - ERROR - Error during authentication for user sup: 404: User with login sup not found
+2024-07-22 12:41:30,190 - auth_service_error - ERROR - Error during login for user sup: 404: User with login sup not found
+2024-07-22 12:41:39,966 - auth_service_error - ERROR - Error during authentication for user sup: 404: User with login sup not found
+2024-07-22 12:41:39,966 - auth_service_error - ERROR - Error during login for user sup: 404: User with login sup not found
+2024-07-22 12:42:32,967 - auth_service_error - ERROR - Error during login for user Visor: 401: Incorrect username or password
+2024-07-22 13:08:29,327 - auth_service_error - ERROR - Error during login for user nik1t7n: 401: Incorrect username or password
+2024-07-22 14:20:29,178 - auth_service_error - ERROR - Error during login for user nik1t7n_user: 401: Incorrect username or password

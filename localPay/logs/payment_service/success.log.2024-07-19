@@ -1,0 +1,18 @@
+2024-07-19 11:45:18,569 - payment_service_success - INFO - Retrieved user with login m.erbol for payment report
+2024-07-19 11:45:18,572 - payment_service_success - INFO - Retrieved 0 payments for user ID 229
+2024-07-19 11:45:18,578 - payment_service_success - INFO - No payments found for user ID 229
+2024-07-19 11:45:18,612 - payment_service_success - INFO - Excel report created successfully for user ID 229
+2024-07-19 11:47:58,399 - payment_service_success - INFO - Retrieved user with login m.erbol for payment report
+2024-07-19 11:47:58,410 - payment_service_success - INFO - Retrieved 24 payments for user ID 229
+2024-07-19 11:47:58,442 - payment_service_success - INFO - Total sum of completed and non-annulled payments: 15140.0
+2024-07-19 11:47:58,449 - payment_service_success - INFO - Excel report created successfully for user ID 229
+2024-07-19 13:02:49,272 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-19 13:06:16,020 - payment_service_success - INFO - Retrieved 24 payments for user m.erbol
+2024-07-19 13:23:58,466 - payment_service_success - INFO - Retrieved 20 payments for user m.erbol
+2024-07-19 13:32:03,211 - payment_service_success - INFO - Retrieved 20 payments for user m.erbol
+2024-07-19 13:33:29,500 - payment_service_success - INFO - Retrieved 20 payments for user m.erbol
+2024-07-19 13:35:19,421 - payment_service_success - INFO - Retrieved 20 payments for user m.erbol
+2024-07-19 13:47:27,989 - payment_service_success - INFO - Retrieved 20 payments for user m.erbol
+2024-07-19 13:53:41,997 - payment_service_success - INFO - Retrieved 20 payments for user m.erbol
+2024-07-19 13:57:51,154 - payment_service_success - INFO - Retrieved 20 payments for user m.erbol
+2024-07-19 13:59:00,106 - payment_service_success - INFO - Retrieved 20 payments for user m.erbol

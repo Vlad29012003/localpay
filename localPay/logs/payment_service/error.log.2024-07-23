@@ -1,0 +1,67 @@
+2024-07-23 18:02:26,424 - payment_service_error - ERROR - Failed to fetch data from Planup. Status code: 400
+2024-07-23 18:02:26,426 - payment_service_error - ERROR - Response content: 
+2024-07-23 18:02:26,427 - payment_service_error - ERROR - Error comparing user payments with Planup: Failed to fetch data from Planup. Status code: 400
+2024-07-23 18:07:00,759 - payment_service_error - ERROR - Failed to fetch data from Planup. Status code: 400
+2024-07-23 18:07:00,760 - payment_service_error - ERROR - Response content: 
+2024-07-23 18:07:00,761 - payment_service_error - ERROR - Error comparing user payments with Planup: Failed to fetch data from Planup. Status code: 400
+2024-07-23 19:39:08,983 - payment_service_error - ERROR - Error creating payment: 400: Insufficient funds for this operation. Details: Not enough money
+2024-07-23 19:48:30,509 - payment_service_error - ERROR - Payment service is unavailable
+2024-07-23 19:48:30,511 - payment_service_error - ERROR - Error creating payment: 503: External service unavailable: Payment service
+2024-07-23 19:48:39,278 - payment_service_error - ERROR - Payment service is unavailable
+2024-07-23 19:48:39,280 - payment_service_error - ERROR - Error creating payment: 503: External service unavailable: Payment service
+2024-07-23 19:48:39,942 - payment_service_error - ERROR - Payment service is unavailable
+2024-07-23 19:48:39,942 - payment_service_error - ERROR - Error creating payment: 503: External service unavailable: Payment service
+2024-07-23 19:49:01,620 - payment_service_error - ERROR - Payment service is unavailable
+2024-07-23 19:49:01,621 - payment_service_error - ERROR - Error creating payment: 503: External service unavailable: Payment service
+2024-07-23 19:49:02,152 - payment_service_error - ERROR - Payment service is unavailable
+2024-07-23 19:49:02,153 - payment_service_error - ERROR - Error creating payment: 503: External service unavailable: Payment service
+2024-07-23 19:49:03,259 - payment_service_error - ERROR - Payment service is unavailable
+2024-07-23 19:49:03,259 - payment_service_error - ERROR - Error creating payment: 503: External service unavailable: Payment service
+2024-07-23 19:50:10,858 - payment_service_error - ERROR - Payment service is unavailable
+2024-07-23 19:50:10,860 - payment_service_error - ERROR - Error creating payment: 503: External service unavailable: Payment service
+2024-07-23 19:50:12,759 - payment_service_error - ERROR - Payment service is unavailable
+2024-07-23 19:50:12,759 - payment_service_error - ERROR - Error creating payment: 503: External service unavailable: Payment service
+2024-07-23 19:51:15,367 - payment_service_error - ERROR - Payment service is unavailable
+2024-07-23 19:51:15,370 - payment_service_error - ERROR - Error creating payment: 503: External service unavailable: Payment service
+2024-07-23 19:53:50,540 - payment_service_error - ERROR - Hydra is unavailable
+2024-07-23 19:53:50,542 - payment_service_error - ERROR - Error creating payment: 503: External service unavailable: Hydra
+2024-07-23 22:54:31,890 - payment_service_error - ERROR - Hydra is unavailable
+2024-07-23 22:54:31,891 - payment_service_error - ERROR - Error creating payment: 503: External service unavailable: Hydra
+2024-07-23 22:54:38,050 - payment_service_error - ERROR - Hydra is unavailable
+2024-07-23 22:54:38,050 - payment_service_error - ERROR - Error creating payment: 503: External service unavailable: Hydra
+2024-07-23 22:54:47,980 - payment_service_error - ERROR - Hydra is unavailable
+2024-07-23 22:54:47,982 - payment_service_error - ERROR - Error creating payment: 503: External service unavailable: Hydra
+2024-07-23 22:55:34,945 - payment_service_error - ERROR - Hydra is unavailable
+2024-07-23 22:55:34,948 - payment_service_error - ERROR - Error creating payment: 503: External service unavailable: Hydra
+2024-07-23 22:55:35,030 - payment_service_error - ERROR - Hydra is unavailable
+2024-07-23 22:55:35,030 - payment_service_error - ERROR - Error creating payment: 503: External service unavailable: Hydra
+2024-07-23 22:55:35,641 - payment_service_error - ERROR - Hydra is unavailable
+2024-07-23 22:55:35,642 - payment_service_error - ERROR - Error creating payment: 503: External service unavailable: Hydra
+2024-07-23 22:55:46,916 - payment_service_error - ERROR - Hydra is unavailable
+2024-07-23 22:55:46,916 - payment_service_error - ERROR - Error creating payment: 503: External service unavailable: Hydra
+2024-07-23 22:55:53,074 - payment_service_error - ERROR - Hydra is unavailable
+2024-07-23 22:55:53,075 - payment_service_error - ERROR - Error creating payment: 503: External service unavailable: Hydra
+2024-07-23 22:56:03,025 - payment_service_error - ERROR - Hydra is unavailable
+2024-07-23 22:56:03,026 - payment_service_error - ERROR - Error creating payment: 503: External service unavailable: Hydra
+2024-07-23 22:56:50,056 - payment_service_error - ERROR - Hydra is unavailable
+2024-07-23 22:56:50,056 - payment_service_error - ERROR - Hydra is unavailable
+2024-07-23 22:56:50,057 - payment_service_error - ERROR - Error creating payment: 503: External service unavailable: Hydra
+2024-07-23 22:56:50,058 - payment_service_error - ERROR - Error creating payment: 503: External service unavailable: Hydra
+2024-07-23 22:56:50,667 - payment_service_error - ERROR - Hydra is unavailable
+2024-07-23 22:56:50,668 - payment_service_error - ERROR - Error creating payment: 503: External service unavailable: Hydra
+2024-07-23 22:57:01,956 - payment_service_error - ERROR - Hydra is unavailable
+2024-07-23 22:57:01,958 - payment_service_error - ERROR - Error creating payment: 503: External service unavailable: Hydra
+2024-07-23 22:57:08,105 - payment_service_error - ERROR - Hydra is unavailable
+2024-07-23 22:57:08,105 - payment_service_error - ERROR - Error creating payment: 503: External service unavailable: Hydra
+2024-07-23 22:57:18,053 - payment_service_error - ERROR - Hydra is unavailable
+2024-07-23 22:57:18,054 - payment_service_error - ERROR - Error creating payment: 503: External service unavailable: Hydra
+2024-07-23 22:58:05,121 - payment_service_error - ERROR - Hydra is unavailable
+2024-07-23 22:58:05,124 - payment_service_error - ERROR - Hydra is unavailable
+2024-07-23 22:58:05,124 - payment_service_error - ERROR - Error creating payment: 503: External service unavailable: Hydra
+2024-07-23 22:58:05,125 - payment_service_error - ERROR - Error creating payment: 503: External service unavailable: Hydra
+2024-07-23 22:58:05,689 - payment_service_error - ERROR - Hydra is unavailable
+2024-07-23 22:58:05,690 - payment_service_error - ERROR - Error creating payment: 503: External service unavailable: Hydra
+2024-07-23 22:58:16,991 - payment_service_error - ERROR - Hydra is unavailable
+2024-07-23 22:58:16,992 - payment_service_error - ERROR - Error creating payment: 503: External service unavailable: Hydra
+2024-07-23 22:58:23,129 - payment_service_error - ERROR - Hydra is unavailable
+2024-07-23 22:58:23,130 - payment_service_error - ERROR - Error creating payment: 503: External service unavailable: Hydra

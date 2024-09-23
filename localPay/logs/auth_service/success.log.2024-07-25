@@ -1,0 +1,58 @@
+2024-07-25 10:37:11,522 - auth_service_success - INFO - User nik_user authenticated successfully
+2024-07-25 10:37:11,527 - auth_service_success - INFO - Access token created for data: {'id': 245, 'role': <RoleEnum.USER: 'user'>}
+2024-07-25 10:37:11,541 - auth_service_success - INFO - Refresh token created for user ID: 245
+2024-07-25 10:37:11,541 - auth_service_success - INFO - User nik_user logged in successfully
+2024-07-25 10:37:13,825 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQ1LCJyb2xlIjoidXNlciIsImV4cCI6MTcyMTg4MzEzMX0.BnfvzfwbECFFT0m4JNP3ypnUwndaop9m3Pi2CPEsflM
+2024-07-25 10:37:13,830 - auth_service_success - INFO - Current user fetched successfully: 245
+2024-07-25 10:37:13,832 - auth_service_success - INFO - Permission granted for user ID 245
+2024-07-25 10:37:13,839 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQ1LCJyb2xlIjoidXNlciIsImV4cCI6MTcyMTg4MzEzMX0.BnfvzfwbECFFT0m4JNP3ypnUwndaop9m3Pi2CPEsflM
+2024-07-25 10:37:13,841 - auth_service_success - INFO - Current user fetched successfully: 245
+2024-07-25 10:37:13,842 - auth_service_success - INFO - Permission granted for user ID 245
+2024-07-25 10:37:13,845 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQ1LCJyb2xlIjoidXNlciIsImV4cCI6MTcyMTg4MzEzMX0.BnfvzfwbECFFT0m4JNP3ypnUwndaop9m3Pi2CPEsflM
+2024-07-25 10:37:13,846 - auth_service_success - INFO - Current user fetched successfully: 245
+2024-07-25 10:37:13,847 - auth_service_success - INFO - Permission granted for user ID 245
+2024-07-25 10:37:13,928 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQ1LCJyb2xlIjoidXNlciIsImV4cCI6MTcyMTg4MzEzMX0.BnfvzfwbECFFT0m4JNP3ypnUwndaop9m3Pi2CPEsflM
+2024-07-25 10:37:13,930 - auth_service_success - INFO - Current user fetched successfully: 245
+2024-07-25 10:37:13,930 - auth_service_success - INFO - Permission granted for user ID 245
+2024-07-25 10:41:35,384 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQ1LCJyb2xlIjoidXNlciIsImV4cCI6MTcyMTg4MzEzMX0.BnfvzfwbECFFT0m4JNP3ypnUwndaop9m3Pi2CPEsflM
+2024-07-25 10:41:35,432 - auth_service_success - INFO - Current user fetched successfully: 245
+2024-07-25 10:41:35,434 - auth_service_success - INFO - Permission granted for user ID 245
+2024-07-25 10:41:35,444 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQ1LCJyb2xlIjoidXNlciIsImV4cCI6MTcyMTg4MzEzMX0.BnfvzfwbECFFT0m4JNP3ypnUwndaop9m3Pi2CPEsflM
+2024-07-25 10:41:35,446 - auth_service_success - INFO - Current user fetched successfully: 245
+2024-07-25 10:41:35,447 - auth_service_success - INFO - Permission granted for user ID 245
+2024-07-25 10:41:35,451 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQ1LCJyb2xlIjoidXNlciIsImV4cCI6MTcyMTg4MzEzMX0.BnfvzfwbECFFT0m4JNP3ypnUwndaop9m3Pi2CPEsflM
+2024-07-25 10:41:35,452 - auth_service_success - INFO - Current user fetched successfully: 245
+2024-07-25 10:41:35,453 - auth_service_success - INFO - Permission granted for user ID 245
+2024-07-25 10:41:35,522 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQ1LCJyb2xlIjoidXNlciIsImV4cCI6MTcyMTg4MzEzMX0.BnfvzfwbECFFT0m4JNP3ypnUwndaop9m3Pi2CPEsflM
+2024-07-25 10:41:35,523 - auth_service_success - INFO - Current user fetched successfully: 245
+2024-07-25 10:41:35,524 - auth_service_success - INFO - Permission granted for user ID 245
+2024-07-25 10:43:44,395 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQ1LCJyb2xlIjoidXNlciIsImV4cCI6MTcyMTg4MzEzMX0.BnfvzfwbECFFT0m4JNP3ypnUwndaop9m3Pi2CPEsflM
+2024-07-25 10:43:44,423 - auth_service_success - INFO - Current user fetched successfully: 245
+2024-07-25 10:43:44,440 - auth_service_success - INFO - Permission granted for user ID 245
+2024-07-25 10:43:44,455 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQ1LCJyb2xlIjoidXNlciIsImV4cCI6MTcyMTg4MzEzMX0.BnfvzfwbECFFT0m4JNP3ypnUwndaop9m3Pi2CPEsflM
+2024-07-25 10:43:44,457 - auth_service_success - INFO - Current user fetched successfully: 245
+2024-07-25 10:43:44,458 - auth_service_success - INFO - Permission granted for user ID 245
+2024-07-25 10:44:21,361 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQ1LCJyb2xlIjoidXNlciIsImV4cCI6MTcyMTg4MzEzMX0.BnfvzfwbECFFT0m4JNP3ypnUwndaop9m3Pi2CPEsflM
+2024-07-25 10:44:21,374 - auth_service_success - INFO - Current user fetched successfully: 245
+2024-07-25 10:44:21,375 - auth_service_success - INFO - Permission granted for user ID 245
+2024-07-25 10:44:21,387 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQ1LCJyb2xlIjoidXNlciIsImV4cCI6MTcyMTg4MzEzMX0.BnfvzfwbECFFT0m4JNP3ypnUwndaop9m3Pi2CPEsflM
+2024-07-25 10:44:21,389 - auth_service_success - INFO - Current user fetched successfully: 245
+2024-07-25 10:44:21,390 - auth_service_success - INFO - Permission granted for user ID 245
+2024-07-25 10:44:28,369 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQ1LCJyb2xlIjoidXNlciIsImV4cCI6MTcyMTg4MzEzMX0.BnfvzfwbECFFT0m4JNP3ypnUwndaop9m3Pi2CPEsflM
+2024-07-25 10:44:28,378 - auth_service_success - INFO - Current user fetched successfully: 245
+2024-07-25 10:44:28,380 - auth_service_success - INFO - Permission granted for user ID 245
+2024-07-25 10:44:28,390 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQ1LCJyb2xlIjoidXNlciIsImV4cCI6MTcyMTg4MzEzMX0.BnfvzfwbECFFT0m4JNP3ypnUwndaop9m3Pi2CPEsflM
+2024-07-25 10:44:28,392 - auth_service_success - INFO - Current user fetched successfully: 245
+2024-07-25 10:44:28,393 - auth_service_success - INFO - Permission granted for user ID 245
+2024-07-25 10:44:31,720 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQ1LCJyb2xlIjoidXNlciIsImV4cCI6MTcyMTg4MzEzMX0.BnfvzfwbECFFT0m4JNP3ypnUwndaop9m3Pi2CPEsflM
+2024-07-25 10:44:31,727 - auth_service_success - INFO - Current user fetched successfully: 245
+2024-07-25 10:44:31,728 - auth_service_success - INFO - Permission granted for user ID 245
+2024-07-25 10:44:31,734 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQ1LCJyb2xlIjoidXNlciIsImV4cCI6MTcyMTg4MzEzMX0.BnfvzfwbECFFT0m4JNP3ypnUwndaop9m3Pi2CPEsflM
+2024-07-25 10:44:31,735 - auth_service_success - INFO - Current user fetched successfully: 245
+2024-07-25 10:44:31,736 - auth_service_success - INFO - Permission granted for user ID 245
+2024-07-25 10:44:31,766 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQ1LCJyb2xlIjoidXNlciIsImV4cCI6MTcyMTg4MzEzMX0.BnfvzfwbECFFT0m4JNP3ypnUwndaop9m3Pi2CPEsflM
+2024-07-25 10:44:31,767 - auth_service_success - INFO - Current user fetched successfully: 245
+2024-07-25 10:44:31,768 - auth_service_success - INFO - Permission granted for user ID 245
+2024-07-25 10:44:31,805 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQ1LCJyb2xlIjoidXNlciIsImV4cCI6MTcyMTg4MzEzMX0.BnfvzfwbECFFT0m4JNP3ypnUwndaop9m3Pi2CPEsflM
+2024-07-25 10:44:31,807 - auth_service_success - INFO - Current user fetched successfully: 245
+2024-07-25 10:44:31,808 - auth_service_success - INFO - Permission granted for user ID 245

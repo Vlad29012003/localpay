@@ -1,0 +1,42 @@
+version: '3'
+services:
+  backend:
+    build: ./localPay
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_DB=localPayDev
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    depends_on:
+      - db
+    env_file:
+      - .env
+
+  frontend:
+    build: ./localPayFront/localPay
+    ports:
+      - "3000:3000"
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - backend
+      - frontend
+
+  db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_DB=localPayDev
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - '5555:5432'
+volumes:
+  db-data:

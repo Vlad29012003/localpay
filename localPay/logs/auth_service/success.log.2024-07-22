@@ -1,0 +1,201 @@
+2024-07-22 11:06:47,500 - auth_service_success - INFO - User nik1t7n authenticated successfully
+2024-07-22 11:06:47,501 - auth_service_success - INFO - Access token created for data: {'id': 239, 'role': <RoleEnum.ADMIN: 'admin'>}
+2024-07-22 11:06:47,515 - auth_service_success - INFO - Refresh token created for user ID: 239
+2024-07-22 11:06:47,515 - auth_service_success - INFO - User nik1t7n logged in successfully
+2024-07-22 11:06:56,719 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjE2MjU3MDd9.s4enmaEfRLENTgLQG6UhQdAVmLeFHuO1z6vHdLiPpVM
+2024-07-22 11:06:56,722 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-22 11:06:56,723 - auth_service_success - INFO - Checked if user ID 239 is admin
+2024-07-22 11:06:56,723 - auth_service_success - INFO - Admin or supervisor permission granted for user ID 239
+2024-07-22 11:07:46,323 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjE2MjU3MDd9.s4enmaEfRLENTgLQG6UhQdAVmLeFHuO1z6vHdLiPpVM
+2024-07-22 11:07:46,377 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-22 11:07:46,378 - auth_service_success - INFO - Checked if user ID 239 is admin
+2024-07-22 11:07:46,378 - auth_service_success - INFO - Admin or supervisor permission granted for user ID 239
+2024-07-22 11:13:12,422 - auth_service_success - INFO - User nik1t7n authenticated successfully
+2024-07-22 11:13:12,423 - auth_service_success - INFO - Access token created for data: {'id': 239, 'role': <RoleEnum.ADMIN: 'admin'>}
+2024-07-22 11:13:12,433 - auth_service_success - INFO - Refresh token created for user ID: 239
+2024-07-22 11:13:12,433 - auth_service_success - INFO - User nik1t7n logged in successfully
+2024-07-22 11:13:23,422 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjE2MjYwOTJ9.WknODQWBly3k9ShUBzxzM6UnLqyy0l1N5Lo_vKis2X0
+2024-07-22 11:13:23,425 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-22 11:13:23,426 - auth_service_success - INFO - Checked if user ID 239 is admin
+2024-07-22 11:13:23,426 - auth_service_success - INFO - Admin or supervisor permission granted for user ID 239
+2024-07-22 11:13:45,602 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjE2MjYwOTJ9.WknODQWBly3k9ShUBzxzM6UnLqyy0l1N5Lo_vKis2X0
+2024-07-22 11:13:45,603 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-22 11:13:45,604 - auth_service_success - INFO - Checked if user ID 239 is admin
+2024-07-22 11:13:45,604 - auth_service_success - INFO - Admin or supervisor permission granted for user ID 239
+2024-07-22 11:14:03,682 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjE2MjYwOTJ9.WknODQWBly3k9ShUBzxzM6UnLqyy0l1N5Lo_vKis2X0
+2024-07-22 11:14:03,685 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-22 11:14:03,686 - auth_service_success - INFO - Checked if user ID 239 is admin
+2024-07-22 11:14:03,686 - auth_service_success - INFO - Admin or supervisor permission granted for user ID 239
+2024-07-22 11:18:37,602 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjE2MjYwOTJ9.WknODQWBly3k9ShUBzxzM6UnLqyy0l1N5Lo_vKis2X0
+2024-07-22 11:18:37,740 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-22 11:18:37,741 - auth_service_success - INFO - Checked if user ID 239 is admin
+2024-07-22 11:18:37,741 - auth_service_success - INFO - Admin or supervisor permission granted for user ID 239
+2024-07-22 11:18:59,706 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjE2MjYwOTJ9.WknODQWBly3k9ShUBzxzM6UnLqyy0l1N5Lo_vKis2X0
+2024-07-22 11:18:59,809 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-22 11:18:59,811 - auth_service_success - INFO - Checked if user ID 239 is admin
+2024-07-22 11:18:59,811 - auth_service_success - INFO - Admin or supervisor permission granted for user ID 239
+2024-07-22 11:19:14,890 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjE2MjYwOTJ9.WknODQWBly3k9ShUBzxzM6UnLqyy0l1N5Lo_vKis2X0
+2024-07-22 11:19:14,896 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-22 11:19:14,897 - auth_service_success - INFO - Checked if user ID 239 is admin
+2024-07-22 11:19:14,897 - auth_service_success - INFO - Admin or supervisor permission granted for user ID 239
+2024-07-22 11:19:31,677 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjE2MjYwOTJ9.WknODQWBly3k9ShUBzxzM6UnLqyy0l1N5Lo_vKis2X0
+2024-07-22 11:19:31,686 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-22 11:19:31,688 - auth_service_success - INFO - Checked if user ID 239 is admin
+2024-07-22 11:19:31,688 - auth_service_success - INFO - Admin or supervisor permission granted for user ID 239
+2024-07-22 12:13:28,071 - auth_service_success - INFO - User nik1t7n authenticated successfully
+2024-07-22 12:13:28,074 - auth_service_success - INFO - Access token created for data: {'id': 239, 'role': <RoleEnum.ADMIN: 'admin'>}
+2024-07-22 12:13:28,101 - auth_service_success - INFO - Refresh token created for user ID: 239
+2024-07-22 12:13:28,101 - auth_service_success - INFO - User nik1t7n logged in successfully
+2024-07-22 12:13:34,523 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjE2Mjk3MDh9.yXfQacIS7S9Ey-eyrEKXbXOBbbXCglkg7pNaWdDGBoo
+2024-07-22 12:13:34,539 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-22 12:13:34,540 - auth_service_success - INFO - Checked if user ID 239 is admin
+2024-07-22 12:13:34,540 - auth_service_success - INFO - Admin or supervisor permission granted for user ID 239
+2024-07-22 12:14:56,056 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjE2Mjk3MDh9.yXfQacIS7S9Ey-eyrEKXbXOBbbXCglkg7pNaWdDGBoo
+2024-07-22 12:14:56,205 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-22 12:14:56,207 - auth_service_success - INFO - Permission granted for user ID 239
+2024-07-22 12:16:41,958 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjE2Mjk3MDh9.yXfQacIS7S9Ey-eyrEKXbXOBbbXCglkg7pNaWdDGBoo
+2024-07-22 12:16:41,963 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-22 12:16:41,965 - auth_service_success - INFO - Checked if user ID 239 is admin
+2024-07-22 12:16:41,965 - auth_service_success - INFO - Admin or supervisor permission granted for user ID 239
+2024-07-22 12:33:02,736 - auth_service_success - INFO - User nik1t7n authenticated successfully
+2024-07-22 12:33:02,744 - auth_service_success - INFO - Access token created for data: {'id': 239, 'role': <RoleEnum.ADMIN: 'admin'>}
+2024-07-22 12:33:02,781 - auth_service_success - INFO - Refresh token created for user ID: 239
+2024-07-22 12:33:02,781 - auth_service_success - INFO - User nik1t7n logged in successfully
+2024-07-22 12:33:16,329 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjE2MzA4ODJ9.xRVrp2oWsCR8vH8kz_sBZXj0sZ-kWlrxBDytBZ2Q1m4
+2024-07-22 12:33:16,347 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-22 12:33:55,061 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjE2MzA4ODJ9.xRVrp2oWsCR8vH8kz_sBZXj0sZ-kWlrxBDytBZ2Q1m4
+2024-07-22 12:33:56,074 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-22 12:35:38,013 - auth_service_success - INFO - Failed login attempt for user: nik1t7n
+2024-07-22 12:35:38,013 - auth_service_success - INFO - Login failed for user: nik1t7n
+2024-07-22 12:35:42,795 - auth_service_success - INFO - User nik1t7n authenticated successfully
+2024-07-22 12:35:42,798 - auth_service_success - INFO - Access token created for data: {'id': 239, 'role': <RoleEnum.ADMIN: 'admin'>}
+2024-07-22 12:35:42,818 - auth_service_success - INFO - Refresh token created for user ID: 239
+2024-07-22 12:35:42,818 - auth_service_success - INFO - User nik1t7n logged in successfully
+2024-07-22 12:36:17,673 - auth_service_success - INFO - User nik1t7n authenticated successfully
+2024-07-22 12:36:17,674 - auth_service_success - INFO - Access token created for data: {'id': 239, 'role': <RoleEnum.ADMIN: 'admin'>}
+2024-07-22 12:36:17,678 - auth_service_success - INFO - Refresh token created for user ID: 239
+2024-07-22 12:36:17,678 - auth_service_success - INFO - User nik1t7n logged in successfully
+2024-07-22 12:36:19,377 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjE2MzEwNzd9.Cj2AZwoKNB2RuSeJsa1bPxPDcTPBrhgmosNeYmGIINM
+2024-07-22 12:36:19,381 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-22 12:36:19,382 - auth_service_success - INFO - Checked if user ID 239 is admin
+2024-07-22 12:36:19,383 - auth_service_success - INFO - Admin or supervisor permission granted for user ID 239
+2024-07-22 12:41:58,994 - auth_service_success - INFO - User nik1t7n authenticated successfully
+2024-07-22 12:41:58,998 - auth_service_success - INFO - Access token created for data: {'id': 239, 'role': <RoleEnum.ADMIN: 'admin'>}
+2024-07-22 12:41:59,013 - auth_service_success - INFO - Refresh token created for user ID: 239
+2024-07-22 12:41:59,013 - auth_service_success - INFO - User nik1t7n logged in successfully
+2024-07-22 12:42:32,966 - auth_service_success - INFO - Failed login attempt for user: Visor
+2024-07-22 12:42:32,967 - auth_service_success - INFO - Login failed for user: Visor
+2024-07-22 12:42:42,475 - auth_service_success - INFO - User Visor authenticated successfully
+2024-07-22 12:42:42,476 - auth_service_success - INFO - Access token created for data: {'id': 240, 'role': <RoleEnum.SUPERVISOR: 'supervisor'>}
+2024-07-22 12:42:42,480 - auth_service_success - INFO - Refresh token created for user ID: 240
+2024-07-22 12:42:42,480 - auth_service_success - INFO - User Visor logged in successfully
+2024-07-22 12:52:33,103 - auth_service_success - INFO - User Visor authenticated successfully
+2024-07-22 12:52:33,109 - auth_service_success - INFO - Access token created for data: {'id': 240, 'role': <RoleEnum.SUPERVISOR: 'supervisor'>}
+2024-07-22 12:52:33,136 - auth_service_success - INFO - Refresh token created for user ID: 240
+2024-07-22 12:52:33,136 - auth_service_success - INFO - User Visor logged in successfully
+2024-07-22 12:57:48,347 - auth_service_success - INFO - User Visor authenticated successfully
+2024-07-22 12:57:48,351 - auth_service_success - INFO - Access token created for data: {'id': 240, 'role': <RoleEnum.SUPERVISOR: 'supervisor'>}
+2024-07-22 12:57:48,365 - auth_service_success - INFO - Refresh token created for user ID: 240
+2024-07-22 12:57:48,365 - auth_service_success - INFO - User Visor logged in successfully
+2024-07-22 12:57:59,720 - auth_service_success - INFO - User nik1t7n authenticated successfully
+2024-07-22 12:57:59,721 - auth_service_success - INFO - Access token created for data: {'id': 239, 'role': <RoleEnum.ADMIN: 'admin'>}
+2024-07-22 12:57:59,727 - auth_service_success - INFO - Refresh token created for user ID: 239
+2024-07-22 12:57:59,727 - auth_service_success - INFO - User nik1t7n logged in successfully
+2024-07-22 13:03:20,294 - auth_service_success - INFO - User Visor authenticated successfully
+2024-07-22 13:03:20,299 - auth_service_success - INFO - Access token created for data: {'id': 240, 'role': <RoleEnum.SUPERVISOR: 'supervisor'>}
+2024-07-22 13:03:20,315 - auth_service_success - INFO - Refresh token created for user ID: 240
+2024-07-22 13:03:20,315 - auth_service_success - INFO - User Visor logged in successfully
+2024-07-22 13:03:37,906 - auth_service_success - INFO - User nik1t7n authenticated successfully
+2024-07-22 13:03:37,907 - auth_service_success - INFO - Access token created for data: {'id': 239, 'role': <RoleEnum.ADMIN: 'admin'>}
+2024-07-22 13:03:37,912 - auth_service_success - INFO - Refresh token created for user ID: 239
+2024-07-22 13:03:37,912 - auth_service_success - INFO - User nik1t7n logged in successfully
+2024-07-22 13:08:10,632 - auth_service_success - INFO - User Visor authenticated successfully
+2024-07-22 13:08:10,636 - auth_service_success - INFO - Access token created for data: {'id': 240, 'role': <RoleEnum.SUPERVISOR: 'supervisor'>}
+2024-07-22 13:08:10,644 - auth_service_success - INFO - Refresh token created for user ID: 240
+2024-07-22 13:08:10,644 - auth_service_success - INFO - User Visor logged in successfully
+2024-07-22 13:08:12,802 - auth_service_success - INFO - User Visor authenticated successfully
+2024-07-22 13:08:12,803 - auth_service_success - INFO - Access token created for data: {'id': 240, 'role': <RoleEnum.SUPERVISOR: 'supervisor'>}
+2024-07-22 13:08:12,806 - auth_service_success - INFO - Refresh token created for user ID: 240
+2024-07-22 13:08:12,806 - auth_service_success - INFO - User Visor logged in successfully
+2024-07-22 13:08:16,920 - auth_service_success - INFO - User Visor authenticated successfully
+2024-07-22 13:08:16,921 - auth_service_success - INFO - Access token created for data: {'id': 240, 'role': <RoleEnum.SUPERVISOR: 'supervisor'>}
+2024-07-22 13:08:16,923 - auth_service_success - INFO - Refresh token created for user ID: 240
+2024-07-22 13:08:16,923 - auth_service_success - INFO - User Visor logged in successfully
+2024-07-22 13:08:24,564 - auth_service_success - INFO - User Visor authenticated successfully
+2024-07-22 13:08:24,566 - auth_service_success - INFO - Access token created for data: {'id': 240, 'role': <RoleEnum.SUPERVISOR: 'supervisor'>}
+2024-07-22 13:08:24,571 - auth_service_success - INFO - Refresh token created for user ID: 240
+2024-07-22 13:08:24,571 - auth_service_success - INFO - User Visor logged in successfully
+2024-07-22 13:08:29,325 - auth_service_success - INFO - Failed login attempt for user: nik1t7n
+2024-07-22 13:08:29,325 - auth_service_success - INFO - Login failed for user: nik1t7n
+2024-07-22 13:08:39,813 - auth_service_success - INFO - User nik1t7n authenticated successfully
+2024-07-22 13:08:39,813 - auth_service_success - INFO - Access token created for data: {'id': 239, 'role': <RoleEnum.ADMIN: 'admin'>}
+2024-07-22 13:08:39,815 - auth_service_success - INFO - Refresh token created for user ID: 239
+2024-07-22 13:08:39,815 - auth_service_success - INFO - User nik1t7n logged in successfully
+2024-07-22 13:08:51,981 - auth_service_success - INFO - User Visor authenticated successfully
+2024-07-22 13:08:51,982 - auth_service_success - INFO - Access token created for data: {'id': 240, 'role': <RoleEnum.SUPERVISOR: 'supervisor'>}
+2024-07-22 13:08:51,988 - auth_service_success - INFO - Refresh token created for user ID: 240
+2024-07-22 13:08:51,988 - auth_service_success - INFO - User Visor logged in successfully
+2024-07-22 13:09:04,972 - auth_service_success - INFO - User Visor authenticated successfully
+2024-07-22 13:09:04,973 - auth_service_success - INFO - Access token created for data: {'id': 240, 'role': <RoleEnum.SUPERVISOR: 'supervisor'>}
+2024-07-22 13:09:04,977 - auth_service_success - INFO - Refresh token created for user ID: 240
+2024-07-22 13:09:04,977 - auth_service_success - INFO - User Visor logged in successfully
+2024-07-22 13:09:06,937 - auth_service_success - INFO - User Visor authenticated successfully
+2024-07-22 13:09:06,938 - auth_service_success - INFO - Access token created for data: {'id': 240, 'role': <RoleEnum.SUPERVISOR: 'supervisor'>}
+2024-07-22 13:09:06,943 - auth_service_success - INFO - Refresh token created for user ID: 240
+2024-07-22 13:09:06,943 - auth_service_success - INFO - User Visor logged in successfully
+2024-07-22 13:09:33,082 - auth_service_success - INFO - User Visor authenticated successfully
+2024-07-22 13:09:33,083 - auth_service_success - INFO - Access token created for data: {'id': 240, 'role': <RoleEnum.SUPERVISOR: 'supervisor'>}
+2024-07-22 13:09:33,087 - auth_service_success - INFO - Refresh token created for user ID: 240
+2024-07-22 13:09:33,088 - auth_service_success - INFO - User Visor logged in successfully
+2024-07-22 13:10:04,653 - auth_service_success - INFO - User Visor authenticated successfully
+2024-07-22 13:10:04,654 - auth_service_success - INFO - Access token created for data: {'id': 240, 'role': <RoleEnum.SUPERVISOR: 'supervisor'>}
+2024-07-22 13:10:04,658 - auth_service_success - INFO - Refresh token created for user ID: 240
+2024-07-22 13:10:04,658 - auth_service_success - INFO - User Visor logged in successfully
+2024-07-22 13:10:31,161 - auth_service_success - INFO - User Visor authenticated successfully
+2024-07-22 13:10:31,162 - auth_service_success - INFO - Access token created for data: {'id': 240, 'role': <RoleEnum.SUPERVISOR: 'supervisor'>}
+2024-07-22 13:10:31,165 - auth_service_success - INFO - Refresh token created for user ID: 240
+2024-07-22 13:10:31,165 - auth_service_success - INFO - User Visor logged in successfully
+2024-07-22 13:57:45,400 - auth_service_success - INFO - User Visor authenticated successfully
+2024-07-22 13:57:45,405 - auth_service_success - INFO - Access token created for data: {'id': 240, 'role': <RoleEnum.SUPERVISOR: 'supervisor'>}
+2024-07-22 13:57:45,418 - auth_service_success - INFO - Refresh token created for user ID: 240
+2024-07-22 13:57:45,418 - auth_service_success - INFO - User Visor logged in successfully
+2024-07-22 13:58:03,694 - auth_service_success - INFO - User Visor authenticated successfully
+2024-07-22 13:58:03,695 - auth_service_success - INFO - Access token created for data: {'id': 240, 'role': <RoleEnum.SUPERVISOR: 'supervisor'>}
+2024-07-22 13:58:03,698 - auth_service_success - INFO - Refresh token created for user ID: 240
+2024-07-22 13:58:03,699 - auth_service_success - INFO - User Visor logged in successfully
+2024-07-22 14:16:39,736 - auth_service_success - INFO - User Visor authenticated successfully
+2024-07-22 14:16:39,738 - auth_service_success - INFO - Access token created for data: {'id': 240, 'role': <RoleEnum.SUPERVISOR: 'supervisor'>}
+2024-07-22 14:16:39,754 - auth_service_success - INFO - Refresh token created for user ID: 240
+2024-07-22 14:16:39,754 - auth_service_success - INFO - User Visor logged in successfully
+2024-07-22 14:19:17,666 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQwLCJyb2xlIjoic3VwZXJ2aXNvciIsImV4cCI6MTcyMTYzNzA5OX0.jrXhtKdBeT8cK0Dh_v082-B9LrpWHu1E5fU2YEn2IPI
+2024-07-22 14:19:17,706 - auth_service_success - INFO - Current user fetched successfully: 240
+2024-07-22 14:19:17,710 - auth_service_success - INFO - Checked if user ID 240 is admin
+2024-07-22 14:19:17,711 - auth_service_success - INFO - Checked if user ID 240 is supervisor
+2024-07-22 14:19:17,711 - auth_service_success - INFO - Admin or supervisor permission granted for user ID 240
+2024-07-22 14:19:17,898 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQwLCJyb2xlIjoic3VwZXJ2aXNvciIsImV4cCI6MTcyMTYzNzA5OX0.jrXhtKdBeT8cK0Dh_v082-B9LrpWHu1E5fU2YEn2IPI
+2024-07-22 14:19:17,900 - auth_service_success - INFO - Current user fetched successfully: 240
+2024-07-22 14:19:17,901 - auth_service_success - INFO - Checked if user ID 240 is admin
+2024-07-22 14:19:17,902 - auth_service_success - INFO - Checked if user ID 240 is supervisor
+2024-07-22 14:19:17,902 - auth_service_success - INFO - Admin or supervisor permission granted for user ID 240
+2024-07-22 14:19:40,613 - auth_service_success - INFO - User nik1t7n authenticated successfully
+2024-07-22 14:19:40,614 - auth_service_success - INFO - Access token created for data: {'id': 239, 'role': <RoleEnum.ADMIN: 'admin'>}
+2024-07-22 14:19:40,623 - auth_service_success - INFO - Refresh token created for user ID: 239
+2024-07-22 14:19:40,623 - auth_service_success - INFO - User nik1t7n logged in successfully
+2024-07-22 14:20:29,178 - auth_service_success - INFO - Failed login attempt for user: nik1t7n_user
+2024-07-22 14:20:29,178 - auth_service_success - INFO - Login failed for user: nik1t7n_user
+2024-07-22 14:20:34,947 - auth_service_success - INFO - User nik1t7n_user authenticated successfully
+2024-07-22 14:20:34,948 - auth_service_success - INFO - Access token created for data: {'id': 241, 'role': <RoleEnum.USER: 'user'>}
+2024-07-22 14:20:34,951 - auth_service_success - INFO - Refresh token created for user ID: 241
+2024-07-22 14:20:34,951 - auth_service_success - INFO - User nik1t7n_user logged in successfully
+2024-07-22 14:21:30,641 - auth_service_success - INFO - User nik1t7n_user authenticated successfully
+2024-07-22 14:21:30,641 - auth_service_success - INFO - Access token created for data: {'id': 241, 'role': <RoleEnum.USER: 'user'>}
+2024-07-22 14:21:30,646 - auth_service_success - INFO - Refresh token created for user ID: 241
+2024-07-22 14:21:30,646 - auth_service_success - INFO - User nik1t7n_user logged in successfully
+2024-07-22 14:21:39,619 - auth_service_success - INFO - User Visor authenticated successfully
+2024-07-22 14:21:39,620 - auth_service_success - INFO - Access token created for data: {'id': 240, 'role': <RoleEnum.SUPERVISOR: 'supervisor'>}
+2024-07-22 14:21:39,622 - auth_service_success - INFO - Refresh token created for user ID: 240
+2024-07-22 14:21:39,622 - auth_service_success - INFO - User Visor logged in successfully
+2024-07-22 14:21:46,487 - auth_service_success - INFO - User nik1t7n authenticated successfully
+2024-07-22 14:21:46,489 - auth_service_success - INFO - Access token created for data: {'id': 239, 'role': <RoleEnum.ADMIN: 'admin'>}
+2024-07-22 14:21:46,491 - auth_service_success - INFO - Refresh token created for user ID: 239
+2024-07-22 14:21:46,491 - auth_service_success - INFO - User nik1t7n logged in successfully

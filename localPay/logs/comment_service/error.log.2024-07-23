@@ -1,0 +1,24 @@
+2024-07-23 19:39:29,484 - comment_service_error - ERROR - Error creating comment for user ID 245: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "localpay_comments_pkey"
+DETAIL:  Key (id)=(3584) already exists.
+
+[SQL: INSERT INTO localpay_comments (user_id, text, payment_type, old_available_balance, old_spent_money, add_to_available_balance, add_to_spent_money, new_available_balance, new_spent_money, created_at) VALUES (%(user_id)s, %(text)s, %(payment_type)s, %(old_available_balance)s, %(old_spent_money)s, %(add_to_available_balance)s, %(add_to_spent_money)s, %(new_available_balance)s, %(new_spent_money)s, %(created_at)s) RETURNING localpay_comments.id]
+[parameters: {'user_id': 245, 'text': 'string', 'payment_type': 'Пополнение с бухгалтерии', 'old_available_balance': 0, 'old_spent_money': 0, 'add_to_available_balance': 10000, 'add_to_spent_money': 0, 'new_available_balance': 10000, 'new_spent_money': 0, 'created_at': datetime.datetime(2024, 7, 23, 13, 39, 29, 454609)}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2024-07-23 19:40:00,110 - comment_service_error - ERROR - Error creating comment for user ID 245: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "localpay_comments_pkey"
+DETAIL:  Key (id)=(3585) already exists.
+
+[SQL: INSERT INTO localpay_comments (user_id, text, payment_type, old_available_balance, old_spent_money, add_to_available_balance, add_to_spent_money, new_available_balance, new_spent_money, created_at) VALUES (%(user_id)s, %(text)s, %(payment_type)s, %(old_available_balance)s, %(old_spent_money)s, %(add_to_available_balance)s, %(add_to_spent_money)s, %(new_available_balance)s, %(new_spent_money)s, %(created_at)s) RETURNING localpay_comments.id]
+[parameters: {'user_id': 245, 'text': 'string', 'payment_type': 'Пополнение с бухгалтерии', 'old_available_balance': 0, 'old_spent_money': 0, 'add_to_available_balance': 10000, 'add_to_spent_money': 0, 'new_available_balance': 10000, 'new_spent_money': 0, 'created_at': datetime.datetime(2024, 7, 23, 13, 40, 0, 103991)}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2024-07-23 19:40:58,716 - comment_service_error - ERROR - Error creating comment for user ID 245: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "localpay_comments_pkey"
+DETAIL:  Key (id)=(3586) already exists.
+
+[SQL: INSERT INTO localpay_comments (user_id, text, payment_type, old_available_balance, old_spent_money, add_to_available_balance, add_to_spent_money, new_available_balance, new_spent_money, created_at) VALUES (%(user_id)s, %(text)s, %(payment_type)s, %(old_available_balance)s, %(old_spent_money)s, %(add_to_available_balance)s, %(add_to_spent_money)s, %(new_available_balance)s, %(new_spent_money)s, %(created_at)s) RETURNING localpay_comments.id]
+[parameters: {'user_id': 245, 'text': 'string', 'payment_type': 'Пополнение с бухгалтерии', 'old_available_balance': 0, 'old_spent_money': 0, 'add_to_available_balance': 10000, 'add_to_spent_money': 0, 'new_available_balance': 10000, 'new_spent_money': 0, 'created_at': datetime.datetime(2024, 7, 23, 13, 40, 58, 714650)}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2024-07-23 19:46:02,431 - comment_service_error - ERROR - Error creating comment for user ID 245: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "localpay_comments_pkey"
+DETAIL:  Key (id)=(3661) already exists.
+
+[SQL: INSERT INTO localpay_comments (user_id, text, payment_type, old_available_balance, old_spent_money, add_to_available_balance, add_to_spent_money, new_available_balance, new_spent_money, created_at) VALUES (%(user_id)s, %(text)s, %(payment_type)s, %(old_available_balance)s, %(old_spent_money)s, %(add_to_available_balance)s, %(add_to_spent_money)s, %(new_available_balance)s, %(new_spent_money)s, %(created_at)s) RETURNING localpay_comments.id]
+[parameters: {'user_id': 245, 'text': 'string', 'payment_type': 'Пополнение с бухгалтерии', 'old_available_balance': 0, 'old_spent_money': 0, 'add_to_available_balance': 10000, 'add_to_spent_money': 0, 'new_available_balance': 10000, 'new_spent_money': 0, 'created_at': datetime.datetime(2024, 7, 23, 13, 46, 2, 428931)}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)

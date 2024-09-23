@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "localpay"
+version = "0.1.0"
+description = ""
+authors = ["Nik1t7n <20nik.nosov21@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.111.1"
+passlib = "^1.7.4"
+python-jose = "^3.3.0"
+uvicorn = "^0.30.3"
+bcrypt = "^4.2.0"
+sqlalchemy = "^2.0.31"
+alembic = "^1.13.2"
+poetry-plugin-export = "^1.8.0"
+fastapi-profiler = "^1.4.1"
+pandas = "^2.2.2"
+psycopg2-binary = "^2.9.9"
+bs4 = "^0.0.2"
+openpyxl = "^3.1.5"
+orjson = "^3.10.6"
+xlsxwriter = "^3.2.0"
+django = "^4.1.5"
+
+[tool.poetry.group.dev.dependencies]
+setuptools = "^72.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

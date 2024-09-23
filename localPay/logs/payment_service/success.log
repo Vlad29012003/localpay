@@ -1,0 +1,54 @@
+2024-07-29 13:23:00,531 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-29 13:23:00,550 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-29 13:23:22,996 - payment_service_success - INFO - Retrieved user with login m.erbol for payment report
+2024-07-29 13:23:23,005 - payment_service_success - INFO - Retrieved 30 payments for user ID 229
+2024-07-29 13:23:23,037 - payment_service_success - INFO - Total sum of completed and non-annulled payments: 20250.0
+2024-07-29 13:23:23,069 - payment_service_success - INFO - Excel report created successfully for user ID 229
+2024-07-29 13:23:58,654 - payment_service_success - INFO - Retrieved 10 payments for user m.erbol
+2024-07-29 13:24:41,500 - payment_service_success - INFO - Retrieved 10 payments for user m.erbol
+2024-07-29 13:26:50,473 - payment_service_success - INFO - Retrieved 10 payments for user m.erbol
+2024-07-29 13:28:11,097 - payment_service_success - INFO - Retrieved 10 payments for user m.erbol
+2024-07-29 13:28:43,341 - payment_service_success - INFO - Retrieved 10 payments for user m.erbol
+2024-07-29 13:33:32,619 - payment_service_success - INFO - Retrieved 10 payments for user m.erbol
+2024-07-29 13:34:57,584 - payment_service_success - INFO - Retrieved 10 payments for user m.erbol
+2024-07-29 13:39:33,535 - payment_service_success - INFO - Retrieved 10 payments for user m.erbol
+2024-07-29 13:40:43,598 - payment_service_success - INFO - Retrieved 10 payments for user m.erbol
+2024-07-29 13:41:28,389 - payment_service_success - INFO - Retrieved 10 payments for user m.erbol
+2024-07-29 13:43:24,688 - payment_service_success - INFO - Retrieved 10 payments for user m.erbol
+2024-07-29 13:49:31,147 - payment_service_success - INFO - Retrieved 10 payments for user m.erbol
+2024-07-29 14:07:09,254 - payment_service_success - INFO - Retrieved 10 payments for user m.erbol
+2024-07-29 14:13:12,945 - payment_service_success - INFO - Retrieved user with login m.erbol for payment report
+2024-07-29 14:13:12,973 - payment_service_success - INFO - Retrieved 33 payments for user ID 229
+2024-07-29 14:13:13,047 - payment_service_success - INFO - Total sum of completed and non-annulled payments: 24380.0
+2024-07-29 14:13:13,096 - payment_service_success - INFO - Excel report created successfully for user ID 229
+2024-07-29 14:14:00,624 - payment_service_success - INFO - Retrieved 10 payments for user m.erbol
+2024-07-29 14:15:52,454 - payment_service_success - INFO - Retrieved 28 payments for user m.erbol
+2024-07-29 14:51:19,812 - payment_service_success - INFO - Retrieved 0 payments for user nik1t7n_user
+2024-07-29 14:51:19,830 - payment_service_success - INFO - Retrieved 0 payments for user nik1t7n_user
+2024-07-29 14:53:26,038 - payment_service_success - INFO - Created payment for user nik1t7n_user, amount: 12.0
+2024-07-29 14:53:26,891 - payment_service_success - INFO - Created payment for user nik1t7n_user, amount: 12.0
+2024-07-29 14:53:27,637 - payment_service_success - INFO - Created payment for user nik1t7n_user, amount: 12.0
+2024-07-29 14:53:28,426 - payment_service_success - INFO - Created payment for user nik1t7n_user, amount: 12.0
+2024-07-29 14:53:29,147 - payment_service_success - INFO - Created payment for user nik1t7n_user, amount: 12.0
+2024-07-29 14:53:30,157 - payment_service_success - INFO - Created payment for user nik1t7n_user, amount: 12.0
+2024-07-29 14:53:32,832 - payment_service_success - INFO - Retrieved 6 payments for user nik1t7n_user
+2024-07-29 14:53:32,859 - payment_service_success - INFO - Retrieved 6 payments for user nik1t7n_user
+2024-07-29 14:53:38,572 - payment_service_success - INFO - Retrieved 5 payments for user nik1t7n_user
+2024-07-29 14:53:39,841 - payment_service_success - INFO - Retrieved 0 payments for user nik1t7n_user
+2024-07-29 14:53:41,078 - payment_service_success - INFO - Retrieved 5 payments for user nik1t7n_user
+2024-07-29 14:53:43,064 - payment_service_success - INFO - Retrieved 6 payments for user nik1t7n_user
+2024-07-29 14:53:54,779 - payment_service_success - INFO - Created payment for user nik1t7n_user, amount: 11.0
+2024-07-29 14:53:56,225 - payment_service_success - INFO - Created payment for user nik1t7n_user, amount: 11.0
+2024-07-29 14:53:57,772 - payment_service_success - INFO - Created payment for user nik1t7n_user, amount: 11.0
+2024-07-29 14:53:58,916 - payment_service_success - INFO - Created payment for user nik1t7n_user, amount: 11.0
+2024-07-29 14:54:00,103 - payment_service_success - INFO - Created payment for user nik1t7n_user, amount: 11.0
+2024-07-29 14:54:01,222 - payment_service_success - INFO - Created payment for user nik1t7n_user, amount: 11.0
+2024-07-29 14:54:02,337 - payment_service_success - INFO - Created payment for user nik1t7n_user, amount: 11.0
+2024-07-29 14:54:03,857 - payment_service_success - INFO - Retrieved 10 payments for user nik1t7n_user
+2024-07-29 14:54:03,881 - payment_service_success - INFO - Retrieved 10 payments for user nik1t7n_user
+2024-07-29 14:54:06,606 - payment_service_success - INFO - Retrieved 2 payments for user nik1t7n_user
+2024-07-29 14:54:07,883 - payment_service_success - INFO - Retrieved 10 payments for user nik1t7n_user
+2024-07-29 14:54:10,696 - payment_service_success - INFO - Retrieved 2 payments for user nik1t7n_user
+2024-07-29 14:54:11,876 - payment_service_success - INFO - Retrieved 10 payments for user nik1t7n_user
+2024-07-29 14:54:38,394 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-29 14:54:38,423 - payment_service_success - INFO - Retrieved 10 payments

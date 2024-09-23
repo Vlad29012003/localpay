@@ -1,0 +1,189 @@
+2024-07-26 09:50:06,628 - payment_service_success - INFO - Created payment for user nik_user, amount: 12.0
+2024-07-26 09:50:14,182 - payment_service_success - INFO - Created payment for user nik_user, amount: 13.0
+2024-07-26 09:50:15,986 - payment_service_success - INFO - Created payment for user nik_user, amount: 14.0
+2024-07-26 09:50:18,347 - payment_service_success - INFO - Created payment for user nik_user, amount: 15.0
+2024-07-26 09:50:20,686 - payment_service_success - INFO - Created payment for user nik_user, amount: 16.0
+2024-07-26 09:50:22,773 - payment_service_success - INFO - Created payment for user nik_user, amount: 17.0
+2024-07-26 09:50:24,653 - payment_service_success - INFO - Created payment for user nik_user, amount: 18.0
+2024-07-26 09:50:26,429 - payment_service_success - INFO - Created payment for user nik_user, amount: 19.0
+2024-07-26 09:50:28,747 - payment_service_success - INFO - Created payment for user nik_user, amount: 20.0
+2024-07-26 09:50:30,464 - payment_service_success - INFO - Created payment for user nik_user, amount: 21.0
+2024-07-26 09:50:32,459 - payment_service_success - INFO - Created payment for user nik_user, amount: 27.0
+2024-07-26 09:50:34,098 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 09:50:34,166 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 09:50:36,874 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 09:50:38,196 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 09:53:41,960 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 09:53:43,220 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 09:54:04,805 - payment_service_success - INFO - Retrieved 5 payments
+2024-07-26 09:54:04,855 - payment_service_success - INFO - Retrieved 5 payments
+2024-07-26 09:54:06,198 - payment_service_success - INFO - Retrieved 5 payments
+2024-07-26 09:54:07,181 - payment_service_success - INFO - Retrieved 5 payments
+2024-07-26 09:56:01,910 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 09:56:01,943 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 09:56:16,211 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 09:56:16,246 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 09:57:48,731 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 09:57:48,760 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 09:58:02,569 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 09:58:02,597 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 09:58:52,357 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 09:58:52,414 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:02:45,930 - payment_service_success - INFO - Retrieved 25 payments for user m.erbol
+2024-07-26 10:16:49,780 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:16:49,805 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:16:53,471 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:16:55,055 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:16:56,305 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:16:57,120 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:16:57,898 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:16:58,554 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:16:59,878 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:17:00,686 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:17:01,872 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:17:03,030 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:17:09,310 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:17:09,336 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:17:20,677 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:17:22,455 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:17:25,041 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:17:27,761 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:17:30,341 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:17:32,026 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:17:33,073 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:17:34,243 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:17:35,927 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:17:37,378 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:17:38,070 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:17:38,529 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:17:38,873 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:17:40,859 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:17:41,338 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:17:41,754 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:17:42,138 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:17:42,595 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:17:42,997 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:17:43,622 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:17:44,369 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:17:53,648 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:17:56,059 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:17:56,711 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:17:57,398 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:17:58,804 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:17:59,671 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:18:02,726 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:18:03,740 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:18:05,296 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:18:06,295 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:18:07,312 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:18:09,299 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:18:10,526 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:18:13,394 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:18:14,161 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:18:14,691 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:18:15,132 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:18:15,591 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:18:16,043 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:27:14,405 - payment_service_success - INFO - Retrieved 10 payments for user m.erbol
+2024-07-26 10:28:47,626 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 10:29:39,595 - payment_service_success - INFO - Retrieved 10 payments for user m.erbol
+2024-07-26 10:30:36,566 - payment_service_success - INFO - Retrieved 4 payments for user m.erbol
+2024-07-26 10:31:37,825 - payment_service_success - INFO - Retrieved 4 payments for user m.erbol
+2024-07-26 10:31:58,525 - payment_service_success - INFO - Retrieved 10 payments for user m.erbol
+2024-07-26 10:35:02,541 - payment_service_success - INFO - Retrieved 4 payments for user m.erbol
+2024-07-26 10:41:06,055 - payment_service_success - INFO - Retrieved 4 payments for user m.erbol
+2024-07-26 10:47:05,418 - payment_service_success - INFO - Retrieved 10 payments for user nik_user
+2024-07-26 10:47:05,434 - payment_service_success - INFO - Retrieved 10 payments for user nik_user
+2024-07-26 10:47:07,785 - payment_service_success - INFO - Retrieved 0 payments for user nik_user
+2024-07-26 10:47:14,820 - payment_service_success - INFO - Retrieved 10 payments for user nik_user
+2024-07-26 10:47:14,847 - payment_service_success - INFO - Retrieved 10 payments for user nik_user
+2024-07-26 10:47:17,802 - payment_service_success - INFO - Retrieved 5 payments for user nik_user
+2024-07-26 10:47:19,266 - payment_service_success - INFO - Retrieved 5 payments for user nik_user
+2024-07-26 10:52:11,948 - payment_service_success - INFO - Retrieved 10 payments for user nik_user
+2024-07-26 10:52:11,965 - payment_service_success - INFO - Retrieved 10 payments for user nik_user
+2024-07-26 10:54:33,002 - payment_service_success - INFO - Retrieved 10 payments for user nik_user
+2024-07-26 10:54:46,955 - payment_service_success - INFO - Retrieved 10 payments for user nik_user
+2024-07-26 10:55:24,006 - payment_service_success - INFO - Retrieved 10 payments for user nik_user
+2024-07-26 10:55:36,961 - payment_service_success - INFO - Retrieved 10 payments for user nik_user
+2024-07-26 10:55:37,937 - payment_service_success - INFO - Retrieved 10 payments for user nik_user
+2024-07-26 10:55:41,934 - payment_service_success - INFO - Retrieved 10 payments for user nik_user
+2024-07-26 10:55:41,971 - payment_service_success - INFO - Retrieved 10 payments for user nik_user
+2024-07-26 10:55:44,007 - payment_service_success - INFO - Retrieved 0 payments for user nik_user
+2024-07-26 10:55:45,170 - payment_service_success - INFO - Retrieved 0 payments for user nik_user
+2024-07-26 10:55:52,805 - payment_service_success - INFO - Retrieved 10 payments for user nik_user
+2024-07-26 10:55:52,824 - payment_service_success - INFO - Retrieved 10 payments for user nik_user
+2024-07-26 10:55:55,638 - payment_service_success - INFO - Retrieved 5 payments for user nik_user
+2024-07-26 10:55:57,258 - payment_service_success - INFO - Retrieved 5 payments for user nik_user
+2024-07-26 10:55:58,023 - payment_service_success - INFO - Retrieved 5 payments for user nik_user
+2024-07-26 10:58:01,956 - payment_service_success - INFO - Retrieved 5 payments for user nik_user
+2024-07-26 10:58:05,948 - payment_service_success - INFO - Retrieved 5 payments for user nik_user
+2024-07-26 10:59:05,999 - payment_service_success - INFO - Retrieved 10 payments for user nik_user
+2024-07-26 10:59:06,015 - payment_service_success - INFO - Retrieved 10 payments for user nik_user
+2024-07-26 10:59:08,980 - payment_service_success - INFO - Retrieved 10 payments for user nik_user
+2024-07-26 10:59:45,979 - payment_service_success - INFO - Retrieved 10 payments for user nik_user
+2024-07-26 11:03:55,505 - payment_service_success - INFO - Retrieved 10 payments for user nik_user
+2024-07-26 11:03:55,531 - payment_service_success - INFO - Retrieved 10 payments for user nik_user
+2024-07-26 11:03:58,703 - payment_service_success - INFO - Retrieved 5 payments for user nik_user
+2024-07-26 11:03:59,764 - payment_service_success - INFO - Retrieved 5 payments for user nik_user
+2024-07-26 11:04:00,568 - payment_service_success - INFO - Retrieved 5 payments for user nik_user
+2024-07-26 11:04:02,188 - payment_service_success - INFO - Retrieved 5 payments for user nik_user
+2024-07-26 11:04:03,083 - payment_service_success - INFO - Retrieved 5 payments for user nik_user
+2024-07-26 11:18:34,968 - payment_service_success - INFO - Retrieved 5 payments for user nik_user
+2024-07-26 11:18:35,671 - payment_service_success - INFO - Retrieved 5 payments for user nik_user
+2024-07-26 11:18:36,421 - payment_service_success - INFO - Retrieved 5 payments for user nik_user
+2024-07-26 11:18:36,925 - payment_service_success - INFO - Retrieved 5 payments for user nik_user
+2024-07-26 11:18:37,343 - payment_service_success - INFO - Retrieved 5 payments for user nik_user
+2024-07-26 11:18:37,828 - payment_service_success - INFO - Retrieved 5 payments for user nik_user
+2024-07-26 11:18:38,339 - payment_service_success - INFO - Retrieved 5 payments for user nik_user
+2024-07-26 11:18:38,759 - payment_service_success - INFO - Retrieved 5 payments for user nik_user
+2024-07-26 11:18:39,107 - payment_service_success - INFO - Retrieved 5 payments for user nik_user
+2024-07-26 11:18:39,558 - payment_service_success - INFO - Retrieved 5 payments for user nik_user
+2024-07-26 11:18:39,951 - payment_service_success - INFO - Retrieved 5 payments for user nik_user
+2024-07-26 11:18:40,421 - payment_service_success - INFO - Retrieved 5 payments for user nik_user
+2024-07-26 11:18:40,927 - payment_service_success - INFO - Retrieved 5 payments for user nik_user
+2024-07-26 11:18:41,465 - payment_service_success - INFO - Retrieved 5 payments for user nik_user
+2024-07-26 11:18:41,927 - payment_service_success - INFO - Retrieved 5 payments for user nik_user
+2024-07-26 11:18:42,344 - payment_service_success - INFO - Retrieved 5 payments for user nik_user
+2024-07-26 11:18:42,686 - payment_service_success - INFO - Retrieved 5 payments for user nik_user
+2024-07-26 11:18:43,421 - payment_service_success - INFO - Retrieved 5 payments for user nik_user
+2024-07-26 11:20:06,806 - payment_service_success - INFO - Retrieved 10 payments for user nik_user
+2024-07-26 11:20:06,834 - payment_service_success - INFO - Retrieved 10 payments for user nik_user
+2024-07-26 11:24:27,956 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:24:27,975 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:24:39,203 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:24:39,231 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:25:20,160 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:25:20,181 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:25:47,829 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:25:47,848 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:25:54,020 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:26:06,493 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:26:34,681 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:26:40,307 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:26:44,732 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:26:44,902 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:26:45,071 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:26:45,264 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:26:45,430 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:26:45,587 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:26:45,757 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:26:45,916 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:26:46,075 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:26:46,237 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:26:46,427 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:26:46,574 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:26:46,758 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:26:46,927 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:26:47,109 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:26:47,278 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:26:47,457 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:26:47,601 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:26:47,774 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:26:47,923 - payment_service_success - INFO - Retrieved 3 payments
+2024-07-26 11:26:51,896 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:26:54,467 - payment_service_success - INFO - Retrieved 3 payments
+2024-07-26 11:27:55,350 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:27:55,374 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:34:02,931 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:34:04,161 - payment_service_success - INFO - Retrieved 10 payments
+2024-07-26 11:34:05,157 - payment_service_success - INFO - Retrieved 10 payments

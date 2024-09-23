@@ -1,0 +1,3 @@
+2024-07-12 15:06:14,405 - payment_service_error - ERROR - Error retrieving payment: 404: Payment with id 28306 not found
+2024-07-12 15:07:01,076 - payment_service_error - ERROR - Error retrieving payment: 404: Payment with id 28306 not found
+2024-07-12 15:13:03,303 - payment_service_error - ERROR - Error retrieving payment: 404: Payment with id 28306 not found

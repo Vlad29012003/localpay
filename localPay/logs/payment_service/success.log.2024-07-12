@@ -1,0 +1,18 @@
+2024-07-12 15:05:48,076 - payment_service_success - INFO - Retrieved 1 payments
+2024-07-12 15:05:53,154 - payment_service_success - INFO - Retrieved 0 payments
+2024-07-12 15:06:00,644 - payment_service_success - INFO - Retrieved 1 payments
+2024-07-12 15:07:29,208 - payment_service_success - INFO - Exported all user payments successfully
+2024-07-12 15:07:50,887 - payment_service_success - INFO - Retrieved user with login nik1t7n for payment report
+2024-07-12 15:07:50,888 - payment_service_success - INFO - Retrieved 1 payments for user ID 239
+2024-07-12 15:07:50,904 - payment_service_success - INFO - Total sum of completed and non-annulled payments: 11.0
+2024-07-12 15:07:50,910 - payment_service_success - INFO - Excel report created successfully for user ID 239
+2024-07-12 15:13:07,450 - payment_service_success - INFO - Retrieved 1 payments
+2024-07-12 15:13:29,318 - payment_service_success - INFO - Retrieved payment with id 28506
+2024-07-12 15:13:29,318 - payment_service_success - INFO - Payment details before update: annulment=False, available_balance=1189, spent_money=-11
+2024-07-12 15:13:29,318 - payment_service_success - INFO - Updated fields for payment with ID 28506
+2024-07-12 15:13:29,352 - payment_service_success - INFO - Created comment for annulled payment with ID 28506
+2024-07-12 15:13:29,354 - payment_service_success - INFO - Updated user balance for user with ID 239
+2024-07-12 16:37:14,163 - payment_service_success - INFO - Retrieved 1 payments
+2024-07-12 16:37:36,241 - payment_service_success - INFO - Created payment for user nik1t7n, amount: 12.0
+2024-07-12 16:37:41,922 - payment_service_success - INFO - Retrieved 2 payments
+2024-07-12 16:37:52,516 - payment_service_success - INFO - Retrieved 1 payments

@@ -1,0 +1,6 @@
+2024-07-29 14:05:56,860 - auth_service_error - ERROR - Invalid token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQzLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjIyMzg2NzJ9.5l21mFTGlOQTJoZVxbpbo-UXOJu-vLlw9t0pHX21Nhc
+2024-07-29 14:05:56,864 - auth_service_error - ERROR - Error fetching current user: 401: Could not validate credentials
+2024-07-29 14:05:56,870 - auth_service_error - ERROR - Invalid token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQzLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjIyMzg2NzJ9.5l21mFTGlOQTJoZVxbpbo-UXOJu-vLlw9t0pHX21Nhc
+2024-07-29 14:05:56,870 - auth_service_error - ERROR - Error fetching current user: 401: Could not validate credentials
+2024-07-29 14:54:20,588 - auth_service_error - ERROR - Error during authentication for user nik1t7n_supervisor: 404: User with login nik1t7n_supervisor not found
+2024-07-29 14:54:20,589 - auth_service_error - ERROR - Error during login for user nik1t7n_supervisor: 404: User with login nik1t7n_supervisor not found

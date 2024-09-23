@@ -1,0 +1,15 @@
+2024-07-29 13:23:58,996 - payment_service_error - ERROR - Error comparing user payments with Planup: 'list' object has no attribute 'ls_abon'
+2024-07-29 13:24:41,718 - payment_service_error - ERROR - Error comparing user payments with Planup: 'list' object has no attribute 'ls_abon'
+2024-07-29 13:26:50,813 - payment_service_error - ERROR - Error comparing user payments with Planup: list indices must be integers or slices, not str
+2024-07-29 13:28:11,329 - payment_service_error - ERROR - Error comparing user payments with Planup: 'list' object has no attribute 'ls_abon'
+2024-07-29 13:28:43,657 - payment_service_error - ERROR - Error comparing user payments with Planup: 'list' object has no attribute 'ls_abon'
+2024-07-29 13:34:57,811 - payment_service_error - ERROR - Error comparing user payments with Planup: 'list' object has no attribute 'ls_abon'
+2024-07-29 13:39:33,768 - payment_service_error - ERROR - Error comparing user payments with Planup: 'list' object has no attribute 'ls_abon'
+2024-07-29 13:40:43,824 - payment_service_error - ERROR - Error comparing user payments with Planup: 'list' object has no attribute 'ls_abon'
+2024-07-29 13:43:24,918 - payment_service_error - ERROR - Error comparing user payments with Planup: 'list' object has no attribute 'ls_abon'
+2024-07-29 14:53:23,865 - payment_service_error - ERROR - Error creating payment: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "localpay_payments_pkey"
+DETAIL:  Key (id)=(29145) already exists.
+
+[SQL: INSERT INTO localpay_payments (payment_number, payment_date, payment_accept, ls_abon, money, payment_status, user_id, annulment, document_number, comment, updated_at) VALUES (%(payment_number)s, %(payment_date)s, %(payment_accept)s, %(ls_abon)s, %(money)s, %(payment_status)s, %(user_id)s, %(annulment)s, %(document_number)s, %(comment)s, %(updated_at)s) RETURNING localpay_payments.id]
+[parameters: {'payment_number': '20240729145323175050620', 'payment_date': '2024-07-29 14:53:23.63', 'payment_accept': '2024-07-29 14:53:23.84', 'ls_abon': '175050620', 'money': 12.0, 'payment_status': 'Выполнен', 'user_id': 237, 'annulment': False, 'document_number': None, 'comment': None, 'updated_at': datetime.datetime(2024, 7, 29, 8, 53, 23, 845176)}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)

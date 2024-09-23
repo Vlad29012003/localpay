@@ -1,0 +1,7 @@
+2024-07-12 15:05:07,777 - user_service_error - ERROR - Error retrieving users: (psycopg2.errors.InvalidRowCountInResultOffsetClause) OFFSET must not be negative
+
+[SQL: SELECT localpay_users.id AS localpay_users_id, localpay_users.name AS localpay_users_name, localpay_users.surname AS localpay_users_surname, localpay_users.login AS localpay_users_login, localpay_users.hashed_password AS localpay_users_hashed_password, localpay_users.date_reg AS localpay_users_date_reg, localpay_users.role AS localpay_users_role, localpay_users.access_to_payments AS localpay_users_access_to_payments, localpay_users.is_active AS localpay_users_is_active, localpay_users.available_balance AS localpay_users_available_balance, localpay_users.spent_money AS localpay_users_spent_money, localpay_users.region AS localpay_users_region, localpay_users.refill AS localpay_users_refill, localpay_users.write_off AS localpay_users_write_off, localpay_users.comment AS localpay_users_comment 
+FROM localpay_users 
+ LIMIT %(param_1)s OFFSET %(param_2)s]
+[parameters: {'param_1': 10, 'param_2': -20}]
+(Background on this error at: https://sqlalche.me/e/20/9h9h)

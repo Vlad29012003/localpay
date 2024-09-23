@@ -1,0 +1,6 @@
+2024-07-29 14:05:20,750 - user_service_error - ERROR - Error creating user: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "localpay_users_pkey"
+DETAIL:  Key (id)=(235) already exists.
+
+[SQL: INSERT INTO localpay_users (name, surname, login, hashed_password, date_reg, role, access_to_payments, is_active, available_balance, spent_money, region, refill, write_off, comment, planup_id) VALUES (%(name)s, %(surname)s, %(login)s, %(hashed_password)s, %(date_reg)s, %(role)s, %(access_to_payments)s, %(is_active)s, %(available_balance)s, %(spent_money)s, %(region)s, %(refill)s, %(write_off)s, %(comment)s, %(planup_id)s) RETURNING localpay_users.id]
+[parameters: {'name': 'Nikita', 'surname': 'Nosov', 'login': 'nik1t7n', 'hashed_password': '$2b$12$2lFi0it7r1o2jNV3erqi9ecuDBAokTKI/RByQgwL3QIt9zMR5X822', 'date_reg': datetime.datetime(2024, 7, 29, 8, 5, 20, 721168), 'role': 'ADMIN', 'access_to_payments': True, 'is_active': True, 'available_balance': 0, 'spent_money': 0, 'region': 'CHUY', 'refill': 0, 'write_off': 0, 'comment': 'string', 'planup_id': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)

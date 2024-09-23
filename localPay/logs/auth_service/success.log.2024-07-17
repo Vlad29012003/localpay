@@ -1,0 +1,82 @@
+2024-07-17 11:52:57,215 - auth_service_success - INFO - User nik1t7n authenticated successfully
+2024-07-17 11:52:57,217 - auth_service_success - INFO - Access token created for data: {'id': 239, 'role': <RoleEnum.ADMIN: 'admin'>}
+2024-07-17 11:52:57,228 - auth_service_success - INFO - Refresh token created for user ID: 239
+2024-07-17 11:52:57,229 - auth_service_success - INFO - User nik1t7n logged in successfully
+2024-07-17 11:52:59,189 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjExOTY0Nzd9.JpRa7r40Yd7gGUDK9npqX-yanpEa_V3lRlGBXh30mVQ
+2024-07-17 11:52:59,193 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-17 11:52:59,195 - auth_service_success - INFO - Checked if user ID 239 is admin
+2024-07-17 11:52:59,195 - auth_service_success - INFO - Admin or supervisor permission granted for user ID 239
+2024-07-17 11:55:10,883 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjExOTY0Nzd9.JpRa7r40Yd7gGUDK9npqX-yanpEa_V3lRlGBXh30mVQ
+2024-07-17 11:55:10,898 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-17 11:55:10,900 - auth_service_success - INFO - Checked if user ID 239 is admin
+2024-07-17 11:55:10,900 - auth_service_success - INFO - Admin or supervisor permission granted for user ID 239
+2024-07-17 11:55:21,022 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjExOTY0Nzd9.JpRa7r40Yd7gGUDK9npqX-yanpEa_V3lRlGBXh30mVQ
+2024-07-17 11:55:21,026 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-17 11:55:21,027 - auth_service_success - INFO - Checked if user ID 239 is admin
+2024-07-17 11:55:21,027 - auth_service_success - INFO - Admin or supervisor permission granted for user ID 239
+2024-07-17 11:55:23,875 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjExOTY0Nzd9.JpRa7r40Yd7gGUDK9npqX-yanpEa_V3lRlGBXh30mVQ
+2024-07-17 11:55:23,878 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-17 11:55:23,880 - auth_service_success - INFO - Checked if user ID 239 is admin
+2024-07-17 11:55:23,880 - auth_service_success - INFO - Admin or supervisor permission granted for user ID 239
+2024-07-17 11:55:25,323 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjExOTY0Nzd9.JpRa7r40Yd7gGUDK9npqX-yanpEa_V3lRlGBXh30mVQ
+2024-07-17 11:55:25,326 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-17 11:55:25,327 - auth_service_success - INFO - Checked if user ID 239 is admin
+2024-07-17 11:55:25,327 - auth_service_success - INFO - Admin or supervisor permission granted for user ID 239
+2024-07-17 11:55:27,185 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjExOTY0Nzd9.JpRa7r40Yd7gGUDK9npqX-yanpEa_V3lRlGBXh30mVQ
+2024-07-17 11:55:27,186 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-17 11:55:27,187 - auth_service_success - INFO - Checked if user ID 239 is admin
+2024-07-17 11:55:27,187 - auth_service_success - INFO - Admin or supervisor permission granted for user ID 239
+2024-07-17 11:55:30,762 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjExOTY0Nzd9.JpRa7r40Yd7gGUDK9npqX-yanpEa_V3lRlGBXh30mVQ
+2024-07-17 11:55:30,764 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-17 11:55:30,766 - auth_service_success - INFO - Checked if user ID 239 is admin
+2024-07-17 11:55:30,766 - auth_service_success - INFO - Admin or supervisor permission granted for user ID 239
+2024-07-17 11:55:31,947 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjExOTY0Nzd9.JpRa7r40Yd7gGUDK9npqX-yanpEa_V3lRlGBXh30mVQ
+2024-07-17 11:55:31,950 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-17 11:55:31,951 - auth_service_success - INFO - Checked if user ID 239 is admin
+2024-07-17 11:55:31,951 - auth_service_success - INFO - Admin or supervisor permission granted for user ID 239
+2024-07-17 11:55:56,739 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjExOTY0Nzd9.JpRa7r40Yd7gGUDK9npqX-yanpEa_V3lRlGBXh30mVQ
+2024-07-17 11:55:56,871 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-17 11:55:56,871 - auth_service_success - INFO - Checked if user ID 239 is admin
+2024-07-17 11:55:56,871 - auth_service_success - INFO - Admin or supervisor permission granted for user ID 239
+2024-07-17 11:55:58,612 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjExOTY0Nzd9.JpRa7r40Yd7gGUDK9npqX-yanpEa_V3lRlGBXh30mVQ
+2024-07-17 11:55:58,614 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-17 11:55:58,616 - auth_service_success - INFO - Checked if user ID 239 is admin
+2024-07-17 11:55:58,616 - auth_service_success - INFO - Admin or supervisor permission granted for user ID 239
+2024-07-17 11:55:59,760 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjExOTY0Nzd9.JpRa7r40Yd7gGUDK9npqX-yanpEa_V3lRlGBXh30mVQ
+2024-07-17 11:55:59,762 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-17 11:55:59,764 - auth_service_success - INFO - Checked if user ID 239 is admin
+2024-07-17 11:55:59,764 - auth_service_success - INFO - Admin or supervisor permission granted for user ID 239
+2024-07-17 11:56:00,465 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjExOTY0Nzd9.JpRa7r40Yd7gGUDK9npqX-yanpEa_V3lRlGBXh30mVQ
+2024-07-17 11:56:00,467 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-17 11:56:00,469 - auth_service_success - INFO - Checked if user ID 239 is admin
+2024-07-17 11:56:00,469 - auth_service_success - INFO - Admin or supervisor permission granted for user ID 239
+2024-07-17 11:56:01,162 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjExOTY0Nzd9.JpRa7r40Yd7gGUDK9npqX-yanpEa_V3lRlGBXh30mVQ
+2024-07-17 11:56:01,164 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-17 11:56:01,165 - auth_service_success - INFO - Checked if user ID 239 is admin
+2024-07-17 11:56:01,165 - auth_service_success - INFO - Admin or supervisor permission granted for user ID 239
+2024-07-17 11:56:01,939 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjExOTY0Nzd9.JpRa7r40Yd7gGUDK9npqX-yanpEa_V3lRlGBXh30mVQ
+2024-07-17 11:56:01,942 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-17 11:56:01,943 - auth_service_success - INFO - Checked if user ID 239 is admin
+2024-07-17 11:56:01,943 - auth_service_success - INFO - Admin or supervisor permission granted for user ID 239
+2024-07-17 11:56:03,029 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjExOTY0Nzd9.JpRa7r40Yd7gGUDK9npqX-yanpEa_V3lRlGBXh30mVQ
+2024-07-17 11:56:03,031 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-17 11:56:03,031 - auth_service_success - INFO - Checked if user ID 239 is admin
+2024-07-17 11:56:03,031 - auth_service_success - INFO - Admin or supervisor permission granted for user ID 239
+2024-07-17 11:56:04,441 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjExOTY0Nzd9.JpRa7r40Yd7gGUDK9npqX-yanpEa_V3lRlGBXh30mVQ
+2024-07-17 11:56:04,444 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-17 11:56:04,446 - auth_service_success - INFO - Checked if user ID 239 is admin
+2024-07-17 11:56:04,446 - auth_service_success - INFO - Admin or supervisor permission granted for user ID 239
+2024-07-17 14:25:46,765 - auth_service_success - INFO - User nik1t7n authenticated successfully
+2024-07-17 14:25:46,767 - auth_service_success - INFO - Access token created for data: {'id': 239, 'role': <RoleEnum.ADMIN: 'admin'>}
+2024-07-17 14:25:46,779 - auth_service_success - INFO - Refresh token created for user ID: 239
+2024-07-17 14:25:46,779 - auth_service_success - INFO - User nik1t7n logged in successfully
+2024-07-17 14:25:48,559 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjEyMDU2NDZ9.vLOovI-IBAzwf4bwxV-dvMwy83JvUNZIEeh9RWYHW_I
+2024-07-17 14:25:48,563 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-17 14:25:48,564 - auth_service_success - INFO - Checked if user ID 239 is admin
+2024-07-17 14:25:48,564 - auth_service_success - INFO - Admin or supervisor permission granted for user ID 239
+2024-07-17 14:25:53,841 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjEyMDU2NDZ9.vLOovI-IBAzwf4bwxV-dvMwy83JvUNZIEeh9RWYHW_I
+2024-07-17 14:25:53,843 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-17 14:25:53,844 - auth_service_success - INFO - Permission granted for user ID 239
+2024-07-17 14:27:40,695 - auth_service_success - INFO - Token verified successfully: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjM5LCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjEyMDU2NDZ9.vLOovI-IBAzwf4bwxV-dvMwy83JvUNZIEeh9RWYHW_I
+2024-07-17 14:27:40,748 - auth_service_success - INFO - Current user fetched successfully: 239
+2024-07-17 14:27:40,749 - auth_service_success - INFO - Permission granted for user ID 239

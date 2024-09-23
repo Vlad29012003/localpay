@@ -1,0 +1,6 @@
+2024-07-29 14:51:44,411 - comment_service_error - ERROR - Error creating comment for user ID 237: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "localpay_comments_pkey"
+DETAIL:  Key (id)=(3691) already exists.
+
+[SQL: INSERT INTO localpay_comments (user_id, text, payment_type, old_available_balance, old_spent_money, add_to_available_balance, add_to_spent_money, new_available_balance, new_spent_money, created_at) VALUES (%(user_id)s, %(text)s, %(payment_type)s, %(old_available_balance)s, %(old_spent_money)s, %(add_to_available_balance)s, %(add_to_spent_money)s, %(new_available_balance)s, %(new_spent_money)s, %(created_at)s) RETURNING localpay_comments.id]
+[parameters: {'user_id': 237, 'text': 'string', 'payment_type': 'Пополнение с бухгалтерии', 'old_available_balance': 0, 'old_spent_money': 0, 'add_to_available_balance': 10000, 'add_to_spent_money': 0, 'new_available_balance': 10000, 'new_spent_money': 0, 'created_at': datetime.datetime(2024, 7, 29, 8, 51, 44, 395331)}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
