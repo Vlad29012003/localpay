@@ -23,10 +23,12 @@ def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), aut
 
 @router.get("/verify-token/{token}")
 async def verify_user_token(token: str, auth_service: AuthService = Depends(get_auth_service)):
+    print(f"Received token: {token}")
     try:
         current_user = auth_service.get_current_user(token=token)
         return {"message": "Token is valid", "login": current_user.login, "role": current_user.role}
     except Exception as e:
+        print(f"Error verifying token: {str(e)}")
         raise e
 
 

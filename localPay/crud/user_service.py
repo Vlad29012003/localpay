@@ -45,6 +45,31 @@ class UserService:
         except Exception as e:
             error_logger.error(f"Error retrieving users: {str(e)}")
             raise DatabaseQueryException(str(e))
+        
+
+    def change_password(self, user_id: int, new_hashed_password: str, db: Session):
+        db_user = self.get_user_by_id(user_id)
+        if db_user is None:
+            error_logger.warning(f"User with id {user_id} not found when trying to change password")
+            raise UserNotFoundException(user_id)
+        
+        old_password = db_user.hashed_password
+        db_user.hashed_password = new_hashed_password
+        
+        print(f"Changing password for user {user_id}")
+        print(f"Old password hash: {old_password}")
+        print(f"New password hash: {new_hashed_password}")
+        
+        try:
+            db.commit()
+            db.refresh(db_user)
+            print(f"Changed password for user with id {user_id}")
+            print(f"Updated password hash in DB: {db_user.hashed_password}")
+            return db_user
+        except Exception as e:
+            db.rollback()
+            error_logger.error(f"Error changing password for user {user_id}: {str(e)}")
+            raise DatabaseQueryException(str(e))
 
     def get_user_by_id(self, user_id: int):
         db_user = self.db.query(User).filter(User.id == user_id).first()
@@ -63,7 +88,9 @@ class UserService:
         return db_user
 
     def create_user(self, user: UserCreate):
+        print(f"Original password for user {user.login}: {user.password}")
         hashed_password = django_pbkdf2_sha256.hash(user.password)
+        print(f"Hashed password for user {user.login}: {hashed_password}")
         if user.surname == "admin":
             user.access_to_payments = True
         elif user.role == "supervisor":
