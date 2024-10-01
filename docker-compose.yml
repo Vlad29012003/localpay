@@ -29,7 +29,7 @@ services:
       - frontend
 
   db:
-    image: postgres:latest
+    image: postgres:16
     environment:
       - POSTGRES_DB=localPayDev
       - POSTGRES_USER=postgres

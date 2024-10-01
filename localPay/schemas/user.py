@@ -1,5 +1,4 @@
 from typing import Optional
-
 import enum
 from datetime import datetime
 from enum import Enum
@@ -69,3 +68,20 @@ class User(UserBase):
 
 
 
+class AdminChangePasswordRequest(BaseModel):
+    new_password: str = Field(..., min_length=6, max_length=100)
+    confirm_password: str = Field(..., min_length=6, max_length=100)
+
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "new_password": "new_secure_password_123",
+                "confirm_password": "new_secure_password_123"
+            }
+        }
+
+    def passwords_match(self) -> bool:
+        return self.new_password == self.confirm_password
+
+request = AdminChangePasswordRequest(new_password="123456", confirm_password="123456")
+print(request)

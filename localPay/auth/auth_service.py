@@ -5,6 +5,8 @@ from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 from secrets import token_urlsafe
 from sqlalchemy.orm import Session
+from typing import Optional
+
 
 from config import (
     access_token_expires_minutes,
@@ -23,7 +25,7 @@ from schemas.token import TokenPayload, TokenResponse
 from schemas.user import RoleEnum
 from passlib.hash import django_pbkdf2_sha256
 
-pwd_context = CryptContext(schemes=["pbkdf2_sha256"], deprecated="auto")
+# pwd_context = CryptContext(schemes=["pbkdf2_sha256"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 log_service = LoggerService("logs/auth_service")    
@@ -32,7 +34,7 @@ success_logger, error_logger = log_service.configure_loggers("auth_service_succe
 class AuthService:
     def __init__(self, db: Session):
         self.db = db
-        self.pwd_context = pwd_context
+        # self.pwd_context = pwd_context
         self.SECRET_KEY = secret_key
         self.ALGORITHM = algorithm
         self.UserService = UserService(db=db)
@@ -228,3 +230,25 @@ class AuthService:
         except Exception as e:
             error_logger.error(f"Error getting admin or supervisor permission for user ID {current_user.id}: {str(e)}")
             raise e
+
+
+
+
+
+
+
+
+
+# from sqlalchemy.orm import Session
+# from models.user import User 
+
+# class UserService:
+#     def change_password(self, user_id: int, hashed_password: str, db: Session):
+#         # Находим пользователя по ID
+#         user = db.query(User).filter(User.id == user_id).first()
+#         if not user:
+#             raise ValueError("User not found")
+#         user.hashed_password = hashed_password
+#         db.commit()
+
+

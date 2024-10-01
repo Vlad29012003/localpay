@@ -1,5 +1,5 @@
 import React from 'react';
-import { FiTrash2, FiEdit, FiPlusCircle, FiMinusCircle } from "react-icons/fi";
+import {FiEdit, FiMinusCircle, FiPlusCircle} from "react-icons/fi";
 
 type User = {
   id: number;
