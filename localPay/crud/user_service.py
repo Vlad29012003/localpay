@@ -91,7 +91,7 @@ class UserService:
         print(f"Original password for user {user.login}: {user.password}")
         hashed_password = django_pbkdf2_sha256.hash(user.password)
         print(f"Hashed password for user {user.login}: {hashed_password}")
-        if user.surname == "admin":
+        if user.role == "admin":
             user.access_to_payments = True
         elif user.role == "supervisor":
             user.access_to_payments = False

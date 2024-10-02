@@ -21,7 +21,6 @@ def check_permissions(permission_check):
             return func(*args, **kwargs)
 
         return wrapper
-
     return decorator
 
 
