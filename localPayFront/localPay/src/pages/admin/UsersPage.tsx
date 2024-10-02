@@ -1,28 +1,24 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import axios from "axios";
-import {
-  Pagination,
-  CircularProgress,
-  Snackbar,
-  IconButton,
-} from "@mui/material";
+import {IconButton, Snackbar,} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-
-import { FaChevronLeft, FaChevronRight, FaSignInAlt } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import {FaChevronLeft, FaChevronRight, FaSignInAlt} from "react-icons/fa";
+import {Link} from "react-router-dom";
 import EditUserDialog from "../../components/dialogs/EditUserDialog";
 import RefillDialog from "../../components/dialogs/RefillDialog";
 import WriteOffDialog from "../../components/dialogs/WriteOffDialog";
 import UserFilters from "../../components/UserFilters";
 import UserTable from "../../components/UserTable";
-import { BACKEND_API_BASE_URL } from "../../config";
+import {BACKEND_API_BASE_URL} from "../../config";
 import useRoleRedirect from "../../hooks/useRoleRedirect";
-import { jwtDecode } from "jwt-decode";
-import { DecodedToken } from "../../components/DecodedToken";
+import {jwtDecode} from "jwt-decode";
+import {DecodedToken} from "../../components/DecodedToken";
 
 type User = {
   id: number;
   name: string;
+  password?: string;
+  confirmPassword?: string;
   login: string;
   is_admin: boolean;
   is_active: boolean;
@@ -37,7 +33,7 @@ type User = {
 
 const UsersPage: React.FC = () => {
   useRoleRedirect(["admin", "supervisor"]);
-
+  
   const [users, setUsers] = useState<User[]>([]);
   const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -53,9 +49,9 @@ const UsersPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [perPage, setPerPage] = useState<number>(10);
   const [totalUsers, setTotalUsers] = useState(0);
-
+  
   const [currentUserRole, setCurrentUserRole] = useState<string>("");
-
+  
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token != null) {
@@ -65,13 +61,13 @@ const UsersPage: React.FC = () => {
       setCurrentUserRole("ban");
     }
   }, []);
-
+  
   const fetchUsers = useCallback(async () => {
     setIsLoading(true);
     try {
       const token = localStorage.getItem("token");
       if (!token) throw new Error("No token available");
-
+      
       const response = await axios.get(`${BACKEND_API_BASE_URL}/users`, {
         params: {
           per_page: 1000000, // Запрашиваем все записи
@@ -83,7 +79,7 @@ const UsersPage: React.FC = () => {
           "Content-Type": "application/json",
         },
       });
-
+      
       setUsers(response.data.users);
       setTotalUsers(response.data.total);
       applyFilters(response.data.users);
@@ -93,7 +89,7 @@ const UsersPage: React.FC = () => {
       setIsLoading(false);
     }
   }, [minBalance, maxBalance]);
-
+  
   const applyFilters = useCallback(
     (usersToFilter: User[]) => {
       const filtered = usersToFilter.filter(
@@ -111,44 +107,44 @@ const UsersPage: React.FC = () => {
     },
     [searchTerm, perPage]
   );
-
+  
   useEffect(() => {
     fetchUsers();
   }, [fetchUsers]);
-
+  
   useEffect(() => {
     applyFilters(users);
   }, [applyFilters, users]);
-
+  
   const handlePageChange = (newPage: number) => {
     if (newPage >= 1 && newPage <= totalPages) {
       setPage(newPage);
     }
   };
-
+  
   // const handleDeleteUser = async (userId: number) => {
   //   try {
   //     const token = localStorage.getItem("token");
   //     if (!token) throw new Error("No token available");
-
+  
   //     await axios.delete(`${BACKEND_API_BASE_URL}/delete_user/${userId}`, {
   //       headers: {
   //         Authorization: `Bearer ${token}`,
   //         "Content-Type": "application/json",
   //       },
   //     });
-
+  
   //     await fetchUsers();
   //   } catch (error) {
   //     console.error("Error deleting user:", error);
   //   }
   // };
-
+  
   const handleUpdateUser = async (updatedUser: User) => {
     try {
       const token = localStorage.getItem("token");
       if (!token) throw new Error("No token available");
-
+      
       await axios.patch(
         `${BACKEND_API_BASE_URL}/update_user/${updatedUser.id}`,
         updatedUser,
@@ -159,21 +155,37 @@ const UsersPage: React.FC = () => {
           },
         }
       );
-
+      
+      if (updatedUser.password && updatedUser.confirmPassword) {
+        await axios.post(
+          `${BACKEND_API_BASE_URL}/users/${updatedUser.id || 0}/change-password`,
+          {
+            new_password: updatedUser.password,
+            confirm_password: updatedUser.confirmPassword,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+      }
+      
       await fetchUsers();
     } catch (error) {
       console.error("Error updating user:", error);
     }
   };
-
+  
   const handleRefill = async (userId: number, amount: number) => {
     try {
       const token = localStorage.getItem("token");
       if (!token) throw new Error("No token available");
-
+      
       await axios.patch(
         `${BACKEND_API_BASE_URL}/update_user/${userId}`,
-        { refill: amount },
+        {refill: amount},
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -181,21 +193,21 @@ const UsersPage: React.FC = () => {
           },
         }
       );
-
+      
       await fetchUsers();
     } catch (error) {
       console.error("Error refilling balance:", error);
     }
   };
-
+  
   const handleWriteOff = async (userId: number, amount: number) => {
     try {
       const token = localStorage.getItem("token");
       if (!token) throw new Error("No token available");
-
+      
       await axios.patch(
         `${BACKEND_API_BASE_URL}/update_user/${userId}`,
-        { write_off: amount },
+        {write_off: amount},
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -203,7 +215,7 @@ const UsersPage: React.FC = () => {
           },
         }
       );
-
+      
       await fetchUsers();
     } catch (error) {
       console.error("Error writing off balance:", error);
@@ -212,7 +224,7 @@ const UsersPage: React.FC = () => {
       }
     }
   };
-
+  
   useEffect(() => {
     if (error) {
       const timer = setTimeout(() => {
@@ -221,30 +233,29 @@ const UsersPage: React.FC = () => {
       return () => clearTimeout(timer);
     }
   }, [error]);
-
+  
   const handlePerPageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setPerPage(Number(event.target.value));
     setPage(1);
   };
-
+  
   const handleCloseSnackbar = () => {
     setError(null);
   };
-
+  
   const paginatedUsers = filteredUsers.slice(
     (page - 1) * perPage,
     page * perPage
   );
-
+  
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-500 to-purple-600 text-white p-4">
-      <div className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-3xl p-8 shadow-2xl">
-        <h1 className="text-4xl font-bold mb-6 text-center">
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-purple-100">
+    <div className='min-h-screen bg-gradient-to-br from-blue-500 to-purple-600 text-white p-4'>
+      <div className='bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-3xl p-8 shadow-2xl'>
+        <h1 className='text-4xl font-bold mb-6 text-center'>
+          <span className='bg-clip-text text-transparent bg-gradient-to-r from-white to-purple-100'>
             Пользователи LocalPay
           </span>
         </h1>
-
         <UserFilters
           onSearchChange={(value) => {
             setSearchTerm(value);
@@ -259,7 +270,6 @@ const UsersPage: React.FC = () => {
             fetchUsers();
           }}
         />
-
         <UserTable
           users={paginatedUsers}
           onUpdateUser={(user) => {
@@ -277,14 +287,13 @@ const UsersPage: React.FC = () => {
           }}
           userRole={currentUserRole}
         />
-
-        <div className="mt-4 flex justify-between items-center">
-          <div className="flex items-center">
-            <span className="text-white mr-2">Показывать по:</span>
+        <div className='mt-4 flex justify-between items-center'>
+          <div className='flex items-center'>
+            <span className='text-white mr-2'>Показывать по:</span>
             <select
               value={perPage}
               onChange={handlePerPageChange}
-              className="bg-white bg-opacity-20 text-white rounded-md px-2 py-1"
+              className='bg-white bg-opacity-20 text-white rounded-md px-2 py-1'
             >
               <option value={5}>5</option>
               <option value={10}>10</option>
@@ -294,43 +303,40 @@ const UsersPage: React.FC = () => {
             </select>
           </div>
           <nav
-            className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
-            aria-label="Pagination"
+            className='relative z-0 inline-flex rounded-md shadow-sm -space-x-px'
+            aria-label='Pagination'
           >
             <button
               onClick={() => handlePageChange(page - 1)}
-              className="relative inline-flex items-center px-4 py-2 rounded-l-md border border-purple-300 bg-white bg-opacity-20 text-sm font-medium text-white hover:bg-purple-500 transition-colors duration-300"
+              className='relative inline-flex items-center px-4 py-2 rounded-l-md border border-purple-300 bg-white bg-opacity-20 text-sm font-medium text-white hover:bg-purple-500 transition-colors duration-300'
               disabled={page === 1}
             >
-              <FaChevronLeft className="mr-2" />
+              <FaChevronLeft className='mr-2'/>
               Назад
             </button>
-
-            <span className="relative inline-flex items-center px-4 py-2 border border-purple-300 bg-white bg-opacity-20 text-sm font-medium text-white">
+            <span className='relative inline-flex items-center px-4 py-2 border border-purple-300 bg-white bg-opacity-20 text-sm font-medium text-white'>
               Страница {page} из {totalPages}
             </span>
             <button
               onClick={() => handlePageChange(page + 1)}
-              className="relative inline-flex items-center px-4 py-2 rounded-r-md border border-purple-300 bg-white bg-opacity-20 text-sm font-medium text-white hover:bg-purple-500 transition-colors duration-300"
+              className='relative inline-flex items-center px-4 py-2 rounded-r-md border border-purple-300 bg-white bg-opacity-20 text-sm font-medium text-white hover:bg-purple-500 transition-colors duration-300'
               disabled={page === totalPages}
             >
               Вперед
-              <FaChevronRight className="ml-2" />
+              <FaChevronRight className='ml-2'/>
             </button>
           </nav>
         </div>
-
-        <nav className="mt-8 flex justify-center space-x-6">
+        <nav className='mt-8 flex justify-center space-x-6'>
           <Link
-            to="/admin"
-            className="flex items-center justify-center bg-white text-blue-600 px-6 py-3 rounded-full font-semibold text-lg transition duration-300 ease-in-out transform hover:scale-105 hover:bg-purple-100"
+            to='/admin'
+            className='flex items-center justify-center bg-white text-blue-600 px-6 py-3 rounded-full font-semibold text-lg transition duration-300 ease-in-out transform hover:scale-105 hover:bg-purple-100'
           >
-            <FaSignInAlt className="mr-2" />
+            <FaSignInAlt className='mr-2'/>
             Панель
           </Link>
         </nav>
       </div>
-
       <EditUserDialog
         open={editDialogOpen}
         user={selectedUser}
@@ -355,7 +361,6 @@ const UsersPage: React.FC = () => {
           }
         }}
       />
-
       <Snackbar
         open={!!error}
         autoHideDuration={10000}
@@ -363,12 +368,12 @@ const UsersPage: React.FC = () => {
         message={error}
         action={
           <IconButton
-            size="small"
-            aria-label="close"
-            color="inherit"
+            size='small'
+            aria-label='close'
+            color='inherit'
             onClick={handleCloseSnackbar}
           >
-            <CloseIcon fontSize="small" />
+            <CloseIcon fontSize='small'/>
           </IconButton>
         }
       />
