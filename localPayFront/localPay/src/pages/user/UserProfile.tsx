@@ -237,10 +237,6 @@ const UserProfile: React.FC = () => {
     }
   };
 
-  if (!userInfo) {
-    return <div className="text-center text-white">Loading...</div>;
-  }
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-400 to-blue-600 flex flex-col items-center justify-center text-white p-4">
       <div className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-3xl p-8 shadow-2xl w-full max-w-4xl">
@@ -257,17 +253,17 @@ const UserProfile: React.FC = () => {
               пользователе
             </h2>
             <p>
-              <strong>ФИО:</strong> {userInfo.name} {userInfo.surname}
+              <strong>ФИО:</strong> {userInfo?.name || '-'} {userInfo?.surname || '-'}
             </p>
             <p>
-              <strong>Регион:</strong> {userInfo.region}
+              <strong>Регион:</strong> {userInfo?.region || '-'}
             </p>
             <p>
-              <strong>Логин:</strong> {userInfo.login}
+              <strong>Логин:</strong> {userInfo?.login || '-'}
             </p>
             <p>
               <strong>Дата регистрации:</strong>{" "}
-              {new Date(userInfo.date_reg).toLocaleDateString()}
+              {userInfo?.date_reg ? new Date(userInfo?.date_reg).toLocaleDateString() : '-'}
             </p>
           </div>
           <div className="bg-white bg-opacity-20 rounded-xl p-4">
@@ -276,12 +272,12 @@ const UserProfile: React.FC = () => {
               информация
             </h2>
             <p>
-              <strong>Доступный баланс:</strong> {userInfo.available_balance}{" "}
+              <strong>Доступный баланс:</strong> {userInfo?.available_balance || '-'}{" "}
               сом
             </p>
             <p>
               <strong>Потраченные средства:</strong> -
-              {Math.abs(userInfo.spent_money)} сом
+              {Math.abs(userInfo?.spent_money || 0)} сом
             </p>
           </div>
         </div>

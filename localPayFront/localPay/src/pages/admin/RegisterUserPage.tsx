@@ -66,7 +66,7 @@ const RegisterUserPage: React.FC = () => {
     login: "",
     is_admin: false,
     access_to_payments: false,
-    is_active: false,
+    is_active: true,
     region: "",
     password: "",
     comment: "",
@@ -103,8 +103,6 @@ const RegisterUserPage: React.FC = () => {
         `${BACKEND_API_BASE_URL}/create_user`,
         {
           ...formData,
-          is_admin: formData.is_admin ? 'admin' : 'user',
-          role: formData.is_admin ? 'admin' : 'user',
           available_balance: 0,
           spent_money: 0,
           refill: 0,
@@ -187,9 +185,9 @@ const RegisterUserPage: React.FC = () => {
                 value={formData.region}
                 onChange={handleChange}
               >
-                <option value="">Выберите регион</option>
+                <option value="" className='text-black'>Выберите регион</option>
                 {regions.map((region) => (
-                  <option key={region.value} value={region.value}>
+                  <option key={region.value} value={region.value} className='text-black'>
                     {region.label}
                   </option>
                 ))}
