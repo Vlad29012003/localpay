@@ -103,6 +103,8 @@ const RegisterUserPage: React.FC = () => {
         `${BACKEND_API_BASE_URL}/create_user`,
         {
           ...formData,
+          is_admin: formData.is_admin ? 'admin' : 'user',
+          role: formData.is_admin ? 'admin' : 'user',
           available_balance: 0,
           spent_money: 0,
           refill: 0,
