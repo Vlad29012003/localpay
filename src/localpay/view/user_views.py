@@ -3,10 +3,14 @@ from rest_framework.response import Response
 from rest_framework import status
 from localpay.models import User_mon
 from localpay.serializer import UserSerializer
+from drf_yasg.utils import swagger_auto_schema
+from localpay.schema.swagger_schema import search_param
+from django.db.models import Q
 
 
 class UserListAndCreateAPIView(APIView):
 
+    @swagger_auto_schema(manual_parameters=[search_param])
     def get(self, request):
         search_query = request.query_params.get('search', '')
 
@@ -18,6 +22,7 @@ class UserListAndCreateAPIView(APIView):
             )
         else:
             users = User_mon.objects.all()
+
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
 

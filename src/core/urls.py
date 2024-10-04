@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, re_path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from localpay.view.login_views import CustomTokenObtainPairView
-from localpay.view.user_views import UserListCreateAPIView, UserDetailAPIView
+from localpay.view.user_views import UserListAndCreateAPIView, UserDetailAPIView
 
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
@@ -43,7 +43,7 @@ urlpatterns = [
 ]
 
 urlpatterns += [
-    path('users/', UserListCreateAPIView.as_view(), name='user-list-create'),
+    path('users/', UserListAndCreateAPIView.as_view(), name='user-list-create'),
     path('users/<int:pk>/', UserDetailAPIView.as_view(), name='user-detail'),
 ]
 
