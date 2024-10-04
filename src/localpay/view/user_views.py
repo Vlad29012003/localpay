@@ -5,10 +5,19 @@ from localpay.models import User_mon
 from localpay.serializer import UserSerializer
 
 
-class UserListCreateAPIView(APIView):
+class UserListAndCreateAPIView(APIView):
 
     def get(self, request):
-        users = User_mon.objects.all()
+        search_query = request.query_params.get('search', '')
+
+        if search_query:
+            users = User_mon.objects.filter(
+                Q(name__icontains=search_query) |
+                Q(surname__icontains=search_query) |
+                Q(login__icontains=search_query)
+            )
+        else:
+            users = User_mon.objects.all()
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
 
@@ -18,6 +27,8 @@ class UserListCreateAPIView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 
 
 class UserDetailAPIView(APIView):

@@ -3,6 +3,7 @@ from .models import User_mon , Pays
 from django.contrib.auth.hashers import make_password
 from datetime import datetime
 
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User_mon
@@ -32,8 +33,6 @@ class UserSerializer(serializers.ModelSerializer):
                 setattr(instance, field, value)
         instance.save()
         return instance
-
-
 
 
 class PaysSerializer(serializers.ModelSerializer):
