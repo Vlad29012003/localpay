@@ -3,13 +3,27 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth.hashers import make_password
 from localpay.models import User_mon
-from localpay.serializers.user import UserSerializer
-from localpay.serializers.user import ChangePasswordSerializer
+from localpay.serializer import UserSerializer
+from drf_yasg.utils import swagger_auto_schema
+from localpay.schema.swagger_schema import search_param
+from django.db.models import Q
 
-class UserListCreateAPIView(APIView):
 
+class UserListAndCreateAPIView(APIView):
+
+    @swagger_auto_schema(manual_parameters=[search_param])
     def get(self, request):
-        users = User_mon.objects.all()
+        search_query = request.query_params.get('search', '')
+
+        if search_query:
+            users = User_mon.objects.filter(
+                Q(name__icontains=search_query) |
+                Q(surname__icontains=search_query) |
+                Q(login__icontains=search_query)
+            )
+        else:
+            users = User_mon.objects.all()
+
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
 
@@ -19,6 +33,8 @@ class UserListCreateAPIView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 
 
 class UserDetailAPIView(APIView):
@@ -52,7 +68,7 @@ class UserDetailAPIView(APIView):
         
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-    
+
     def post(self, request, pk):
         user = User_mon.objects.get(pk=pk)
         serializer = ChangePasswordSerializer(data=request.data)
