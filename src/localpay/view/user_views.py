@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth.hashers import make_password
 from localpay.models import User_mon
-from localpay.serializer import UserSerializer
+from localpay.serializers.user import UserSerializer
 from drf_yasg.utils import swagger_auto_schema
 from localpay.schema.swagger_schema import search_param
 from django.db.models import Q
