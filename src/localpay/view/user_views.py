@@ -1,9 +1,10 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from django.contrib.auth.hashers import make_password
 from localpay.models import User_mon
-from localpay.serializer import UserSerializer
-
+from localpay.serializers.user import UserSerializer
+from localpay.serializers.user import ChangePasswordSerializer
 
 class UserListCreateAPIView(APIView):
 
@@ -51,3 +52,17 @@ class UserDetailAPIView(APIView):
         
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+    def post(self, request, pk):
+        user = User_mon.objects.get(pk=pk)
+        serializer = ChangePasswordSerializer(data=request.data)
+
+        if serializer.is_valid():
+            new_password = serializer.validated_data['new_password']
+            user.password = make_password(new_password)
+            user.save()
+            return Response({"success": "о четко брат (братюня)."}, status=status.HTTP_200_OK)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
