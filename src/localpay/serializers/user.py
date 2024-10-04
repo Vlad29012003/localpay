@@ -43,3 +43,14 @@ class PaysSerializer(serializers.ModelSerializer):
             'ls_abon', 'money', 'status_payment', 'user', 
             'annulment', 'document_number', 'comment'
         ]
+
+
+class ChangePasswordSerializer(serializers.Serializer):
+    new_password = serializers.CharField(required=True, write_only=True)
+    confirm_password = serializers.CharField(required=True, write_only=True)
+
+    def validate(self, attrs):
+        if attrs['new_password'] != attrs['confirm_password']:
+            raise serializers.ValidationError("Ты че пароли же не совпадают")
+        return attrs
+    
