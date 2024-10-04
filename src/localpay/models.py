@@ -4,10 +4,6 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 
 
-
-
-
-
 class UserManager(BaseUserManager):
     def _create_user(self, name, login,password=None, **extra_fields):
         user = self.model(name=name, login=self.normalize_email(login),**extra_fields)
@@ -27,8 +23,6 @@ class UserManager(BaseUserManager):
         extra_fields.setdefault('access', True)
 
         return self._create_user(name, login, password, **extra_fields)
-
-
 
 
 class User_mon(AbstractBaseUser):
@@ -68,12 +62,34 @@ class User_mon(AbstractBaseUser):
     def __str__(self):
         return f"{self.surname} {self.name}"
 
+
+    def validate_write_off(self):
+        if self.write_off < 0:
+            raise ValueError("Списание баланса не может быть отрицательным")
+
+        if self.balance < 0:
+            raise ValueError("Баланс не может быть отрицательным")
+
+        if self.avail_balance > 0:
+            raise ValueError("Доступный баланс не может быть больше 0")
+
+        new_balance = self.balance + self.write_off
+        new_avail_balance = self.avail_balance + self.write_off
+
+        if self.new_balance < 0:
+            raise ValueError("Баланс cумм оплат не может быть отрицательным после списания")
+
+        if self.new_avail_balance > 0:
+            raise ValueError("Итоговый доступный баланс не может быть больше 0 после списания")
+
+        return new_balance, new_avail_balance
+
     def has_perm(self, perm, obj=None):
         return self.is_staff
 
+
     def has_module_perms(self, app_label):
         return self.is_staff
-
 
 
 class Pays(models.Model):
@@ -101,8 +117,26 @@ class Pays(models.Model):
     def __str__(self) -> str:
         return self.status_payment
 
+    def validate_write_off(self):
 
+        if self.annulment is True:
 
+            if balance < 0:
+                raise ValueError("Баланс не может быть отрицательным")
+
+            if avail_balance > 0:
+                raise ValueError("Доступный баланс не может быть больше 0")
+
+            new_balance = self.user.balance + self.money
+            new_avail_balance = self.user.avail_balance + self.money
+
+            if new_balance < 0:
+                raise ValueError("Итоговый баланс не может быть отрицательным после списания")
+
+            if new_avail_balance > 0:
+                raise ValueError("Итоговый доступный баланс не может быть больше 0 после списания")
+
+            return new_balance, new_avail_balance
 
 
 class Comment(models.Model):
