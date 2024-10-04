@@ -7,7 +7,7 @@ from localpay.serializers.user import UserSerializer
 from drf_yasg.utils import swagger_auto_schema
 from localpay.schema.swagger_schema import search_param
 from django.db.models import Q
-from localpay.view.user_views import ChangePasswordSerializer
+from localpay.serializers.user import ChangePasswordSerializer
 
 
 class UserListAndCreateAPIView(APIView):
