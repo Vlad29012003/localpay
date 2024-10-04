@@ -19,7 +19,7 @@ from django.urls import path
 from rest_framework_simplejwt.views import TokenObtainPairView , TokenRefreshView
 from localpay.view.login_views import CustomTokenObtainPairView
 
-from localpay.views import UserListCreateAPIView , UserDetailAPIView
+from localpay.view.user_views import UserListCreateAPIView , UserDetailAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
