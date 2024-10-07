@@ -10,7 +10,6 @@ from django.db.models import Q
 from localpay.serializers.user import ChangePasswordSerializer
 
 class UserListAndCreateAPIView(APIView):
-
     @swagger_auto_schema(manual_parameters=[search_param])
     def get(self, request):
         search_query = request.query_params.get('search', '')
