@@ -56,6 +56,7 @@ class User_mon(AbstractBaseUser):
     write_off = models.BigIntegerField(default=0, null=True ,verbose_name = 'Списание баланса')
     comment = models.TextField(blank=True)
     planup_id = models.BigIntegerField(default=0, null=True)
+    role = models.CharField(max_length=20, default='user')
 
 
     objects = UserManager()
