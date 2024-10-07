@@ -9,10 +9,12 @@ from localpay.schema.swagger_schema import search_param
 from django.db.models import Q
 from localpay.serializers.user import ChangePasswordSerializer
 from localpay.permission import IsUser , IsSupervisor , IsAdmin
-
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 
 class UserListAndCreateAPIView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes= [IsAdmin|IsSupervisor]
     @swagger_auto_schema(manual_parameters=[search_param])
     def get(self, request):
         search_query = request.query_params.get('search', '')
@@ -29,17 +31,13 @@ class UserListAndCreateAPIView(APIView):
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
 
-    def post(self, request):
-        serializer = UserSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
 
 
 class UserDetailAPIView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAdmin]
+    authentication_classes = [JWTAuthentication]
+    permission_classes= [IsAdmin|IsSupervisor]
     def get(self, request, pk):
         try:
             user = User_mon.objects.get(pk=pk)
@@ -48,34 +46,12 @@ class UserDetailAPIView(APIView):
         
         serializer = UserSerializer(user)
         return Response(serializer.data)
-
-    def put(self, request, pk):
-        try:
-            user = User_mon.objects.get(pk=pk)
-        except User_mon.DoesNotExist:
-            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
-        
-        serializer = UserSerializer(user, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def delete(self, request, pk):
-        try:
-            user = User_mon.objects.get(pk=pk)
-        except User_mon.DoesNotExist:
-            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
-        
-        user.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-
+    
 
 
 class ChangePasswordAPIView(APIView):
-    authentication_classes =[IsAdmin]
+    authentication_classes = [JWTAuthentication]
+    permission_classes= [IsAdmin]
     def post(self, request, pk):
         try:
             user = User_mon.objects.get(pk=pk)
@@ -93,8 +69,8 @@ class ChangePasswordAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 
-
 class UpdateUserAPIView(APIView):
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsAdmin]
     def put(self, request, pk):
         try:
@@ -107,3 +83,26 @@ class UpdateUserAPIView(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+class CreateUserAPIView(APIView):
+    # authentication_classes = [JWTAuthentication]
+    # permission_classes = [IsAdmin]
+    def post(self, request):
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+class DeleteUserAPIView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAdmin]
+    def delete(self, request, pk):
+        try:
+            user = User_mon.objects.get(pk=pk)
+        except User_mon.DoesNotExist:
+            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+        user.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
