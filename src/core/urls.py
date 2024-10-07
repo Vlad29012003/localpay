@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path, re_path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from localpay.view.login_views import CustomTokenObtainPairView
-from localpay.view.user_views import UserListAndCreateAPIView, UserDetailAPIView
+from localpay.view.user_views import UserListAndCreateAPIView, UserDetailAPIView , ChangePasswordAPIView , UpdateUserAPIView
 from localpay.view.pay_views import Payment
 
 from rest_framework import permissions
@@ -30,6 +30,8 @@ urlpatterns = [
 urlpatterns += [
     path('users/', UserListAndCreateAPIView.as_view(), name='user-list-create'),
     path('users/<int:pk>/', UserDetailAPIView.as_view(), name='user-detail'),
+    path('users/<int:pk>/change_password/', ChangePasswordAPIView.as_view(), name='change-password'),
+    path('users/<int:pk>/update_user/',UpdateUserAPIView.as_view(), name='update_user'),
 ]
 
 urlpatterns += [

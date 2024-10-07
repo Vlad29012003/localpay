@@ -4,9 +4,11 @@ from datetime import datetime
 import httpx
 from bs4 import BeautifulSoup
 from django.http import HttpResponse, JsonResponse
+from localpay.permission import IsUser
 
 
 class Payment(APIView):
+    permission_classes = [IsUser]
 
     async def clinet_payment(self, ls, payment_amount, user_login):
 
