@@ -18,12 +18,6 @@ class PaymentViewSet(ModelViewSet):
             return result
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        ls = int(ls)
-        payment_amount = float(payment_amount)
-        current_time = datetime.now()
-        service_id_hydra = current_time.strftime("%Y%m%d%H%M%S")
-        txn_date = str(current_time)[:-4]
-        txn_id = service_id_hydra + str(ls)
 
     @action(detail=False, methods=['get'])
     def payment_history(self, request):
