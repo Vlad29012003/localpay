@@ -1,81 +1,36 @@
-from rest_framework.views import APIView
-from localpay.models import User_mon, Pays
-from datetime import datetime
-import httpx
-from bs4 import BeautifulSoup
-from django.http import HttpResponse, JsonResponse
+from rest_framework.viewsets import ModelViewSet
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.decorators import action
+from localpay.models import Pays, User_mon
+from localpay.serializers.payment_serializers.payment_history_serializer import PaymentHistorySerializer
+from localpay.serializers.payment_serializers.payment_serializer import PaymentSerializer
 
 
-class Payment(APIView):
+class PaymentViewSet(ModelViewSet):
+    serializer_class = PaymentSerializer
 
-    async def clinet_payment(self, ls, payment_amount, user_login):
+    @action(detail=False, methods=['post'])
+    async def service_engineer_payment(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            result = await serializer.process_payment()
+            return result
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        user_data = User_mon.objects.filter(login=user_login).first()
-        user_id = user_data.id
-        user_balance = user_data.balance
-        user_avail_balance = user_data.avail_balance
-        user_access = user_data.access
 
-        ls = int(ls)
-        payment_amount = float(payment_amount)
-        current_time = datetime.now()
-        service_id_hydra = current_time.strftime("%Y%m%d%H%M%S")
-        txn_date = str(current_time)[:-4]
-        txn_id = service_id_hydra + str(ls)
+    @action(detail=False, methods=['get'])
+    def payment_history(self, request):
+        user_login = request.query_params.get('user_login')
 
-        if int(user_balance) < int(payment_amount) or not user_access:
-            return HttpResponse('У вас недостаточно средств для оплаты или отсутствует доступ к оплате')
+        if not user_login:
+            return Response({'error': 'User login required'}, status=status.HTTP_400_BAD_REQUEST)
 
-        payment_url = (
-            f'http://pay.snt.kg:9080/localpayskynet_osmp/main?command=pay&txn_id={txn_id}'
-            f'&txn_date={service_id_hydra}&account={ls}&sum={payment_amount}'
-        )
+        user = User_mon.objects.filter(login=user_login).first()
+        if not user:
+            return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
 
-        async with httpx.AsyncClient() as client:
-            payment_response = await client.post(payment_url)
-            payment_response.encoding = 'utf-8'
+        payments = Pays.objects.filter(user_id=user.id).order_by('-date_payment')
 
-        response_time = str(datetime.now())[:-4]
-
-        try:
-            soup = BeautifulSoup(payment_response.text, features="xml")
-            transaction_id = soup.find('osmp_txn_id').string
-            comment = soup.find('comment').string
-            transaction_sum = soup.find('sum').string
-            payment_status = soup.find('result').string
-            result = {
-                'transaction_id': transaction_id,
-                'sum': transaction_sum,
-                'comment': comment,
-                'status': payment_status
-            }
-        except Exception:
-            soup = BeautifulSoup(payment_response.text, features="xml")
-            transaction_id = soup.find('osmp_txn_id').string
-            transaction_sum = soup.find('sum').string
-            payment_status = soup.find('result').string
-            result = {
-                'transaction_id': transaction_id,
-                'sum': transaction_sum,
-                'status': payment_status
-            }
-
-        if payment_status == '0':
-            payment_status_desc = 'Выполнен'
-            payment_record = Pays.objects.create(
-                number_payment=transaction_id, date_payment=txn_date,
-                accept_payment=response_time, ls_abon=ls,
-                money=transaction_sum, status_payment=payment_status_desc, user_id=user_id
-            )
-            payment_record.save()
-
-        transaction_sum_int = int(str(transaction_sum)[:-2])
-        if payment_status == '0':
-            updated_balance = int(user_balance) - transaction_sum_int
-            updated_avail_balance = int(user_avail_balance) - transaction_sum_int
-
-            user_data.balance = updated_balance
-            user_data.avail_balance = updated_avail_balance
-            user_data.save(update_fields=['balance', 'avail_balance'])
-
-        return JsonResponse(result)
+        serializer = PaymentHistorySerializer(payments, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
