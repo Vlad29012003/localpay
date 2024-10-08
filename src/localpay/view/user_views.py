@@ -8,10 +8,12 @@ from drf_yasg.utils import swagger_auto_schema
 from localpay.schema.swagger_schema import search_param
 from django.db.models import Q
 from localpay.serializers.user import ChangePasswordSerializer
+from localpay.permission import IsUser , IsSupervisor , IsAdmin
+
 
 
 class UserListAndCreateAPIView(APIView):
-
+    permission_classes = [IsUser]
     @swagger_auto_schema(manual_parameters=[search_param])
     def get(self, request):
         search_query = request.query_params.get('search', '')
