@@ -2,9 +2,9 @@ from django.contrib import admin
 from django.urls import path, re_path, include
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from localpay.view.login_views import CustomTokenObtainPairView
-from localpay.view.user_views import UserListAndCreateAPIView, UserDetailAPIView , ChangePasswordAPIView , UpdateUserAPIView , CreateUserAPIView , DeleteUserAPIView
-from localpay.view.pay_views import PaymentViewSet
+from localpay.views.login_views import CustomTokenObtainPairView
+from localpay.views.user_views import UserListAndCreateAPIView, UserDetailAPIView , ChangePasswordAPIView , UpdateUserAPIView , CreateUserAPIView , DeleteUserAPIView
+# from localpay.views.pay_views import PaymentViewSet
 
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
@@ -24,7 +24,7 @@ schema_view = get_schema_view(
 )
 
 router = DefaultRouter()
-router.register(r'payment', PaymentViewSet, basename='payment')
+# router.register(r'payment', PaymentViewSet, basename='payment')
 
 
 
