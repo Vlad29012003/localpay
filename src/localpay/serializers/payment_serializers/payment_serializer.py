@@ -1,9 +1,9 @@
+from asgiref.sync import sync_to_async
 from rest_framework import serializers
 from localpay.models import User_mon, Pays
 from datetime import datetime
 import httpx
 from bs4 import BeautifulSoup
-from django.http import JsonResponse
 
 
 class PaymentSerializer(serializers.Serializer):
@@ -16,7 +16,7 @@ class PaymentSerializer(serializers.Serializer):
         payment_amount = self.validated_data['payment_amount']
         user_login = self.validated_data['user_login']
 
-        user_data = User_mon.objects.filter(login=user_login).first()
+        user_data = await sync_to_async(User_mon.objects.filter(login=user_login).first)()  # Await DB query
         user_id = user_data.id
         user_balance = user_data.balance
         user_avail_balance = user_data.avail_balance
@@ -28,7 +28,7 @@ class PaymentSerializer(serializers.Serializer):
         txn_id = service_id_hydra + str(ls)
 
         if int(user_balance) < int(payment_amount) or not user_access:
-            return JsonResponse({'error': 'Insufficient balance or no access'}, status=400)
+            return {'error': 'Insufficient balance or no access'}
 
         payment_url = (
             f'http://pay.snt.kg:9080/localpayskynet_osmp/main?command=pay&txn_id={txn_id}'
@@ -36,7 +36,7 @@ class PaymentSerializer(serializers.Serializer):
         )
 
         async with httpx.AsyncClient() as client:
-            payment_response = await client.post(payment_url)
+            payment_response = await client.post(payment_url)  # Await the HTTP request
             payment_response.encoding = 'utf-8'
 
         response_time = str(datetime.now())[:-4]
@@ -67,7 +67,7 @@ class PaymentSerializer(serializers.Serializer):
 
         if payment_status == '0':
             payment_status_desc = 'Выполнен'
-            Pays.objects.create(
+            await sync_to_async(Pays.objects.create)(
                 number_payment=transaction_id, date_payment=txn_date,
                 accept_payment=response_time, ls_abon=ls,
                 money=transaction_sum, status_payment=payment_status_desc, user_id=user_id
@@ -76,6 +76,6 @@ class PaymentSerializer(serializers.Serializer):
             transaction_sum_int = int(str(transaction_sum)[:-2])
             user_data.balance -= transaction_sum_int
             user_data.avail_balance -= transaction_sum_int
-            user_data.save(update_fields=['balance', 'avail_balance'])
+            await sync_to_async(user_data.save)(update_fields=['balance', 'avail_balance'])
 
-        return JsonResponse(result)
+        return result
