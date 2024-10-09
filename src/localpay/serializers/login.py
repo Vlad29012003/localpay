@@ -20,6 +20,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         login = attrs.get('login')
         password = attrs.get('password')
+        
 
         if not login or not password:
             raise serializers.ValidationError(_('Both login and password are required.'))
@@ -46,4 +47,5 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     def get_token(cls, user):
         token = super().get_token(user)
         token['login'] = user.login
+        token['role'] = user.role
         return token
