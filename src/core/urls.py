@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.urls import path, re_path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from localpay.view.login_views import CustomTokenObtainPairView
-from localpay.view.user_views import UserListAndCreateAPIView, UserDetailAPIView , ChangePasswordAPIView , UpdateUserAPIView , CreateUserAPIView , DeleteUserAPIView
-from localpay.view.pay_views import PaymentViewSet
+from localpay.views.login_views import CustomTokenObtainPairView
+from localpay.views.user_views import UserListAndCreateAPIView, UserDetailAPIView , ChangePasswordAPIView , UpdateUserAPIView , CreateUserAPIView , DeleteUserAPIView
+
 
 from localpay.views.login_views import CustomTokenObtainPairView
 from localpay.views.user_views import UserListAndCreateAPIView, UserDetailAPIView
