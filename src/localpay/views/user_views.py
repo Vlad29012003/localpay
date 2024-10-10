@@ -10,7 +10,13 @@ from django.db.models import Q
 from localpay.serializers.user import ChangePasswordSerializer
 from localpay.permission import IsUser , IsSupervisor , IsAdmin
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.pagination import PageNumberPagination
 
+
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 10
+    page_size_query_param = 'page_size'
+    max_page_size = 100
 
 class UserListAndCreateAPIView(APIView):
     authentication_classes = [JWTAuthentication]
@@ -38,6 +44,7 @@ class UserDetailAPIView(APIView):
     permission_classes = [IsAdmin]
     authentication_classes = [JWTAuthentication]
     permission_classes= [IsAdmin|IsSupervisor]
+    pagination_class = StandardResultsSetPagination
     def get(self, request, pk):
         try:
             user = User_mon.objects.get(pk=pk)
