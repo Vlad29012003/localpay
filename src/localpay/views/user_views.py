@@ -1,4 +1,5 @@
 from rest_framework.views import APIView
+from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth.hashers import make_password
@@ -13,14 +14,18 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.pagination import PageNumberPagination
 
 
+
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 10
     page_size_query_param = 'page_size'
     max_page_size = 100
 
-class UserListAndCreateAPIView(APIView):
+class UserListAndCreateAPIView(ListAPIView):
     authentication_classes = [JWTAuthentication]
-    permission_classes= [IsAdmin|IsSupervisor]
+    permission_classes = [IsAdmin | IsSupervisor]
+    pagination_class = StandardResultsSetPagination
+    serializer_class = UserSerializer
+
     @swagger_auto_schema(manual_parameters=[search_param])
     def get(self, request):
         search_query = request.query_params.get('search', '')
@@ -34,17 +39,20 @@ class UserListAndCreateAPIView(APIView):
         else:
             users = User_mon.objects.all()
 
-        serializer = UserSerializer(users, many=True)
-        return Response(serializer.data)
+        page = self.paginate_queryset(users)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(users, many=True) 
+        return Response(serializer.data, status=status.HTTP_200_OK) 
 
 
 
 class UserDetailAPIView(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAdmin]
-    authentication_classes = [JWTAuthentication]
     permission_classes= [IsAdmin|IsSupervisor]
-    pagination_class = StandardResultsSetPagination
     def get(self, request, pk):
         try:
             user = User_mon.objects.get(pk=pk)

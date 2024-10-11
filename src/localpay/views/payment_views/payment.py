@@ -3,8 +3,10 @@ from rest_framework.generics import CreateAPIView
 from rest_framework.response import Response
 from rest_framework import status
 from localpay.serializers.payment_serializers.payment_serializer import PaymentSerializer
+from localpay.permission import IsUser , IsSupervisor , IsAdmin
 
 class PaymentCreateAPIView(CreateAPIView):
+    permission_classes= [IsSupervisor]
     serializer_class = PaymentSerializer
 
     def post(self, request, *args, **kwargs):
@@ -16,3 +18,4 @@ class PaymentCreateAPIView(CreateAPIView):
             result = async_to_sync(serializer.process_payment)()
             return Response(result, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
