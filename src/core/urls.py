@@ -40,7 +40,7 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/obtain/', TokenObtainPairView.as_view(), name='token_refresh'),
 
-    path('api/create-payment/', PaymentCreateAPIView.as_view(), name='create-payment'),
+    path('api/create-payment/', PaymentCreateAPIView.as_view(), name='create-payment'), 
     path('api/payment-history/', PaymentHistoryListAPIView.as_view(), name='payment-history'),
 
     re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),

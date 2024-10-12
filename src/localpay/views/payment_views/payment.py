@@ -6,7 +6,7 @@ from localpay.serializers.payment_serializers.payment_serializer import PaymentS
 from localpay.permission import IsUser , IsSupervisor , IsAdmin
 
 class PaymentCreateAPIView(CreateAPIView):
-    permission_classes= [IsSupervisor]
+    permission_classes= [IsUser]
     serializer_class = PaymentSerializer
 
     def post(self, request, *args, **kwargs):

@@ -63,6 +63,8 @@ class UserListAndCreateAPIView(ListAPIView):
         }, status=status.HTTP_200_OK)
 
 
+
+
 class UserDetailAPIView(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAdmin]
