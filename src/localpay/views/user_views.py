@@ -12,41 +12,55 @@ from localpay.serializers.user import ChangePasswordSerializer
 from localpay.permission import IsUser , IsSupervisor , IsAdmin
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.pagination import PageNumberPagination
+import math
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 
-class StandardResultsSetPagination(PageNumberPagination):
-    page_size = 10
-    page_size_query_param = 'page_size'
-    max_page_size = 100
 
 class UserListAndCreateAPIView(ListAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAdmin | IsSupervisor]
-    pagination_class = StandardResultsSetPagination
     serializer_class = UserSerializer
 
     @swagger_auto_schema(manual_parameters=[search_param])
-    def get(self, request):
+    def list(self, request, *args, **kwargs):
         search_query = request.query_params.get('search', '')
 
         if search_query:
-            users = User_mon.objects.filter(
+            queryset = User_mon.objects.filter(
                 Q(name__icontains=search_query) |
                 Q(surname__icontains=search_query) |
                 Q(login__icontains=search_query)
             )
         else:
-            users = User_mon.objects.all()
+            queryset = User_mon.objects.all()
 
-        page = self.paginate_queryset(users)
-        if page is not None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
+        total_count = queryset.count()
 
-        serializer = self.get_serializer(users, many=True) 
-        return Response(serializer.data, status=status.HTTP_200_OK) 
+    
+        page_size = int(request.query_params.get('page_size', 50))  
+        page_number = request.GET.get('page', 1)
 
+        paginator = Paginator(queryset, page_size)
+
+        try:
+            users = paginator.page(page_number)  
+        except PageNotAnInteger:
+ 
+            users = paginator.page(1)
+        except EmptyPage:
+            users = paginator.page(paginator.num_pages)
+
+        serializer = self.get_serializer(users, many=True)
+
+        return Response({
+            'count': total_count, 
+            'total_pages': paginator.num_pages,  
+            'page_size': page_size,  
+            'current_page': page_number, 
+            'results': serializer.data,
+        }, status=status.HTTP_200_OK)
 
 
 class UserDetailAPIView(APIView):
