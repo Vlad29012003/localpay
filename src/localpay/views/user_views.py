@@ -13,6 +13,7 @@ from localpay.permission import IsUser , IsSupervisor , IsAdmin
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.pagination import PageNumberPagination
 import math
+from datetime import datetime
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
@@ -27,6 +28,8 @@ class UserListAndCreateAPIView(ListAPIView):
     def list(self, request, *args, **kwargs):
         search_query = request.query_params.get('search', '')
 
+
+
         if search_query:
             queryset = User_mon.objects.filter(
                 Q(name__icontains=search_query) |
@@ -35,6 +38,7 @@ class UserListAndCreateAPIView(ListAPIView):
             )
         else:
             queryset = User_mon.objects.all()
+
 
         total_count = queryset.count()
 
