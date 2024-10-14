@@ -79,3 +79,42 @@ class PaymentSerializer(serializers.Serializer):
             await sync_to_async(user_data.save)(update_fields=['balance', 'avail_balance'])
 
         return result
+
+class PaymentUpdateSerializer(serializers.ModelSerializer):
+    annulment = serializers.BooleanField()
+
+    class Meta:
+        model = Pays
+        fields = ['annulment']
+
+    def update_balance(self, instance):
+        user_data = User_mon.objects.get(id=instance.user.id)
+        print(user_data)
+
+        if self.validated_data['annulment']:
+
+            transaction_sum_float = float(instance.money)
+            transaction_sum_int = int(transaction_sum_float)  
+
+            print(f"Transaction Sum (int): {transaction_sum_int}")
+            print(f"User Balance before: {user_data.balance}")
+            print(f"User Available Balance before: {user_data.avail_balance}")
+
+            user_data.balance += transaction_sum_int
+            user_data.avail_balance += transaction_sum_int
+
+
+            print(f"User Balance after: {user_data.balance}")  
+            print(f"User Available Balance after: {user_data.avail_balance}")  
+
+            user_data.save()  
+
+            instance.annulment = True 
+            instance.save() 
+        return instance
+
+    def update(self, instance, validated_data):
+
+        instance = self.update_balance(instance)
+        return instance
+

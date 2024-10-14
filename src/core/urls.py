@@ -7,7 +7,7 @@ from localpay.views.user_views import UserListAndCreateAPIView, UserDetailAPIVie
 
 from localpay.views.login_views import CustomTokenObtainPairView
 from localpay.views.user_views import UserListAndCreateAPIView, UserDetailAPIView
-from localpay.views.payment_views.payment import PaymentCreateAPIView
+from localpay.views.payment_views.payment import PaymentCreateAPIView , PaymentUpdateAPIView
 from localpay.views.payment_views.payment_history import PaymentHistoryListAPIView
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
@@ -42,11 +42,12 @@ urlpatterns = [
 
     path('api/create-payment/', PaymentCreateAPIView.as_view(), name='create-payment'), 
     path('api/payment-history/', PaymentHistoryListAPIView.as_view(), name='payment-history'),
-
+    
     re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-]
+
+    path('api/payment_update/<int:pk>/',PaymentUpdateAPIView.as_view(), name = 'update_payment')]
 
 
 urlpatterns += [
