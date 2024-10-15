@@ -12,7 +12,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'name', 'surname', 'login', 'password', 'access', 
             'balance', 'avail_balance', 'region', 'date_reg', 
-            'refill', 'write_off', 'comment', 'role' , 'is_active',
+            'refill', 'write_off', 'comment', 'role' , 'is_active','planup_id'
         ]
         extra_kwargs = {
             'password': {'write_only': True},

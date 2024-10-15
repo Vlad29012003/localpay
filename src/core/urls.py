@@ -3,8 +3,7 @@ from django.urls import path, re_path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from localpay.views.login_views import CustomTokenObtainPairView
 from localpay.views.user_views import UserListAndCreateAPIView, UserDetailAPIView , ChangePasswordAPIView , UpdateUserAPIView , CreateUserAPIView , DeleteUserAPIView
-
-
+from localpay.views.payment_views.unloading_payments import UserPaymentHistoryListAPIView , PlanupLocalpayCompareAPIView
 from localpay.views.login_views import CustomTokenObtainPairView
 from localpay.views.user_views import UserListAndCreateAPIView, UserDetailAPIView
 from localpay.views.payment_views.payment import PaymentCreateAPIView , PaymentUpdateAPIView
@@ -55,5 +54,9 @@ urlpatterns += [
     path('users/<int:pk>/change_password/', ChangePasswordAPIView.as_view(), name='change-password'),
     path('users/<int:pk>/update_user/',UpdateUserAPIView.as_view(), name='update_user'),
     path('user/create/',CreateUserAPIView.as_view(), name='user-create'),
-    path('user/<int:pk>/delete_user/',DeleteUserAPIView.as_view(), name='delete-user')
+    path('user/<int:pk>/delete_user/',DeleteUserAPIView.as_view(), name='delete-user'),
+    path('user-payments/<int:user_id>/', UserPaymentHistoryListAPIView.as_view(), name='user-payment-history'),
+
+    path('compare-planup/', PlanupLocalpayCompareAPIView.as_view(), name='compare-planup')
+    
 ]
