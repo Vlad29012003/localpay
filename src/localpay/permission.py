@@ -30,6 +30,12 @@ class IsSupervisor(permissions.BasePermission):
 # responsible role for admin
 class IsAdmin(permissions.BasePermission):
     def has_permission(self, request, view):
-        is_authenticated = request.user.is_authenticated and request.user.role == 'supervisor'
-        logger.info(f'Admin {request.user.username} accessed {view.__class__.__name__} with permission {is_authenticated}')
+        is_authenticated = request.user.is_authenticated and request.user.role == 'admin'
+
+        user_name = request.user.name if hasattr(request.user, 'name') else 'Неизвестный пользователь'
+        user_surname = request.user.surname if hasattr(request.user, 'surname') else ''
+
+        logger.info(f'Admin {user_name} {user_surname} accessed {view.__class__.__name__} with permission {is_authenticated}')
+        
+
         return is_authenticated
