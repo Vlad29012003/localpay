@@ -1,11 +1,11 @@
 from django.contrib import admin
 from django.urls import path, re_path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from localpay.views.login_views import CustomTokenObtainPairView
-from localpay.views.user_views import UserListAndCreateAPIView, UserDetailAPIView , ChangePasswordAPIView , UpdateUserAPIView , CreateUserAPIView , DeleteUserAPIView
+from localpay.views.user_views.login_views import CustomTokenObtainPairView
+from localpay.views.user_views.user_views import UserListAPIView, ChangePasswordAPIView , UpdateUserAPIView , CreateUserAPIView , DeleteUserAPIView
 from localpay.views.payment_views.unloading_payments import UserPaymentHistoryListAPIView , PlanupLocalpayCompareAPIView , CombinedPaymentComparisonView
-from localpay.views.login_views import CustomTokenObtainPairView
-from localpay.views.user_views import UserListAndCreateAPIView, UserDetailAPIView
+from localpay.views.user_views.login_views import CustomTokenObtainPairView
+from localpay.views.user_views.user_views import UserListAPIView
 from localpay.views.payment_views.payment import PaymentCreateAPIView , PaymentUpdateAPIView
 from localpay.views.payment_views.payment_history import PaymentHistoryListAPIView
 from rest_framework import permissions
@@ -32,8 +32,8 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('users/', UserListAndCreateAPIView.as_view(), name='user-list-create'),
-    path('users/<int:pk>/', UserDetailAPIView.as_view(), name='user-detail'),
+    path('users/', UserListAPIView.as_view(), name='user-list-create'),
+
 
     path('api/token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
@@ -50,7 +50,6 @@ urlpatterns = [
 
 
 urlpatterns += [
-    path('users/<int:pk>/', UserDetailAPIView.as_view(), name='user-detail'),
     path('users/<int:pk>/change_password/', ChangePasswordAPIView.as_view(), name='change-password'),
     path('users/<int:pk>/update_user/',UpdateUserAPIView.as_view(), name='update_user'),
     path('user/create/',CreateUserAPIView.as_view(), name='user-create'),

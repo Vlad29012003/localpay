@@ -13,10 +13,10 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from django.db.models import Q
 from localpay.views.payment_views.payment_history import PaymentHistoryListAPIView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from datetime import datetime
+from datetime import datetime, timedelta
 from localpay.permission import IsAdmin
 from localpay.serializers.payment_serializers.payment_history_serializer import PaymentHistorySerializer
-
+import requests
 
 class PaymentService:
     def get_user_payments(self, user_login , start_date , end_date):
@@ -153,18 +153,18 @@ class PlanupLocalpayCompareAPIView(APIView):
 
 
 
+
 class CombinedPaymentComparisonView(APIView):
     authentication_classes = [JWTAuthentication]
 
     def post(self, request):
-        user_ids = request.data.get('user_ids', [])
+        user_ids = request.data.get('user_ids', request.session.get('user_ids', []))
         date_from = request.data.get('date_from')
         date_to = request.data.get('date_to')
 
         if not user_ids or not date_from or not date_to:
             return Response({"error": "user_ids, date_from и date_to обязательны"}, status=status.HTTP_400_BAD_REQUEST)
-
-        all_localpay_payments = self.get_localpay_payments(user_ids, date_from, date_to)
+        all_localpay_payments = self.get_localpay_payments(request,date_from, date_to)
         all_planup_payments = self.get_planup_payments(user_ids, date_from, date_to)
 
         comparison_report = self.compare_payments(all_localpay_payments, all_planup_payments)
@@ -188,15 +188,26 @@ class CombinedPaymentComparisonView(APIView):
             'results': final_report,
         }, status=status.HTTP_200_OK)
 
-    def get_localpay_payments(self, user_ids, date_from, date_to):
-        queryset = Pays.objects.filter(user__id__in=user_ids)
+    def get_localpay_payments(self, request, date_from, date_to):
+        # First, filter the queryset by date range
+        queryset = Pays.objects.all()  # Start with all payments
 
         if date_from:
             queryset = queryset.filter(date_payment__gte=datetime.fromisoformat(date_from))
         if date_to:
-            queryset = queryset.filter(date_payment__lte=datetime.fromisoformat(date_to))
+            # Adding one day to date_to for including the end date
+            date_to_inclusive = datetime.fromisoformat(date_to) + timedelta(days=1)
+            queryset = queryset.filter(date_payment__lt=date_to_inclusive)
+
+        # After filtering by date, filter by distinct user IDs
+        unique_user_ids = queryset.values_list('user_id', flat=True).distinct()
+        queryset = queryset.filter(user__id__in=unique_user_ids)
+
+        # Save the unique user IDs in session
+        request.session['user_ids'] = list(unique_user_ids)
 
         return queryset
+
 
     def get_planup_payments(self, user_ids, start_date, end_date):
         planup_payments = []
@@ -217,7 +228,8 @@ class CombinedPaymentComparisonView(APIView):
                     {
                         "user_id": user_id,
                         "ls_abon": p["ls_abon"],
-                        "money": self.parse_money(p["money"])
+                        "money": self.parse_money(p["money"]),
+                        "planup_id": p['id']
                     }
                     for p in user_payments if self.parse_money(p["money"]) != 0
                 ])
@@ -265,7 +277,8 @@ class CombinedPaymentComparisonView(APIView):
                     "localpay_money": self.format_money(money),
                     "planup_money": self.format_money(planup_payment["money"]),
                     "status_payment": status_payment, 
-                    "date_payment": date_payment      
+                    "date_payment": date_payment,
+                    "planup_id": planup_payment["planup_id"]
                 })
                 planup_total += planup_payment["money"]
             else:
@@ -277,13 +290,15 @@ class CombinedPaymentComparisonView(APIView):
                     "localpay_money": self.format_money(money),
                     "planup_money": "ТАКОЙ ОТСУТСВУЕТ В PLANUP",
                     "status_payment": status_payment,
-                    "date_payment": date_payment        
+                    "date_payment": date_payment,
+                    "planup_id": None
                 })
 
         for payment in planup_payments:
             user_id = payment["user_id"]
             ls_abon = payment["ls_abon"]
             money = payment["money"]
+            planup_id = payment["planup_id"]
             if (user_id, ls_abon, money) not in localpay_set:
                 user = User_mon.objects.get(id=user_id)
                 user_name = user.name
@@ -294,7 +309,10 @@ class CombinedPaymentComparisonView(APIView):
                     "surname": user_surname,
                     "ls_abon": ls_abon,
                     "localpay_money": "ПЛАТЕЖ ОТСУТСВУЕТ В LOCALPAY",
-                    "planup_money": self.format_money(money)
+                    "planup_money": self.format_money(money),
+                    "status_payment": None,
+                    "date_payment": None,
+                    "planup_id": planup_id
                 })
                 planup_total += money
 
@@ -304,7 +322,10 @@ class CombinedPaymentComparisonView(APIView):
             "surname": "",
             "ls_abon": "",
             "localpay_money": self.format_money(localpay_total),
-            "planup_money": self.format_money(planup_total)
+            "planup_money": self.format_money(planup_total),
+            "status_payment": None,
+            "date_payment": None,
+            "planup_id": None
         })
 
         return report

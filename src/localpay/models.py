@@ -1,9 +1,7 @@
 from django.db import models
-from django.contrib.auth.hashers import make_password
-from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 
-
+# models for register users
 class UserManager(BaseUserManager):
     def _create_user(self, name, login,password=None, **extra_fields):
         user = self.model(name=name, login=self.normalize_email(login),**extra_fields)
@@ -24,7 +22,7 @@ class UserManager(BaseUserManager):
 
         return self._create_user(name, login, password, **extra_fields)
 
-
+# base User models
 class User_mon(AbstractBaseUser):
     REGION_CHOICES = (
         ('Чуйская', 'Чуйская'),
@@ -63,7 +61,7 @@ class User_mon(AbstractBaseUser):
     def __str__(self):
         return f"{self.surname} {self.name}"
 
-
+    # validate a write_off
     def validate_write_off(self):
         if self.write_off < 0:
             raise ValueError("Списание баланса не может быть отрицательным")
@@ -92,7 +90,7 @@ class User_mon(AbstractBaseUser):
     def has_module_perms(self, app_label):
         return self.is_staff
 
-
+# Models for Payment
 class Pays(models.Model):
     number_payment = models.CharField(max_length=100, null=True)
     date_payment = models.CharField(verbose_name = 'Дата',max_length=100, null=True)
@@ -118,8 +116,8 @@ class Pays(models.Model):
     def __str__(self) -> str:
         return self.status_payment
 
+    # validate a write_off for payments
     def validate_write_off(self):
-
         if self.annulment is True:
 
             if balance < 0:
@@ -140,6 +138,7 @@ class Pays(models.Model):
             return new_balance, new_avail_balance
 
 
+# Payment history 
 class Comment(models.Model):
     user2 = models.ForeignKey(verbose_name = 'Монтажник',
         to=User_mon,
@@ -161,4 +160,4 @@ class Comment(models.Model):
          verbose_name_plural = 'Операции платежей'
 
     def __str__(self):
-        return str(self.old_balance) 
+        return str(self.old_balance)
