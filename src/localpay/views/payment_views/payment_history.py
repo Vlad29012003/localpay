@@ -5,8 +5,6 @@ from localpay.permission import IsUser , IsSupervisor , IsAdmin
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from asgiref.sync import sync_to_async, async_to_sync
 from localpay.models import Pays, User_mon
-from localpay.serializers.user import UserSerializer , PaysSerializer
-from rest_framework.pagination import PageNumberPagination
 from localpay.serializers.payment_serializers.payment_history_serializer import PaymentHistorySerializer
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from drf_yasg.utils import swagger_auto_schema
