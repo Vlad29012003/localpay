@@ -1,14 +1,12 @@
 from django.contrib import admin
-from django.urls import path, re_path, include
+from django.urls import path, re_path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from localpay.views.user_views.login_views import CustomTokenObtainPairView
-from localpay.views.user_views.user_views import UserListAPIView, ChangePasswordAPIView , UpdateUserAPIView , CreateUserAPIView , DeleteUserAPIView
+from rest_framework import permissions
+from localpay.views.user_views.user_views import UserListAPIView, ChangePasswordAPIView , UpdateUserAPIView , CreateUserAPIView , DeleteUserAPIView , UserDetailAPIView
 from localpay.views.payment_views.unloading_payments import  PlanupLocalpayCompareAPIView , CombinedPaymentComparisonView
 from localpay.views.user_views.login_views import CustomTokenObtainPairView
-from localpay.views.user_views.user_views import UserListAPIView , UserDetailAPIView
 from localpay.views.payment_views.payment import PaymentCreateAPIView , PaymentUpdateAPIView
 from localpay.views.payment_views.payment_history import PaymentHistoryListAPIView , UserPaymentHistoryListAPIView
-from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
@@ -26,21 +24,12 @@ schema_view = get_schema_view(
 )
 
 
-
-
-
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('users/', UserListAPIView.as_view(), name='user-list-create'),
-
-    path('users/<int:pk>/', UserDetailAPIView.as_view(), name='user-detail'),
-    path('api/token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('api/token/obtain/', TokenObtainPairView.as_view(), name='token_refresh'),
-
     path('api/create-payment/', PaymentCreateAPIView.as_view(), name='create-payment'), 
     path('api/payment-history/', PaymentHistoryListAPIView.as_view(), name='payment-history'),
+    
     
     re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
@@ -49,14 +38,22 @@ urlpatterns = [
     path('api/payment_update/<int:pk>/',PaymentUpdateAPIView.as_view(), name = 'update_payment')]
 
 
+urlpatterns+= [
+    path('api/token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/token/obtain/', TokenObtainPairView.as_view(), name='token_refresh'),]
+
+
 urlpatterns += [
+    path('user/create/',CreateUserAPIView.as_view(), name='user-create'),
+    path('compare-planup/', PlanupLocalpayCompareAPIView.as_view(), name='compare-planup'),
+    path('api/user/payment-comparison/', CombinedPaymentComparisonView.as_view(), name='payment-compare')]
+
+
+urlpatterns += [
+    path('users/<int:pk>/', UserDetailAPIView.as_view(), name='user-detail'),
+    path('users/', UserListAPIView.as_view(), name='user-list-create'),
     path('users/<int:pk>/change_password/', ChangePasswordAPIView.as_view(), name='change-password'),
     path('users/<int:pk>/update_user/',UpdateUserAPIView.as_view(), name='update_user'),
-    path('user/create/',CreateUserAPIView.as_view(), name='user-create'),
     path('user/<int:pk>/delete_user/',DeleteUserAPIView.as_view(), name='delete-user'),
-    path('user-payments/<int:user_id>/', UserPaymentHistoryListAPIView.as_view(), name='user-payment-history'),
-
-    path('compare-planup/', PlanupLocalpayCompareAPIView.as_view(), name='compare-planup'),
-    # path('api/user/<int:user_id>/payment-comparison/' ,CombinedPaymentComparisonView.as_view(), name='payment-comapre')
-    path('api/user/payment-comparison/', CombinedPaymentComparisonView.as_view(), name='payment-compare')
-    ]
+    path('user-payments/<int:user_id>/', UserPaymentHistoryListAPIView.as_view(), name='user-payment-history'),]

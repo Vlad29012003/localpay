@@ -23,7 +23,8 @@ class IsUser(permissions.BasePermission):
 class IsSupervisor(permissions.BasePermission):
     def has_permission(self, request, view):
         is_authenticated = request.user.is_authenticated and request.user.role == 'supervisor'
-        logger.info(f'Supervisor {request.user.username} accessed {view.__class__.__name__} with permission {is_authenticated}')
+        logger.info(f'Supervisor {request.user.login} accessed {view.__class__.__name__} with permission {is_authenticated}')
+
         return is_authenticated
     
 
