@@ -3,11 +3,11 @@ from django.urls import path, re_path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from localpay.views.user_views.login_views import CustomTokenObtainPairView
 from localpay.views.user_views.user_views import UserListAPIView, ChangePasswordAPIView , UpdateUserAPIView , CreateUserAPIView , DeleteUserAPIView
-from localpay.views.payment_views.unloading_payments import UserPaymentHistoryListAPIView , PlanupLocalpayCompareAPIView , CombinedPaymentComparisonView
+from localpay.views.payment_views.unloading_payments import  PlanupLocalpayCompareAPIView , CombinedPaymentComparisonView
 from localpay.views.user_views.login_views import CustomTokenObtainPairView
-from localpay.views.user_views.user_views import UserListAPIView
+from localpay.views.user_views.user_views import UserListAPIView , UserDetailAPIView
 from localpay.views.payment_views.payment import PaymentCreateAPIView , PaymentUpdateAPIView
-from localpay.views.payment_views.payment_history import PaymentHistoryListAPIView
+from localpay.views.payment_views.payment_history import PaymentHistoryListAPIView , UserPaymentHistoryListAPIView
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
@@ -34,7 +34,7 @@ urlpatterns = [
 
     path('users/', UserListAPIView.as_view(), name='user-list-create'),
 
-
+    path('users/<int:pk>/', UserDetailAPIView.as_view(), name='user-detail'),
     path('api/token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/obtain/', TokenObtainPairView.as_view(), name='token_refresh'),

@@ -1,12 +1,25 @@
-from asgiref.sync import async_to_sync
 from rest_framework.generics import CreateAPIView , UpdateAPIView
 from rest_framework.response import Response
+from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework import status
 from localpay.serializers.payment_serializers.payment_serializer import PaymentSerializer , PaymentUpdateSerializer
-from localpay.permission import IsUser , IsSupervisor , IsAdmin
-from rest_framework_simplejwt.authentication import JWTAuthentication
+from localpay.permission import IsUser ,  IsAdmin
 from localpay.models import Pays
+from asgiref.sync import async_to_sync
+import logging
 
+
+payment_logger = logging.getLogger('payment_actions')
+payment_handler = logging.FileHandler('payments.log')  
+payment_handler.setLevel(logging.INFO)
+formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+payment_handler.setFormatter(formatter)
+payment_logger.addHandler(payment_handler)
+payment_logger.setLevel(logging.INFO)
+
+
+
+# Create payment only for user 
 class PaymentCreateAPIView(CreateAPIView):
     permission_classes= [IsUser]
     serializer_class = PaymentSerializer
@@ -18,12 +31,17 @@ class PaymentCreateAPIView(CreateAPIView):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             result = async_to_sync(serializer.process_payment)()
+
+            # log successful payment
+            payment_logger.info(f'Payment create for User {request.user.id} Result {result}')
             return Response(result, status=status.HTTP_200_OK)
+        
+        # log payment validation errors
+        payment_logger.warning(f'Payment creation failed for User ID {request.user.id} Errors {serializer.errors}')
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-
-
+# Update payment (only for admin)
 class PaymentUpdateAPIView(UpdateAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAdmin]
@@ -40,5 +58,11 @@ class PaymentUpdateAPIView(UpdateAPIView):
         serializer = self.get_serializer(instance, data=request.data, partial=partial)
         if serializer.is_valid():
             serializer.update(instance, serializer.validated_data)
+
+            # log update suscessfull payment 
+            payment_logger.info(f'Payment update suscessful for User {request.user.id}')
             return Response(serializer.data, status=status.HTTP_200_OK)
+        
+        # log failed payment update
+        payment_logger.warning(f'Failed to update Payment for user {request.user.id} Error {serializer.errors}')
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

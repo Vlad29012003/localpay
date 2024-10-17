@@ -49,8 +49,7 @@ class PaysSerializer(serializers.ModelSerializer):
         fields = [
             'number_payment', 'date_payment', 'accept_payment', 
             'ls_abon', 'money', 'status_payment', 'user', 
-            'annulment', 'document_number', 'comment'
-        ]
+            'annulment', 'document_number', 'comment']
 
 
 class ChangePasswordSerializer(serializers.Serializer):

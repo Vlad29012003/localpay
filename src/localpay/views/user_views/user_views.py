@@ -25,6 +25,21 @@ user_logger.setLevel(logging.INFO)
 
 
 
+class UserDetailAPIView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAdmin]
+    permission_classes= [IsAdmin|IsSupervisor]
+    def get(self, request, pk):
+        try:
+            user = User_mon.objects.get(pk=pk)
+        except User_mon.DoesNotExist:
+            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
+
+
+
 # Views for create user (unly admin)
 class CreateUserAPIView(APIView):
     authentication_classes = [JWTAuthentication]
