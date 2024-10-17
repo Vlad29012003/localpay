@@ -59,6 +59,4 @@ urlpatterns += [
     path('compare-planup/', PlanupLocalpayCompareAPIView.as_view(), name='compare-planup'),
     # path('api/user/<int:user_id>/payment-comparison/' ,CombinedPaymentComparisonView.as_view(), name='payment-comapre')
     path('api/user/payment-comparison/', CombinedPaymentComparisonView.as_view(), name='payment-compare')
-
-    
-]
+    ]

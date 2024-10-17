@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from localpay.models import Pays
-from rest_framework.pagination import PageNumberPagination
 
 
 class PaymentHistorySerializer(serializers.ModelSerializer):
@@ -24,4 +23,6 @@ class PaymentHistorySerializer(serializers.ModelSerializer):
     
     def get_login(self , obj):
         return obj.user.login
+
+
 
