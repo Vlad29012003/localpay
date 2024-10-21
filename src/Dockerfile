@@ -1,4 +1,4 @@
-FROM python:3.8
+FROM python:3.10
 
 
 LABEL maintainer="vladosmen29@gmail.com"

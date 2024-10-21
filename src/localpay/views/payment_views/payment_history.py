@@ -52,7 +52,7 @@ class PaymentHistoryListAPIView(ListAPIView):
         total_count = queryset.count()
 
 
-        payment_logger.info(f"User {request.user.id} {request.user.login} requested payment history with search {search_query} Date from {date_from}, Date to {date_to}. Total count {total_count}")
+        payment_logger.info(f"User {request.user.login} {request.user.login} requested payment history with search {search_query} Date from {date_from}, Date to {date_to}. Total count {total_count}")
 
 
         page_size = int(request.query_params.get('page_size', 50))
@@ -86,6 +86,7 @@ class PaymentHistoryListAPIView(ListAPIView):
 class UserPaymentHistoryListAPIView(PaymentHistoryListAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAdmin]
+    
 
     def get_queryset(self):
         user_id = self.kwargs.get('user_id')
@@ -115,7 +116,7 @@ class UserPaymentHistoryListAPIView(PaymentHistoryListAPIView):
 
         total_count = queryset.count()
 
-        payment_logger.info(f"User {request.user.id} {request.user.login} request user payment history search {search_query} Date from {date_from} , Date to {date_to} Total count {total_count}")
+        payment_logger.info(f"User {request.user.login} {request.user.login} request user payment history search {search_query} Date from {date_from} , Date to {date_to} Total count {total_count}")
 
         page_size = int(request.query_params.get('page_size', 50))
         page_number = request.GET.get('page', 1)

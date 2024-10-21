@@ -27,8 +27,7 @@ user_logger.setLevel(logging.INFO)
 
 class UserDetailAPIView(APIView):
     authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAdmin]
-    permission_classes= [IsAdmin|IsSupervisor]
+    permission_classes= [IsUser|IsAdmin|IsSupervisor]
     def get(self, request, pk):
         try:
             user = User_mon.objects.get(pk=pk)
@@ -42,8 +41,8 @@ class UserDetailAPIView(APIView):
 
 # Views for create user (unly admin)
 class CreateUserAPIView(APIView):
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAdmin]
+    # authentication_classes = [JWTAuthentication]
+    # permission_classes = [IsAdmin]
     def post(self, request):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():

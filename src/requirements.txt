@@ -12,3 +12,12 @@ PyYAML==6.0.2
 setuptools==75.1.0
 sqlparse==0.5.1
 uritemplate==4.1.1
+django-cors-headers==4.5.0
+psycopg2-binary==2.9.10
+requests==2.32.3
+httpx==0.27.2
+beautifulsoup4==4.12.3
+gunicorn==23.0.0
+
+
+

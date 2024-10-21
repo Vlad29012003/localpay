@@ -9,6 +9,8 @@ from localpay.views.payment_views.payment import PaymentCreateAPIView , PaymentU
 from localpay.views.payment_views.payment_history import PaymentHistoryListAPIView , UserPaymentHistoryListAPIView
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from localpay.views.mobile.user_payment import MobileUserPaymentHistoryListAPIView
+from localpay.views.mobile.user_detail import MobileUserDetailAPIView 
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -57,3 +59,9 @@ urlpatterns += [
     path('users/<int:pk>/update_user/',UpdateUserAPIView.as_view(), name='update_user'),
     path('user/<int:pk>/delete_user/',DeleteUserAPIView.as_view(), name='delete-user'),
     path('user-payments/<int:user_id>/', UserPaymentHistoryListAPIView.as_view(), name='user-payment-history'),]
+
+
+urlpatterns += [
+    path('mobile/user-payments/<int:user_id>/', MobileUserPaymentHistoryListAPIView.as_view() , name='mobile-user-payments'),
+    path('mobile/user-detail/<int:user_id>/', MobileUserDetailAPIView.as_view(), name='mobile-user-detail'),
+]
