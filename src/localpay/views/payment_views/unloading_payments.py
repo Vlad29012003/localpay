@@ -9,9 +9,6 @@ import requests
 import decimal
 
 
-
-
-
 class CombinedPaymentComparisonView(APIView):
     authentication_classes = [JWTAuthentication]
 
