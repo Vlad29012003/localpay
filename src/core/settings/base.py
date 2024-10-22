@@ -195,3 +195,48 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 }
 
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(asctime)s - %(levelname)s - %(name)s - %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s - %(message)s'
+        },
+    },
+    'handlers': {
+        'file_user': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'user.log',
+            'formatter': 'verbose',
+        },
+        'file_payment': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'payment.log',
+            'formatter': 'verbose',
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+    },
+    'loggers': {
+        'user_actions': {
+            'handlers': ['file_user', 'console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'payment_actions': {
+            'handlers': ['file_payment', 'console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    }
+}

@@ -4,38 +4,71 @@ from localpay.models import User_mon, Pays
 from datetime import datetime
 import httpx
 from bs4 import BeautifulSoup
+import requests
+
+
+async def check_ls(ls):
+    url = f'http://pay.snt.kg:9080/localpayskynet_osmp/main?command=check&account={ls}'
+    print(f'Запрос к {url}')
+    
+    try:
+        x = requests.post(url)
+        x.encoding = 'utf-8'
+        print(f'Ответ сервера: {x.text}')
+
+        soup = BeautifulSoup(x.text, features="xml")
+        abon = soup.find('fio').string if soup.find('fio') else 'Не указано'
+        status = soup.find('result').string if soup.find('result') else 'Нет статуса'
+        
+        print(f'Найден абонент: {abon}, статус: {status}')
+        return {'fio': abon, 'status': status}
+    
+    except requests.exceptions.RequestException as e:
+        print(f'Ошибка при запросе: {str(e)}')
+        return {'error': 'Ошибка при обращении к серверу'}
+
 
 
 class PaymentSerializer(serializers.Serializer):
     ls = serializers.IntegerField()
-    login = serializers.CharField(max_length=255) 
-    money = serializers.FloatField() 
-    service_type = serializers.CharField(max_length=100)  
-    comment = serializers.CharField(max_length=255, required=False) 
+    login = serializers.CharField(max_length=255)
+    money = serializers.FloatField()
+    service_type = serializers.CharField(max_length=100)
+    comment = serializers.CharField(max_length=255, required=False)
 
     async def process_payment(self):
         ls = self.validated_data['ls']
-        money = self.validated_data['money']  
-        login = self.validated_data['login'] 
-        service_type = self.validated_data.get('service_type') 
+        money = self.validated_data['money']
+        login = self.validated_data['login']
+        service_type = self.validated_data.get('service_type')
         comment = self.validated_data.get('comment', '')
 
+
+        account_check_result = await check_ls(ls)
+        if account_check_result['status'] != '0':
+            return {'error': 'Неверный лицевой счет или статус: ' + account_check_result.get('comment', '')}
+
         user_data = await sync_to_async(User_mon.objects.filter(login=login).first)()
+        if not user_data:
+            return {'error': 'Пользователь не найден'}
+
         user_id = user_data.id
+
+        
         user_balance = user_data.balance
+
         user_avail_balance = user_data.avail_balance
         user_access = user_data.access
 
-
-        if int(user_balance) < int(money) or not user_access:
-            return {'error': 'Insufficient balance or no access'}
+        if user_balance < money or not user_access:
+            return {'error': 'Недостаточно средств или отсутствует доступ'}
 
         current_time = datetime.now()
         service_id_hydra = current_time.strftime("%Y%m%d%H%M%S")
         txn_date = str(current_time)[:-4]
         txn_id = service_id_hydra + str(ls)
 
-        # Payment URL
+        # URL для платежа
         payment_url = (
             f'http://pay.snt.kg:9080/localpayskynet_osmp/main?command=pay&txn_id={txn_id}'
             f'&txn_date={service_id_hydra}&account={ls}&sum={money}'
@@ -48,7 +81,7 @@ class PaymentSerializer(serializers.Serializer):
         response_time = str(datetime.now())[:-4]
 
         try:
-            # Parse XML response
+            # Парсинг XML ответа
             soup = BeautifulSoup(payment_response.text, features="xml")
             transaction_id = soup.find('osmp_txn_id').string
             comment = soup.find('comment').string
@@ -61,7 +94,7 @@ class PaymentSerializer(serializers.Serializer):
                 'status': payment_status
             }
         except Exception as e:
-            soup = BeautifulSoup(payment_response.text, features="xml")
+            soup = BeautifulSoup(payment_response.text, 'lxml')
             transaction_id = soup.find('osmp_txn_id').string
             transaction_sum = soup.find('sum').string
             payment_status = soup.find('result').string
@@ -72,7 +105,6 @@ class PaymentSerializer(serializers.Serializer):
                 'error': str(e)
             }
 
-        # Update user balance on successful payment
         if payment_status == '0':
             payment_status_desc = 'Выполнен'
             await sync_to_async(Pays.objects.create)(

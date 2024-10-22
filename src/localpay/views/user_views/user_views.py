@@ -11,16 +11,10 @@ from localpay.serializers.user import UserSerializer
 from localpay.schema.swagger_schema import search_param
 from localpay.serializers.user import ChangePasswordSerializer
 from localpay.permission import IsUser , IsSupervisor , IsAdmin
-import logging
+from .logging_config import user_logger
 from drf_yasg.utils import swagger_auto_schema
 
-user_logger = logging.getLogger('user_actions')
-user_handler = logging.FileHandler('users.log')  
-user_handler.setLevel(logging.INFO)
-formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-user_handler.setFormatter(formatter)
-user_logger.addHandler(user_handler)
-user_logger.setLevel(logging.INFO)
+
 
 
 
@@ -41,8 +35,8 @@ class UserDetailAPIView(APIView):
 
 # Views for create user (unly admin)
 class CreateUserAPIView(APIView):
-    # authentication_classes = [JWTAuthentication]
-    # permission_classes = [IsAdmin]
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAdmin]
     def post(self, request):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
@@ -165,9 +159,3 @@ class ChangePasswordAPIView(APIView):
 
         user_logger.error(f'Cant change a password for user {user.pk} by admin {request.user.login}. Errors: {serializer.errors}')
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
-
-    
-
-
-    

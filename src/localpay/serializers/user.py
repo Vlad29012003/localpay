@@ -17,8 +17,6 @@ class UserSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'password': {'write_only': True},
             'date_reg': {'read_only': True},
-            # 'balance': {'read_only': True},
-            # 'avail_balance': {'read_only': True},
         }
 
     def create(self, validated_data):
@@ -50,6 +48,8 @@ class PaysSerializer(serializers.ModelSerializer):
             'number_payment', 'date_payment', 'accept_payment', 
             'ls_abon', 'money', 'status_payment', 'user', 
             'annulment', 'document_number', 'comment']
+
+
 
 
 class ChangePasswordSerializer(serializers.Serializer):
