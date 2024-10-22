@@ -10,16 +10,7 @@ from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from drf_yasg.utils import swagger_auto_schema
 from datetime import datetime
-import logging 
-
-
-payment_logger = logging.getLogger('payment_actions')
-payment_handler = logging.FileHandler('payments.log')  
-payment_handler.setLevel(logging.INFO)
-formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-payment_handler.setFormatter(formatter)
-payment_logger.addHandler(payment_handler)
-payment_logger.setLevel(logging.INFO)
+from .logging_config import payment_logger
 
 
 # List of payment history (Only for admin and supervisor)

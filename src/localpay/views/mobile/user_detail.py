@@ -7,14 +7,15 @@ from localpay.models import User_mon
 from localpay.serializers.user import UserSerializer
 from localpay.permission import IsUser
 import logging
+from .logging_config import mobile_detail_user_logger
 
-mobile_detail_user_logger = logging.getLogger('detail_view_user')
-mobile_detail_handler = logging.FileHandler('user_detail.log')  
-mobile_detail_handler.setLevel(logging.INFO)
-formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-mobile_detail_handler.setFormatter(formatter)
-mobile_detail_user_logger.addHandler(mobile_detail_handler)
-mobile_detail_user_logger.setLevel(logging.INFO)
+# mobile_detail_user_logger = logging.getLogger('detail_view_user')
+# mobile_detail_handler = logging.FileHandler('user_detail.log')  
+# mobile_detail_handler.setLevel(logging.INFO)
+# formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+# mobile_detail_handler.setFormatter(formatter)
+# mobile_detail_user_logger.addHandler(mobile_detail_handler)
+# mobile_detail_user_logger.setLevel(logging.INFO)
 
 
 # Detail Payment for user

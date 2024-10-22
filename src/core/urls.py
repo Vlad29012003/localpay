@@ -3,7 +3,7 @@ from django.urls import path, re_path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework import permissions
 from localpay.views.user_views.user_views import UserListAPIView, ChangePasswordAPIView , UpdateUserAPIView , CreateUserAPIView , DeleteUserAPIView , UserDetailAPIView
-from localpay.views.payment_views.unloading_payments import  PlanupLocalpayCompareAPIView , CombinedPaymentComparisonView
+from localpay.views.payment_views.unloading_payments import  CombinedPaymentComparisonView
 from localpay.views.user_views.login_views import CustomTokenObtainPairView
 from localpay.views.payment_views.payment import PaymentCreateAPIView , PaymentUpdateAPIView
 from localpay.views.payment_views.payment_history import PaymentHistoryListAPIView , UserPaymentHistoryListAPIView
@@ -48,7 +48,6 @@ urlpatterns+= [
 
 urlpatterns += [
     path('user/create/',CreateUserAPIView.as_view(), name='user-create'),
-    path('compare-planup/', PlanupLocalpayCompareAPIView.as_view(), name='compare-planup'),
     path('api/user/payment-comparison/', CombinedPaymentComparisonView.as_view(), name='payment-compare')]
 
 

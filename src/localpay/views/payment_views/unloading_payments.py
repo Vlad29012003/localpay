@@ -10,65 +10,6 @@ import decimal
 
 
 
-class PlanupLocalpayCompareAPIView(APIView):
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAdmin]
-
-    def post(self, request):
-        print("Получен запрос:", request.data)
-        start_date = request.data.get('start_date')
-        end_date = request.data.get('end_date')
-        planup_id = request.data.get('planup_id') 
-
-        if not planup_id:
-            return Response({"error": "Необходим planup_id."}, status=status.HTTP_400_BAD_REQUEST)
-
-        try:
-            print(f"Пытаемся найти платежи с planup_id={planup_id}")
-            planup_url = f"http://planup.skynet.kg:8000/planup/localpay_naryd/"
-            data = {"planup_id": planup_id}
-            if start_date:
-                data["start_date"] = start_date
-            if end_date:
-                data["end_date"] = end_date
-
-            response = requests.post(planup_url, data=data)
-            if response.status_code != 200:
-                raise Exception(f"Не удалось получить данные из Planup. Код статуса: {response.status_code}")
-
-            planup_payments = response.json()
-            print(f"Полученные платежи из Planup: {planup_payments}")
-            planup_payments = [
-                {
-                    "ls_abon": p["ls_abon"],
-                    "money": int(p["money"]) if isinstance(p["money"], str) and p["money"].isdigit() and int(p["money"]) != 0 else 0
-                }
-                for p in planup_payments if isinstance(p["money"], str) and p["money"].isdigit() and int(p["money"]) != 0
-            ]
-
-            report = []
-            planup_total = sum(p['money'] for p in planup_payments)
-
-            for payment in planup_payments:
-                ls_abon = payment['ls_abon']
-                money = payment['money']
-                report.append({
-                    "ls_abon": ls_abon,
-                    "planup_money": money
-                })
-            report.append({
-                "ls_abon": "Итого",
-                "planup_money": planup_total
-            })
-
-            return Response({
-                "report": report
-            }, status=status.HTTP_200_OK)
-
-        except Exception as e:
-            print(f"Ошибка: {str(e)}")
-            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
 
 
 class CombinedPaymentComparisonView(APIView):
@@ -168,7 +109,6 @@ class CombinedPaymentComparisonView(APIView):
                     "localpay_total": 0,
                     "planup_total": 0
                 }
-
 
 
             report[user_id]["payments"].append({

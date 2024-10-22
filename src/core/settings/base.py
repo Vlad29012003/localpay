@@ -221,6 +221,13 @@ LOGGING = {
             'filename': 'payment.log',
             'formatter': 'verbose',
         },
+
+        'file_mobile_detail': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'mobile_user_detail.log',
+            'formatter': 'verbose',},
+
         'console': {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
@@ -228,6 +235,7 @@ LOGGING = {
         },
     },
     'loggers': {
+        
         'user_actions': {
             'handlers': ['file_user', 'console'],
             'level': 'INFO',
@@ -237,6 +245,13 @@ LOGGING = {
             'handlers': ['file_payment', 'console'],
             'level': 'INFO',
             'propagate': True,
+        
+        },
+        'mobile_detail_user_logger': {
+            'handlers': ['file_mobile_detail', 'console'],
+            'level': 'INFO',
+            'propagate': True,
+         
         },
     }
 }

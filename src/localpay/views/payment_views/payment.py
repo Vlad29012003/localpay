@@ -6,18 +6,7 @@ from localpay.serializers.payment_serializers.payment_serializer import PaymentS
 from localpay.permission import IsUser ,  IsAdmin
 from localpay.models import Pays
 from asgiref.sync import async_to_sync
-import logging
-
-
-payment_logger = logging.getLogger('payment_actions')
-payment_handler = logging.FileHandler('payments.log')  
-payment_handler.setLevel(logging.INFO)
-formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-payment_handler.setFormatter(formatter)
-payment_logger.addHandler(payment_handler)
-payment_logger.setLevel(logging.INFO)
-
-
+from .logging_config import payment_logger
 
 # Create payment only for user 
 class PaymentCreateAPIView(CreateAPIView):
