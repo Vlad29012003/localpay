@@ -79,15 +79,20 @@ services:
 
   filebeat:
     image: elastic/filebeat:8.10.0
+    user: root
     volumes:
     - ./filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
     - /var/lib/docker/containers:/var/lib/docker/containers:ro
-    - /var/log:/var/log:ro
-
+    - /var/run/docker.sock:/var/run/docker.sock:ro
+    - .:/app:ro # Монтируем корневую директорию проекта, где находятся лог файлы
+    command: filebeat -e -strict.perms=false
     depends_on:
       - logstash
     networks:
     - app-network
+    environment:
+    - strict.perms=false
+
 
 
   elasticsearch:

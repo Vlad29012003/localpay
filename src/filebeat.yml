@@ -1,32 +1,68 @@
 # основная секция для определения входных источников логов
 filebeat.inputs:
   # логи будут собираться из контейнеров
-- type: container
+- type: log
   # пути к логом которые нужно собирать 
+  enabled: true  # Включаем сбор этих логов
   paths:
-    - '/var/lib/docker/containers/*/*.log'
+    - /app/user.log
+  fields:
+    type: user_actions
+  fields_under_root: true
+  json.keys_under_root: true
 
-# Собираем логи nginx
+  # Логи платежей
+- type: log
+  enabled: true
+  paths:
+    - /app/payment.log
+  fields:
+    type: payment_actions
+  fields_under_root: true
+  json.keys_under_root: true
+
+  # Логи мобильных пользователей
+- type: log
+  enabled: true
+  paths:
+    - /app/mobile_user_detail.log
+  fields:
+    type: mobile_detail
+
+  fields_under_root: true
+  json.keys_under_root: true
+
+
+# логи nginx
 - type: log
   enabled: true
   paths:
   # откуда нужно собирать логи
     - /var/log/nginx/*.log # Путь к логам Nginx
   fields:
-    type: nginx
+    type: nginx  # Метка для логов nginx
 
-# Собираем логи Django
-- type: log
-  enable: true # разрешение
+
+# Логи Docker контейнеров
+- type: container
   paths: # Откуда нужно собирать логи
-    - /app/logs/*.log
+    - '/var/lib/docker/containers/*/*.log'  # Путь к логам всех контейнеров
   fields: # метаданные к логам Django.
-    type: django
+    type: docker
 
-# Секция для определения обработчиков, которые будут применяться к собранным логам перед их отправкой.
+
+# Секция процессоров - обработчики логов перед отправкой
 processors:
   - add_docker_metadata:
       host: "unix:///var/run/docker.sock"
+
+
+  # Добавляем информацию о хосте
+  - add_host_metadata:
+      when.not.contains.tags: forwarded
+
+
+  # Декодируем JSON поля
   - decode_json_fields:
       # Поля для декодирования
       fields: ["message"] 
@@ -36,11 +72,34 @@ processors:
       # глубина вложенности
       max_depth: 10
 
-# Секция для определения, куда отправлять собранные логи.
+  - add_fields:
+      target: '' # Добавляем в корень документа
+      fields:
+        application: localpay # Имя приложения
+        
+
+# # Настройки вывода - куда отправлять собранные логи
 output.logstash:
   hosts: ["logstash:5000"]
 
-# Включает журналирование в формате json
-logging.json: true
-# Отключает сбор метрик для логирования
-logging.metrics.enabled: false
+
+
+# Общие настройки логирования
+logging.json: true # Логи Filebeat в JSON формате
+logging.metrics.enabled: false # Отключаем метрики
+
+# Отключаем управление жизненным циклом индексов
+setup.ilm.enabled: false
+
+# Настройки для мониторинга работы Filebeat
+monitoring:
+  enable: false # Отключаем мониторинг
+
+# Настройки для автоматической перезагрузки конфигурации
+filebeat.config:
+  inputs:
+    enabled: true
+    reload.enabled: true
+    reload.period: 10s  # Проверка изменений каждые 10 секунд
+
+
