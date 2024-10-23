@@ -1,0 +1,46 @@
+# основная секция для определения входных источников логов
+filebeat.inputs:
+  # логи будут собираться из контейнеров
+- type: container
+  # пути к логом которые нужно собирать 
+  paths:
+    - '/var/lib/docker/containers/*/*.log'
+
+# Собираем логи nginx
+- type: log
+  enabled: true
+  paths:
+  # откуда нужно собирать логи
+    - /var/log/nginx/*.log # Путь к логам Nginx
+  fields:
+    type: nginx
+
+# Собираем логи Django
+- type: log
+  enable: true # разрешение
+  paths: # Откуда нужно собирать логи
+    - /app/logs/*.log
+  fields: # метаданные к логам Django.
+    type: django
+
+# Секция для определения обработчиков, которые будут применяться к собранным логам перед их отправкой.
+processors:
+  - add_docker_metadata:
+      host: "unix:///var/run/docker.sock"
+  - decode_json_fields:
+      # Поля для декодирования
+      fields: ["message"] 
+      # куда будут помещяться декодированные поля
+      target: "json"
+      process_array: true
+      # глубина вложенности
+      max_depth: 10
+
+# Секция для определения, куда отправлять собранные логи.
+output.logstash:
+  hosts: ["logstash:5000"]
+
+# Включает журналирование в формате json
+logging.json: true
+# Отключает сбор метрик для логирования
+logging.metrics.enabled: false
