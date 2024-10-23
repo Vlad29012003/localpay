@@ -113,6 +113,7 @@ AUTH_USER_MODEL = 'localpay.User_mon'
 
 ALLOWED_HOSTS = ['*']
 
+LANGUAGES_BIDI = ['he', 'ar', 'fa', 'ur']
 
 LANGUAGE_CODE = 'en-us'
 
