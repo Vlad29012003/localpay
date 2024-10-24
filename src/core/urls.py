@@ -61,6 +61,6 @@ urlpatterns += [
 
 
 urlpatterns += [
-    path('mobile/user-payments/<int:user_id>/', MobileUserPaymentHistoryListAPIView.as_view() , name='mobile-user-payments'),
-    path('mobile/user-detail/<int:user_id>/', MobileUserDetailAPIView.as_view(), name='mobile-user-detail'),
+    path('mobile/user-payments/', MobileUserPaymentHistoryListAPIView.as_view() , name='mobile-user-payments'),
+    path('mobile/user-detail/', MobileUserDetailAPIView.as_view(), name='mobile-user-detail'),
 ]

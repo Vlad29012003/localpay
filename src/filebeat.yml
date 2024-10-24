@@ -101,5 +101,3 @@ filebeat.config:
     enabled: true
     reload.enabled: true
     reload.period: 10s  # Проверка изменений каждые 10 секунд
-
-

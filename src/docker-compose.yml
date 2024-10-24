@@ -75,57 +75,20 @@ services:
       - web
     networks:
       - app-network
-
-
+  
   filebeat:
     image: elastic/filebeat:8.10.0
     user: root
     volumes:
-    - ./filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
-    - /var/lib/docker/containers:/var/lib/docker/containers:ro
-    - /var/run/docker.sock:/var/run/docker.sock:ro
-    - .:/app:ro # Монтируем корневую директорию проекта, где находятся лог файлы
+      - ./filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - .:/app:ro
     command: filebeat -e -strict.perms=false
-    depends_on:
-      - logstash
-    networks:
-    - app-network
     environment:
-    - strict.perms=false
-
-
-
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.10.0
-    environment:
-      - discovery.type=single-node
-      - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-      - xpack.security.enabled=false
-
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    volumes:
-      - es_data:/usr/share/elasticsearch/data
-    ports:
-      - "9200:9200"
+      - strict.perms=false
     networks:
       - app-network
-
-
-  logstash:
-    image: docker.elastic.co/logstash/logstash:8.10.0
-    volumes:
-      - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro
-    ports:
-      - "5000:5000"
-    networks:
-      - app-network
-
-    depends_on:
-      - elasticsearch
 
   # kibana:
   #   image: docker.elastic.co/kibana/kibana:8.10.0
@@ -139,10 +102,43 @@ services:
   #     - elasticsearch
 
 
+  # logstash:
+  #   image: docker.elastic.co/logstash/logstash:8.10.0
+  #   volumes:
+  #     - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro
+
+  #   environment:
+  #     LS_JAVA_OPTS: "-Xmx256m -Xms256m" # Ограничиваем использование памяти
+  #   ports:
+  #     - "5000:5000"
+  #   networks:
+  #     - app-network
+  #   depends_on:
+  #     - elasticsearch
+
+  # elasticsearch:
+  #   image: docker.elastic.co/elasticsearch/elasticsearch:8.10.0
+  #   environment:
+  #     - discovery.type=single-node
+  #     - bootstrap.memory_lock=true
+  #     - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+  #     - xpack.security.enabled=false
+
+  #   ulimits:
+  #     memlock:
+  #       soft: -1
+  #       hard: -1
+  #   volumes:
+  #     - es_data:/usr/share/elasticsearch/data
+  #   ports:
+  #     - "9200:9200"
+  #   networks:
+  #     - app-network
+
 
 
 volumes:
-  es_data:
+  # es_data:
   postgres_data:
   static_volume:
   # react_build:
