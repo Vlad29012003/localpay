@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path, re_path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework import permissions
-from localpay.views.user_views.user_views import UserListAPIView, ChangePasswordAPIView , UpdateUserAPIView , CreateUserAPIView , DeleteUserAPIView , UserDetailAPIView
+from localpay.views.user_views.user_views import UserListAPIView, ChangePasswordAPIView , UpdateUserAPIView , CreateUserAPIView , DeleteUserAPIView , UserDetailAPIView , UserCommentsView
 from localpay.views.payment_views.unloading_payments import  CombinedPaymentComparisonView
 from localpay.views.user_views.login_views import CustomTokenObtainPairView
 from localpay.views.payment_views.payment import PaymentCreateAPIView , PaymentUpdateAPIView
@@ -58,7 +58,9 @@ urlpatterns += [
     path('users/<int:pk>/change_password/', ChangePasswordAPIView.as_view(), name='change-password'),
     path('users/<int:pk>/update_user/',UpdateUserAPIView.as_view(), name='update_user'),
     path('user/<int:pk>/delete_user/',DeleteUserAPIView.as_view(), name='delete-user'),
-    path('user-payments/<int:user_id>/', UserPaymentHistoryListAPIView.as_view(), name='user-payment-history'),]
+    path('user-payments/<int:user_id>/', UserPaymentHistoryListAPIView.as_view(), name='user-payment-history'),
+    path('users/comments/', UserCommentsView.as_view(), name='user-comments')
+    ]
 
 
 urlpatterns += [

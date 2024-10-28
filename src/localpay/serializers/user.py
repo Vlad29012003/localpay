@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from localpay.models import User_mon , Pays
+from localpay.models import User_mon , Pays , Comment
 from django.contrib.auth.hashers import make_password
 from datetime import datetime
 
@@ -38,6 +38,14 @@ class UserSerializer(serializers.ModelSerializer):
         return instance
 
 
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = [
+            'id', 'text', 'type_pay', 'old_balance', 'new_balance', 
+            'mont_balance', 'old_avail_balance', 'new_avail_balance', 
+            'mont_avail_balance', 'created_at'
+        ]
 
 
 

@@ -6,14 +6,15 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from django.contrib.auth.hashers import make_password
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
-from localpay.models import User_mon
+from localpay.models import User_mon , Comment
+from localpay.serializers.user import CommentSerializer
 from localpay.serializers.user import UserSerializer
 from localpay.schema.swagger_schema import search_param
 from localpay.serializers.user import ChangePasswordSerializer
 from localpay.permission import IsUser , IsSupervisor , IsAdmin
 from .logging_config import user_logger
 from drf_yasg.utils import swagger_auto_schema
-
+from django.utils.dateparse import parse_date
 
 
 
@@ -159,3 +160,26 @@ class ChangePasswordAPIView(APIView):
 
         user_logger.error(f'Cant change a password for user {user.pk} by admin {request.user.login}. Errors: {serializer.errors}')
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+
+class UserCommentsView(APIView):
+    def get(self, request):
+        date_str = request.query_params.get('date')
+        if date_str:
+            target_date = parse_date(date_str)
+            if not target_date:
+                return Response(
+                    {"error": "Invalid date format. Use YYYY-MM-DD."},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+            comments = Comment.objects.filter(
+                created_at__date=target_date
+            )
+        else:
+            comments = Comment.objects.all()
+        
+        serializer = CommentSerializer(comments, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)

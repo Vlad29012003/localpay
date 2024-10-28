@@ -1,11 +1,13 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework_simplejwt.authentication import JWTAuthentication
 from localpay.serializers.payment_serializers.payment_serializer import  check_ls
 from localpay.serializers.payment_serializers.payment_serializer import AccountCheckSerializer
 
 
 class AccountCheckView(APIView):
+    authentication_classes = [JWTAuthentication]
     def post(self, request):
         serializer = AccountCheckSerializer(data=request.data)
         if serializer.is_valid():
