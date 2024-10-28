@@ -11,6 +11,7 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from localpay.views.mobile.user_payment import MobileUserPaymentHistoryListAPIView
 from localpay.views.mobile.user_detail import MobileUserDetailAPIView 
+from localpay.views.mobile.check_ls import AccountCheckView
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -63,4 +64,5 @@ urlpatterns += [
 urlpatterns += [
     path('mobile/user-payments/', MobileUserPaymentHistoryListAPIView.as_view() , name='mobile-user-payments'),
     path('mobile/user-detail/', MobileUserDetailAPIView.as_view(), name='mobile-user-detail'),
-]
+    path('api/check-account/',AccountCheckView.as_view(), name='check_account')
+    ]

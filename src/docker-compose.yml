@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.10'
 
 services:
   db:
@@ -84,6 +84,8 @@ services:
       - /var/lib/docker/containers:/var/lib/docker/containers:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - .:/app:ro
+      - ./logs:/var/log/filebeat:ro
+      - ./logs/monitoring:/var/log/filebeat/monitoring
     command: filebeat -e -strict.perms=false
     environment:
       - strict.perms=false
