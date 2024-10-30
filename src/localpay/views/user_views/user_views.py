@@ -166,7 +166,7 @@ class ChangePasswordAPIView(APIView):
 
 
 class UserCommentsView(APIView):
-    def get(self, request):
+    def get(self, request ,*args , **kwargs ):
         date_str = request.query_params.get('date')
         if date_str:
             target_date = parse_date(date_str)

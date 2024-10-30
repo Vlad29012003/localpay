@@ -29,13 +29,35 @@ class UserSerializer(serializers.ModelSerializer):
         return super().create(validated_data)
 
     def update(self, instance, validated_data):
+        # Обработка всех полей
         for field, value in validated_data.items():
             if field == 'password':
                 instance.password = make_password(value)
+            elif field == 'refill':
+                # Прибавляем refill к balance
+                instance.balance += value
+            elif field == 'write_off':
+                # Проверка, что списание не превышает затраты (avail_balance)
+                if value <= instance.avail_balance:
+                    # Увеличиваем balance и уменьшаем затраты
+                    instance.balance += value
+                    instance.avail_balance -= value
+                else:
+                    raise serializers.ValidationError(
+                        "Сумма списания превышает затраты."
+                    )
             else:
                 setattr(instance, field, value)
+        
         instance.save()
         return instance
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['write_off'] = 0
+        representation['refill'] = 0
+        return representation
+
 
 
 class CommentSerializer(serializers.ModelSerializer):

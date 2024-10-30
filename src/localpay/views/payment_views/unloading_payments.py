@@ -86,7 +86,7 @@ class CombinedPaymentComparisonView(APIView):
 
     def compare_payments(self, localpay_payments, planup_payments):
         report = {}
-        localpay_total = 0
+        localpay_total = 0      
         planup_total = 0
 
         # Обработка платежей LocalPay

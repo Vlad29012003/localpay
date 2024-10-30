@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 import requests
 
 
-def check_ls(ls):
+async def check_ls(ls):
     url = f'http://pay.snt.kg:9080/localpayskynet_osmp/main?command=check&account={ls}'
     print(f'Запрос к {url}')
     
@@ -29,9 +29,6 @@ def check_ls(ls):
 
 
 
-class AccountCheckSerializer(serializers.Serializer):
-    ls = serializers.IntegerField()
-
 class PaymentSerializer(serializers.Serializer):
     ls = serializers.IntegerField()
     login = serializers.CharField(max_length=255)
@@ -46,17 +43,23 @@ class PaymentSerializer(serializers.Serializer):
         service_type = self.validated_data.get('service_type')
         comment = self.validated_data.get('comment', '')
 
-        # Проверка пользователя в базе данных
+
+        account_check_result = await check_ls(ls)
+        if account_check_result['status'] != '0':
+            return {'error': 'Неверный лицевой счет или статус: ' + account_check_result.get('comment', '')}
+
         user_data = await sync_to_async(User_mon.objects.filter(login=login).first)()
         if not user_data:
             return {'error': 'Пользователь не найден'}
 
         user_id = user_data.id
+
+        
         user_balance = user_data.balance
+
         user_avail_balance = user_data.avail_balance
         user_access = user_data.access
 
-        # Проверка баланса и доступа
         if user_balance < money or not user_access:
             return {'error': 'Недостаточно средств или отсутствует доступ'}
 
@@ -116,7 +119,6 @@ class PaymentSerializer(serializers.Serializer):
             await sync_to_async(user_data.save)(update_fields=['balance', 'avail_balance'])
 
         return result
-
 
 
 class PaymentUpdateSerializer(serializers.ModelSerializer):
