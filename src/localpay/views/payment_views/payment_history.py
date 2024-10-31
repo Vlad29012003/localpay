@@ -42,6 +42,7 @@ class PaymentHistoryListAPIView(ListAPIView):
 
         total_count = queryset.count()
 
+        queryset = queryset.order_by('-date_payment')
 
         payment_logger.info(f"User {request.user.login} {request.user.login} requested payment history with search {search_query} Date from {date_from}, Date to {date_to}. Total count {total_count}")
 

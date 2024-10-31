@@ -121,6 +121,10 @@ class PaymentSerializer(serializers.Serializer):
         return result
 
 
+class AccountCheckSerializer(serializers.Serializer):
+    ls = serializers.IntegerField()
+
+
 class PaymentUpdateSerializer(serializers.ModelSerializer):
     annulment = serializers.BooleanField()
 

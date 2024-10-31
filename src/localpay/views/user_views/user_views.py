@@ -18,8 +18,6 @@ from django.utils.dateparse import parse_date
 
 
 
-
-
 class UserDetailAPIView(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes= [IsUser|IsAdmin|IsSupervisor]
