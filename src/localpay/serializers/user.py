@@ -5,14 +5,13 @@ from datetime import datetime
 
 from rest_framework import serializers
 from django.utils import timezone
-
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User_mon
         fields = [
             'id', 'name', 'surname', 'login', 'password', 'access', 
             'balance', 'avail_balance', 'region', 'date_reg', 
-            'refill', 'write_off', 'comment', 'role' , 'is_active','planup_id'
+            'refill', 'write_off', 'comment', 'role', 'is_active', 'planup_id'
         ]
         extra_kwargs = {
             'password': {'write_only': True},
@@ -28,35 +27,58 @@ class UserSerializer(serializers.ModelSerializer):
 
         return super().create(validated_data)
 
+    def validate_write_off(self, value):
+        """
+        Проверяем, что значение списания является положительным числом
+        """
+        try:
+            write_off = float(value)
+            if write_off <= 0:
+                raise serializers.ValidationError(
+                    "Сумма списания должна быть положительным числом"
+                )
+        except (ValueError, TypeError):
+            raise serializers.ValidationError(
+                "Сумма списания должна быть числом"
+            )
+        return value
+
+
     def update(self, instance, validated_data):
-        # Обработка всех полей
         for field, value in validated_data.items():
             if field == 'password':
                 instance.password = make_password(value)
             elif field == 'refill':
-                # Прибавляем refill к balance
-                instance.balance += value
-            elif field == 'write_off':
-                # Проверка, что списание не превышает затраты (avail_balance)
-                if value <= instance.avail_balance:
-                    # Увеличиваем balance и уменьшаем затраты
-                    instance.balance += value
-                    instance.avail_balance -= value
-                else:
+                try:
+                    refill_amount = float(value)
+                    instance.balance += refill_amount
+                except (ValueError, TypeError):
                     raise serializers.ValidationError(
-                        "Сумма списания превышает затраты."
+                        "Сумма пополнения должна быть числом"
+                    )
+            elif field == 'write_off':
+                try:
+                    write_off_amount = float(value)
+                    # Проверяем, что списание не больше абсолютного значения затрат
+                    if write_off_amount > abs(instance.avail_balance):
+                        raise serializers.ValidationError(
+                            "Сумма списания не может быть больше затрат"
+                        )
+
+                    # Увеличиваем баланс на сумму списания
+                    instance.balance += write_off_amount
+                    # Уменьшаем затраты (делаем их ближе к нулю)
+                    instance.avail_balance += write_off_amount
+
+                except (ValueError, TypeError):
+                    raise serializers.ValidationError(
+                        "Сумма списания должна быть числом"
                     )
             else:
                 setattr(instance, field, value)
-        
+
         instance.save()
         return instance
-
-    def to_representation(self, instance):
-        representation = super().to_representation(instance)
-        representation['write_off'] = 0
-        representation['refill'] = 0
-        return representation
 
 
 

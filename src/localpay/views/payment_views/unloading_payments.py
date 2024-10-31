@@ -69,7 +69,8 @@ class CombinedPaymentComparisonView(APIView):
                         "user_id": user_id,
                         "ls_abon": p["ls_abon"],
                         "money": self.parse_money(p["money"]),
-                        "planup_id": p['id']
+                        "planup_id": p['id'],
+                        "end_date": p.get('end_date')
                     }
                     for p in user_payments if self.parse_money(p["money"]) != 0
                 ])
@@ -114,6 +115,7 @@ class CombinedPaymentComparisonView(APIView):
                 "planup_money": "ТАКОЙ ОТСУТСВУЕТ В PLANUP",
                 "status_payment": payment.status_payment,
                 "date_payment": payment.date_payment ,
+                "end_date": None,
                 "planup_id": None
             })
             report[user_id]["localpay_total"] += money
@@ -148,6 +150,7 @@ class CombinedPaymentComparisonView(APIView):
                     "planup_money": self.format_money(money),
                     "status_payment": None,
                     "date_payment": None,
+                    "end_date": payment["end_date"],
                     "planup_id": payment["planup_id"]
                 })
 

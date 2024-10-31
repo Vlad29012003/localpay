@@ -1,4 +1,4 @@
-version: '3.10'
+version: "3.8"
 
 services:
   db:
@@ -12,13 +12,13 @@ services:
     networks:
       - app-network
 
-  # frontend:
-  #   build:
-  #     context: ./LocalPay
-  #   volumes:
-  #     - react_build:/LocalPay/build
-  #   ports:
-  #     - "3000:3000"
+  frontend:
+    build:
+      context: ./LocalPay
+    volumes:
+      - react_build:/LocalPay/build
+    ports:
+      - "3000:3000"
 
 
   pgbouncer:
@@ -143,7 +143,7 @@ volumes:
   # es_data:
   postgres_data:
   static_volume:
-  # react_build:
+  react_build:
 
 
 networks:
