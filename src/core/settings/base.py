@@ -213,20 +213,20 @@ LOGGING = {
         'file_user': {
             'level': 'INFO',
             'class': 'logging.FileHandler',
-            'filename': 'user.log',
+            'filename': './logs/user.log',
             'formatter': 'verbose',
         },
         'file_payment': {
             'level': 'INFO',
             'class': 'logging.FileHandler',
-            'filename': 'payment.log',
+            'filename': './logs/payment.log',
             'formatter': 'verbose',
         },
 
         'file_mobile_detail': {
             'level': 'INFO',
             'class': 'logging.FileHandler',
-            'filename': 'mobile_user_detail.log',
+            'filename': './logs/mobile_user_detail.log',
             'formatter': 'verbose',},
 
         'console': {

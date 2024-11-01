@@ -5,7 +5,7 @@ filebeat.inputs:
   # пути к логам которые нужно собирать 
   enabled: true  # Включаем сбор этих логов
   paths:
-    - /home/vlad/erasyl_localpay/rewritten_localpay/src/user.log
+    -  /app/logs/user.log
   fields:
     type: user_actions
   fields_under_root: true
@@ -15,7 +15,7 @@ filebeat.inputs:
 - type: log
   enabled: true
   paths:
-    - /home/vlad/erasyl_localpay/rewritten_localpay/src/payment.log
+    - /app/logs/payment.log
   fields:
     type: payment_actions
   fields_under_root: true
@@ -25,7 +25,7 @@ filebeat.inputs:
 - type: log
   enabled: true
   paths:
-    - /home/vlad/erasyl_localpay/rewritten_localpay/src/mobile_user_detail.log
+    - /app/logs/mobile_user_detail.log
   fields:
     type: mobile_detail
   fields_under_root: true

@@ -13,6 +13,7 @@ from localpay.schema.swagger_schema import search_param
 from localpay.serializers.user import ChangePasswordSerializer
 from localpay.permission import IsUser , IsSupervisor , IsAdmin
 from .logging_config import user_logger
+import json
 from drf_yasg.utils import swagger_auto_schema
 from django.utils.dateparse import parse_date
 
@@ -41,12 +42,25 @@ class CreateUserAPIView(APIView):
         if serializer.is_valid():
             serializer.save()
             
-            user_logger.info(f'User create {serializer.validated_data.get("login")} by admin {request.user.login}')
+            log_data = {
+                "action": "create_user",
+                "created_user": serializer.validated_data.get("login"),
+                "admin": request.user.login
+            }
+            user_logger.info(json.dumps(log_data))
+
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         
-        user_logger.warning(f'Failed to create user. Errors: {serializer.errors}')
+        log_data = {
+            "action": "create_user_failed",
+            "errors": serializer.errors,
+            "admin": request.user.login
+        }
+        user_logger.warning(json.dumps(log_data))
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
+
+
 
 # Views for update user (only admin)
 class UpdateUserAPIView(APIView):
@@ -57,16 +71,20 @@ class UpdateUserAPIView(APIView):
             user = User_mon.objects.get(pk=pk)
         except User_mon.DoesNotExist:
 
-            user_logger.error(f'cant find a user with this {pk}')
+            error_message = {"message": f"Can't find a user with this ID: {pk}"}
+            user_logger.error(json.dumps(error_message))
+
             return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
         
         serializer = UserSerializer(user, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            user_logger.info(f'successfully update user with id {user.pk}')
+            success_message = {"Message": f"Successfully updated user with ID: {user.pk}"}
+            user_logger.info(json.dumps(success_message))
             return Response(serializer.data)
         
-        user_logger.info(f'Failed to update user with id {user.pk} . Error: {serializer.errors}')
+        error_message = {"Message": f'Failed to update user with id {user.pk}' ,"Error": serializer.errors}
+        user_logger.info(json.dumps(error_message))
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -78,11 +96,13 @@ class DeleteUserAPIView(APIView):
         try:
             user = User_mon.objects.get(pk=pk)
         except User_mon.DoesNotExist:
-            user_logger.error(f'User with this {pk} not found')
+            error_message = {"message": "User with this {pk} not found"}
+            user_logger.info(json.dumps(error_message))
 
             return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
         user.delete()
-        user_logger.info(f'successfully deleate a user with id {pk}')
+        success_message = {"Message":f'successfully deleate a user with id {pk}'}
+        user_logger.info(json.dumps(success_message))
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
@@ -95,7 +115,10 @@ class UserListAPIView(ListAPIView):
     @swagger_auto_schema(manual_parameters=[search_param])
     def list(self, request, *args, **kwargs):
         search_query = request.query_params.get('search', '')
-        user_logger.info(f'User {request.user.login} is requesting user list with search query: "{search_query}"')
+
+
+        info_message = {"Message":f'User {request.user.login} is requesting user list with search query:' ,"SearchQuery":list(search_query)}
+        user_logger.info(json.dumps(info_message))
 
         # search for name surname and login
         if search_query:
@@ -104,11 +127,14 @@ class UserListAPIView(ListAPIView):
                 Q(surname__icontains=search_query) |
                 Q(login__icontains=search_query)
             )
-            user_logger.info(f'Search user {search_query} returned {queryset.count()} result')
+            info_messager = {"Message":f'Search user {search_query} returned {queryset.count()} result'}
+            user_logger.info(json.dumps(info_messager))
         else:
             # take all users
             queryset = User_mon.objects.all()
-            user_logger.info(f'No Search user send all users')
+            error_message = {"Message":f'No Search user send all users'}
+            user_logger.info(json.dumps(error_message))
+            
 
         # pagination 
         total_count = queryset.count()
@@ -133,51 +159,3 @@ class UserListAPIView(ListAPIView):
         }, status=status.HTTP_200_OK)
 
 
-# Change password for user (only admin)
-class ChangePasswordAPIView(APIView):
-    authentication_classes = [JWTAuthentication]
-    permission_classes= [IsAdmin]
-    def post(self, request, pk):
-        user_logger.info(f'Admin {request.user.login} is trying to change password for user ID {pk}.')
-
-        try:
-            user = User_mon.objects.get(pk=pk)
-        except User_mon.DoesNotExist:
-
-            user_logger.warning(f'User in this {pk} not found found by admin {request.user.login}')
-            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
-
-        serializer = ChangePasswordSerializer(data=request.data)
-
-        if serializer.is_valid():
-            new_password = serializer.validated_data['new_password']
-            user.password = make_password(new_password)
-            user.save()
-            user_logger.info(f'Suscessfully change a password for user {user.pk} by admin {request.user.login}')
-            return Response({"success": "Пароль успешно изменен."}, status=status.HTTP_200_OK)
-
-        user_logger.error(f'Cant change a password for user {user.pk} by admin {request.user.login}. Errors: {serializer.errors}')
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-
-
-
-class UserCommentsView(APIView):
-    def get(self, request ,*args , **kwargs ):
-        date_str = request.query_params.get('date')
-        if date_str:
-            target_date = parse_date(date_str)
-            if not target_date:
-                return Response(
-                    {"error": "Invalid date format. Use YYYY-MM-DD."},
-                    status=status.HTTP_400_BAD_REQUEST
-                )
-            comments = Comment.objects.filter(
-                created_at__date=target_date
-            )
-        else:
-            comments = Comment.objects.all()
-        
-        serializer = CommentSerializer(comments, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)

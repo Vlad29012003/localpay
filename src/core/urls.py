@@ -55,11 +55,9 @@ urlpatterns += [
 urlpatterns += [
     path('users/<int:pk>/', UserDetailAPIView.as_view(), name='user-detail'),
     path('users/', UserListAPIView.as_view(), name='user-list-create'),
-    path('users/<int:pk>/change_password/', ChangePasswordAPIView.as_view(), name='change-password'),
     path('users/<int:pk>/update_user/',UpdateUserAPIView.as_view(), name='update_user'),
     path('user/<int:pk>/delete_user/',DeleteUserAPIView.as_view(), name='delete-user'),
     path('user-payments/<int:user_id>/', UserPaymentHistoryListAPIView.as_view(), name='user-payment-history'),
-    path('users/comments/', UserCommentsView.as_view(), name='user-comments')
     ]
 
 

@@ -47,6 +47,7 @@ services:
     volumes:
       - .:/app
       - static_volume:/app/staticfiles
+      - ./logs:/app/logs
     ports:
       - "8000:8000"
     depends_on:
@@ -76,21 +77,19 @@ services:
     networks:
       - app-network
   
-  filebeat:
-    image: elastic/filebeat:8.15.2
-    user: root
-    volumes:
-      - ./filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
-      - /var/lib/docker/containers:/var/lib/docker/containers:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - .:/app:ro
-      - ./logs:/var/log/filebeat:ro
-      - ./logs/monitoring:/var/log/filebeat/monitoring
-    command: filebeat -e -strict.perms=false
-    environment:
-      - strict.perms=false
-    networks:
-      - app-network
+  # filebeat:
+  #   image: elastic/filebeat:8.15.2
+  #   user: root
+  #   volumes:
+  #     - ./filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+  #     - /var/lib/docker/containers:/var/lib/docker/containers:ro
+  #     - /var/run/docker.sock:/var/run/docker.sock:ro
+  #     - ./logs:/app/logs:ro
+  #   command: ["filebeat", "-e", "--strict.perms=false"]
+  #   environment:
+  #     - strict.perms=false
+  #   networks:
+  #     - app-network
 
   # kibana:
   #   image: docker.elastic.co/kibana/kibana:8.10.0
