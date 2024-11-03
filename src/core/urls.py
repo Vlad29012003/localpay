@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path, re_path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework import permissions
-from localpay.views.user_views.user_views import UserListAPIView, ChangePasswordAPIView , UpdateUserAPIView , CreateUserAPIView , DeleteUserAPIView , UserDetailAPIView , UserCommentsView
+from localpay.views.user_views.user_views import UserListAPIView, UpdateUserAPIView , CreateUserAPIView , DeleteUserAPIView , UserDetailAPIView 
 from localpay.views.payment_views.unloading_payments import  CombinedPaymentComparisonView
 from localpay.views.user_views.login_views import CustomTokenObtainPairView
 from localpay.views.payment_views.payment import PaymentCreateAPIView , PaymentUpdateAPIView

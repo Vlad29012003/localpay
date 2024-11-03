@@ -3,19 +3,15 @@ from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework_simplejwt.authentication import JWTAuthentication
-from django.contrib.auth.hashers import make_password
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
-from localpay.models import User_mon , Comment
-from localpay.serializers.user import CommentSerializer
+from localpay.models import User_mon
 from localpay.serializers.user import UserSerializer
 from localpay.schema.swagger_schema import search_param
-from localpay.serializers.user import ChangePasswordSerializer
 from localpay.permission import IsUser , IsSupervisor , IsAdmin
 from .logging_config import user_logger
 import json
 from drf_yasg.utils import swagger_auto_schema
-from django.utils.dateparse import parse_date
 
 
 
