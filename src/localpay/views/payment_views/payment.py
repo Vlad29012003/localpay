@@ -5,6 +5,7 @@ from rest_framework import status
 from localpay.serializers.payment_serializers.payment_serializer import PaymentSerializer , PaymentUpdateSerializer
 from localpay.permission import IsUser ,  IsAdmin
 from localpay.models import Pays
+import json
 from asgiref.sync import async_to_sync
 from .logging_config import payment_logger
 
@@ -22,11 +23,13 @@ class PaymentCreateAPIView(CreateAPIView):
             result = async_to_sync(serializer.process_payment)()
 
             # log successful payment
-            payment_logger.info(f'Payment create for User {request.user.id} Result {result}')
+            success_message = {'Message':f'Payment create for User {request.user.id} Result {result}'}
+            payment_logger.info(json.dumps(success_message))
             return Response(result, status=status.HTTP_200_OK)
         
         # log payment validation errors
-        payment_logger.warning(f'Payment creation failed for User ID {request.user.id} Errors {serializer.errors}')
+        error_message = {'Message':f'Payment creation failed for User ID {request.user.id} Errors {serializer.errors}'}
+        payment_logger.warning(json.dumps(error_message))
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -48,10 +51,12 @@ class PaymentUpdateAPIView(UpdateAPIView):
         if serializer.is_valid():
             serializer.update(instance, serializer.validated_data)
 
-            # log update suscessfull payment 
-            payment_logger.info(f'Payment update suscessful for User {request.user.id}')
+            # log update suscessfull payment
+            success_message = {'Message':f'Payment update suscessful for User {request.user.id}'}
+            payment_logger.info(json.dumps(success_message))
             return Response(serializer.data, status=status.HTTP_200_OK)
         
         # log failed payment update
-        payment_logger.warning(f'Failed to update Payment for user {request.user.id} Error {serializer.errors}')
+        error_message = {'Message':f'Failed to update Payment for user {request.user.id} Error {serializer.errors}'}
+        payment_logger.warning(json.dumps(error_message))
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
