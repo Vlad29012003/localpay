@@ -6,7 +6,7 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from localpay.models import User_mon
 from localpay.serializers.user import UserSerializer
 from localpay.permission import IsUser
-import logging
+import json
 from .logging_config import mobile_detail_user_logger
 
 # mobile_detail_user_logger = logging.getLogger('detail_view_user')
@@ -29,9 +29,14 @@ class MobileUserDetailAPIView(APIView):
         try:
             user_instance = User_mon.objects.get(pk=user.id)
         except User_mon.DoesNotExist:
-            mobile_detail_user_logger.info(f'User with ID {user.id} not found.')
+
+            error_message = {'Message':f'User with ID {user.id} not found.'}
+            mobile_detail_user_logger.info(json.dumps(error_message))
+
             return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
 
         serializer = UserSerializer(user_instance)
-        mobile_detail_user_logger.info(f'User {user_instance} accessed their detail information.')
+
+        info_message = {'Message':f'User {user_instance} accessed their detail information.'}
+        mobile_detail_user_logger.info(json.dumps(info_message))
         return Response(serializer.data)

@@ -6,6 +6,9 @@ from localpay.models import Pays
 from localpay.models import User_mon
 from localpay.views.payment_views.payment_history import PaymentHistoryListAPIView
 from .logging_config import mobile_detail_user_logger
+import json
+
+
 
 class MobileUserPaymentHistoryListAPIView(PaymentHistoryListAPIView):
     authentication_classes = [JWTAuthentication]
@@ -14,9 +17,13 @@ class MobileUserPaymentHistoryListAPIView(PaymentHistoryListAPIView):
     def get_queryset(self):
         user = self.request.user  # Получаем пользователя из токена
         try:
-            mobile_detail_user_logger.info(f'User {user.id} found for payments history request')
+            info_message = {'Message':f'User {user.id} found for payments history request'}
+            mobile_detail_user_logger.info(json.dumps(info_message))
+
         except User_mon.DoesNotExist:
-            mobile_detail_user_logger.warning(f'User with ID {user.id} not found.')
+
+            error_message = {'Message':f'User with ID {user.id} not found.'}
+            mobile_detail_user_logger.warning(json.dumps(error_message))
             return Pays.objects.none()
 
         return Pays.objects.filter(user=user)
@@ -26,9 +33,12 @@ class MobileUserPaymentHistoryListAPIView(PaymentHistoryListAPIView):
         total_count = queryset.count()
 
         if total_count == 0:
-            mobile_detail_user_logger.info(f'No payments found for user with ID {request.user.id}.')
 
-        mobile_detail_user_logger.info(f'Payment history for user with ID {request.user.id} contains {total_count} records.')
+            error_message = {'Message':f'No payments found for user with ID {request.user.id}.'}
+            mobile_detail_user_logger.info(json.dumps(error_message))
+
+        info_message = {f'Payment history for user with ID {request.user.id} contains {total_count} records.'}
+        mobile_detail_user_logger.info(json.dumps(info_message))
 
         serializer = self.get_serializer(queryset, many=True)
 
