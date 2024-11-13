@@ -10,7 +10,7 @@ class PaymentHistorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Pays
-        fields = ['number_payment', 'date_payment', 'accept_payment', 'ls_abon', 'money', 'status_payment' , 'user_name' , 'planup_id' , 'user_id' , 'login', 'id']
+        fields = ['number_payment', 'date_payment', 'accept_payment', 'ls_abon', 'money', 'status_payment' , 'user_name' , 'planup_id' , 'user_id' , 'login', 'id', 'annulment']
 
     def get_user_name(self, obj):
         return f"{obj.user.name} {obj.user.surname}"
