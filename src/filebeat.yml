@@ -1,61 +1,57 @@
 # основная секция для определения входных источников логов
 filebeat.inputs:
-  # логи будут собираться из контейнеров
-- type: log
-  # пути к логам которые нужно собирать 
-  enabled: true  # Включаем сбор этих логов
-  paths:
-    -  /app/logs/user.log
-  fields:
-    type: user_actions
-  fields_under_root: true
-  json.keys_under_root: true
+  # Логи пользователей
+  - type: log
+    enabled: true
+    paths:
+      - /app/logs/user.log  # Путь к файлу логов пользователей
+    fields:
+      type: user_actions  # Тип логов
+    fields_under_root: true  # Размещаем поля на корневом уровне
+    json.keys_under_root: true  # Параметр для извлечения ключей JSON на корневой уровень
+    json.add_error_key: true  # Добавляем ключ для ошибок разбора JSON
+    json.overwrite_keys: true  # Перезаписываем ключи, если они уже существуют
 
-  # Логи платежей
-- type: log
-  enabled: true
-  paths:
-    - /app/logs/payment.log
-  fields:
-    type: payment_actions
-  fields_under_root: true
-  json.keys_under_root: true
+# Логи платежей
+  - type: log
+    enabled: true
+    paths:
+      - /app/logs/payment.log
+    fields:
+      type: payment_actions
+    fields_under_root: true
+    json.keys_under_root: true
 
-  # Логи мобильных пользователей
-- type: log
-  enabled: true
-  paths:
-    - /app/logs/mobile_user_detail.log
-  fields:
-    type: mobile_detail
-  fields_under_root: true
-  json.keys_under_root: true
+# Логи мобильных пользователей
+  - type: log
+    enabled: true
+    paths:
+      - /app/logs/mobile_user_detail.log
+    fields:
+      type: mobile_detail
+    fields_under_root: true
+    json.keys_under_root: true
 
-# логи nginx
-- type: log
-  enabled: true
-  paths:
-    - /var/log/nginx/*.log
-  fields:
-    type: nginx
+# Логи nginx
+  - type: log
+    enabled: true
+    paths:
+      - /var/log/nginx/*.log
+    fields:
+      type: nginx
 
 # Логи Docker контейнеров
-- type: container
-  paths:
-    - '/var/lib/docker/containers/*/*.log'
-  fields:
-    type: docker
+  - type: container
+    paths:
+      - '/var/lib/docker/containers/*/*.log'
+    fields:
+      type: docker
 
 processors:
   - add_docker_metadata:
       host: "unix:///var/run/docker.sock"
   - add_host_metadata:
       when.not.contains.tags: forwarded
-  - decode_json_fields:
-      fields: ["message"]
-      target: "json"
-      process_array: true
-      max_depth: 10
   - add_fields:
       target: ''
       fields:

@@ -30,12 +30,22 @@ class PaymentHistoryListAPIView(ListAPIView):
         queryset = Pays.objects.all()
 
         if search_query:
-            queryset = queryset.filter(
-                Q(ls_abon__icontains=search_query) |  
-                Q(user__login__icontains=search_query)|
-                Q(user__name__icontains = search_query)|
-                Q(user__surname__icontains = search_query)
-            )
+
+            search_parts = search_query.split()
+            if len(search_parts) == 2:
+                name_query, surname_query = search_parts
+                queryset = queryset.filter(
+                    Q(user__name__icontains=name_query) & Q(user__surname__icontains=surname_query)
+                )
+            else:
+
+
+                queryset = queryset.filter(
+                    Q(ls_abon__icontains=search_query) |  
+                    Q(user__login__icontains=search_query)|
+                    Q(user__name__icontains = search_query)|
+                    Q(user__surname__icontains = search_query)
+                )
 
         if date_from:
             queryset = queryset.filter(date_payment__gte=datetime.fromisoformat(date_from))
@@ -139,68 +149,3 @@ class UserPaymentHistoryListAPIView(PaymentHistoryListAPIView):
             'results': serializer.data,
         }, status=status.HTTP_200_OK)
 
-
-
-# class PaymentHistoryListAPIView(ListAPIView):
-#     authentication_classes = [JWTAuthentication]
-#     permission_classes = [IsAdmin | IsSupervisor]
-#     serializer_class = PaymentHistorySerializer
-
-#     @swagger_auto_schema(manual_parameters=[search_param])
-#     def list(self, request, *args, **kwargs):
-#         search_query = request.query_params.get('search', '')
-#         date_from = request.query_params.get('date_from', None)
-#         date_to = request.query_params.get('date_to', None)
-#         user_id = request.query_params.get('user_id', None)
-
-#         queryset = Pays.objects.all()
-
-#         # Фильтрация по поисковому запросу
-#         if search_query:
-#             queryset = queryset.filter(
-#                 Q(ls_abon__icontains=search_query) |  
-#                 Q(user__login__icontains=search_query)|
-#                 Q(user__name__icontains=search_query)|
-#                 Q(user__surname__icontains=search_query)
-#             )
-
-#         # Фильтрация по диапазону дат
-#         if date_from:
-#             queryset = queryset.filter(date_payment__gte=datetime.fromisoformat(date_from))
-#         if date_to:
-#             queryset = queryset.filter(date_payment__lte=datetime.fromisoformat(date_to))
-
-#         # Фильтрация по ID пользователя
-#         if user_id:
-#             queryset = queryset.filter(user__id=user_id)
-
-#         total_count = queryset.count()
-
-#         queryset = queryset.order_by('-date_payment')
-
-#         payment_logger.info(f"User {request.user.login} requested payment history with search {search_query}, date from {date_from}, date to {date_to}, user ID {user_id}. Total count {total_count}")
-
-#         page_size = int(request.query_params.get('page_size', 50))
-#         page_number = request.GET.get('page', 1)
-
-#         paginator = Paginator(queryset, page_size)
-
-#         try:
-#             payments = paginator.page(page_number)
-#         except PageNotAnInteger:
-#             payments = paginator.page(1)
-#         except EmptyPage:
-#             payments = paginator.page(paginator.num_pages)
-
-#         serializer = self.get_serializer(payments, many=True)
-
-#         return Response({
-#             'count': total_count,  
-#             'total_pages': paginator.num_pages,  
-#             'page_size': page_size, 
-#             'current_page': page_number,  
-#             'results': serializer.data, 
-#         }, status=status.HTTP_200_OK)
-
-#     def get_queryset(self):
-#         return Pays.objects.all()

@@ -15,7 +15,7 @@ class MobileUserPaymentHistoryListAPIView(PaymentHistoryListAPIView):
     permission_classes = [IsUser]
 
     def get_queryset(self):
-        user = self.request.user  # Получаем пользователя из токена
+        user = self.request.user
         try:
             info_message = {'Message':f'User {user.id} found for payments history request'}
             mobile_detail_user_logger.info(json.dumps(info_message))

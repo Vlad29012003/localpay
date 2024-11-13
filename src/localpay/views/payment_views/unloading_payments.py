@@ -14,6 +14,7 @@ class CombinedPaymentComparisonView(APIView):
 
     def post(self, request):
         user_id = request.data.get('user_id')
+        search_query = request.data.get('search', '')
         date_from = request.data.get('date_from')
         date_to = request.data.get('date_to')
 
@@ -36,6 +37,7 @@ class CombinedPaymentComparisonView(APIView):
         
         if user_id:
             queryset = queryset.filter(user__id=user_id)
+
 
         if date_from:
             queryset = queryset.filter(date_payment__gte=datetime.fromisoformat(date_from))
