@@ -92,6 +92,10 @@ class CombinedPaymentComparisonView(APIView):
         localpay_total = 0      
         planup_total = 0
 
+        print(localpay_payments)
+        print(111111111111111111111111111111111111111111)
+        print(planup_payments)
+
         # Обработка платежей LocalPay
         for payment in localpay_payments:
             user_id = payment.user.id

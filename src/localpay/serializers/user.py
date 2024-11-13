@@ -27,21 +27,21 @@ class UserSerializer(serializers.ModelSerializer):
 
         return super().create(validated_data)
 
-    def validate_write_off(self, value):
-        """
-        Проверяем, что значение списания является положительным числом
-        """
-        try:
-            write_off = float(value)
-            if write_off <= 0:
-                raise serializers.ValidationError(
-                    "Сумма списания должна быть положительным числом"
-                )
-        except (ValueError, TypeError):
-            raise serializers.ValidationError(
-                "Сумма списания должна быть числом"
-            )
-        return value
+    # def validate_write_off(self, value):
+    #     """
+    #     Проверяем, что значение списания является положительным числом
+    #     """
+    #     try:
+    #         write_off = float(value)
+    #         if write_off <= 0:
+    #             raise serializers.ValidationError(
+    #                 "Сумма списания должна быть положительным числом"
+    #             )
+    #     except (ValueError, TypeError):
+    #         raise serializers.ValidationError(
+    #             "Сумма списания должна быть числом"
+    #         )
+    #     return value
 
 
     def update(self, instance, validated_data):

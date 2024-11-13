@@ -41,11 +41,11 @@ class User_mon(AbstractBaseUser):
     is_staff = models.BooleanField(default=False,verbose_name = 'Права на админа')
     access = models.BooleanField(default=False ,verbose_name = 'Доступ к оплатам')
     is_active = models.BooleanField(default=False,verbose_name = 'Доступ к авторизации')
-    balance = models.PositiveBigIntegerField(default=0, null=True ,verbose_name = 'Баланс')
-    avail_balance = models.BigIntegerField(default=0, null=True ,verbose_name = 'Сумма оплат')
+    balance = models.PositiveBigIntegerField(default=0, null=True ,blank=True,verbose_name = 'Баланс')
+    avail_balance = models.BigIntegerField(default=0, null=True ,blank=True ,verbose_name = 'Сумма оплат')
     region = models.CharField(max_length=100, choices=REGION_CHOICES,default='Чуйская',verbose_name = 'Регион')
-    refill = models.BigIntegerField(default=0, null=True ,verbose_name = 'Пополнение баланса')
-    write_off = models.BigIntegerField(default=0, null=True ,verbose_name = 'Списание баланса')
+    refill = models.BigIntegerField(default=0, null=True ,blank=True ,verbose_name = 'Пополнение баланса')
+    write_off = models.BigIntegerField(default=0, null=True ,blank=True , verbose_name = 'Списание баланса')
     comment = models.TextField(blank=True)
     planup_id = models.BigIntegerField(default=0, null=True)
     role = models.CharField(max_length=20, default='user')
@@ -63,22 +63,22 @@ class User_mon(AbstractBaseUser):
 
     # validate a write_off
     def validate_write_off(self):
-        if self.write_off < 0:
+        if self.write_off <= 0:
             raise ValueError("Списание баланса не может быть отрицательным")
 
-        if self.balance < 0:
+        if self.balance <= 0:
             raise ValueError("Баланс не может быть отрицательным")
 
-        if self.avail_balance > 0:
+        if self.avail_balance >= 0:
             raise ValueError("Доступный баланс не может быть больше 0")
 
         new_balance = self.balance + self.write_off
         new_avail_balance = self.avail_balance + self.write_off
 
-        if self.new_balance < 0:
+        if new_balance <= 0:
             raise ValueError("Баланс cумм оплат не может быть отрицательным после списания")
 
-        if self.new_avail_balance > 0:
+        if new_avail_balance >= 0:
             raise ValueError("Итоговый доступный баланс не может быть больше 0 после списания")
 
         return new_balance, new_avail_balance
@@ -120,19 +120,19 @@ class Pays(models.Model):
     def validate_write_off(self):
         if self.annulment is True:
 
-            if balance < 0:
+            if self.user.balance <= 0:
                 raise ValueError("Баланс не может быть отрицательным")
 
-            if avail_balance > 0:
+            if self.user.avail_balance >= 0:
                 raise ValueError("Доступный баланс не может быть больше 0")
 
             new_balance = self.user.balance + self.money
             new_avail_balance = self.user.avail_balance + self.money
 
-            if new_balance < 0:
+            if new_balance <= 0:
                 raise ValueError("Итоговый баланс не может быть отрицательным после списания")
 
-            if new_avail_balance > 0:
+            if new_avail_balance >= 0:
                 raise ValueError("Итоговый доступный баланс не может быть больше 0 после списания")
 
             return new_balance, new_avail_balance
