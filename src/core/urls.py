@@ -2,11 +2,11 @@ from django.contrib import admin
 from django.urls import path, re_path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework import permissions
-from localpay.views.user_views.user_views import UserListAPIView, UpdateUserAPIView , CreateUserAPIView , DeleteUserAPIView , UserDetailAPIView 
+from localpay.views.user_views.user_views import UserListAPIView, UpdateUserAPIView , CreateUserAPIView , DeleteUserAPIView , UserDetailAPIView , RegionListView
 from localpay.views.payment_views.unloading_payments import  CombinedPaymentComparisonView
 from localpay.views.user_views.login_views import CustomTokenObtainPairView
 from localpay.views.payment_views.payment import PaymentCreateAPIView , PaymentUpdateAPIView
-from localpay.views.payment_views.payment_history import PaymentHistoryListAPIView , UserPaymentHistoryListAPIView
+from localpay.views.payment_views.payment_history import PaymentHistoryListAPIView 
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from localpay.views.mobile.user_payment import MobileUserPaymentHistoryListAPIView
@@ -58,9 +58,8 @@ urlpatterns += [
     path('users/', UserListAPIView.as_view(), name='user-list-create'),
     path('users/<int:pk>/update_user/',UpdateUserAPIView.as_view(), name='update_user'),
     path('user/<int:pk>/delete_user/',DeleteUserAPIView.as_view(), name='delete-user'),
-    path('user-payments/<int:user_id>/', UserPaymentHistoryListAPIView.as_view(), name='user-payment-history'),
+    # path('user-payments/<int:user_id>/', UserPaymentHistoryListAPIView.as_view(), name='user-payment-history'),
     ]
-
 
 urlpatterns += [
     path('mobile/user-payments/', MobileUserPaymentHistoryListAPIView.as_view() , name='mobile-user-payments'),
@@ -70,4 +69,8 @@ urlpatterns += [
 
 urlpatterns += [
     path('comments_list/' , CommentsList.as_view(), name='comments-list')
+]
+
+urlpatterns += [
+    path('regions/', RegionListView.as_view(), name='region-list'),
 ]

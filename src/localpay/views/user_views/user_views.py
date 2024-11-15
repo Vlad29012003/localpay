@@ -6,12 +6,13 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from localpay.models import User_mon
-from localpay.serializers.user import UserSerializer
+from localpay.serializers.user import UserSerializer , RegionSerializer
 from localpay.schema.swagger_schema import search_param
 from localpay.permission import IsUser , IsSupervisor , IsAdmin
 from .logging_config import user_logger
 import json
 from drf_yasg.utils import swagger_auto_schema
+
 
 
 
@@ -155,3 +156,10 @@ class UserListAPIView(ListAPIView):
         }, status=status.HTTP_200_OK)
 
 
+
+
+class RegionListView(APIView):
+    def get(self, request):
+        regions = [{"value": choice[0], "label": choice[1]} for choice in User_mon.REGION_CHOICES]
+        serializer = RegionSerializer(regions, many=True)
+        return Response(serializer.data)

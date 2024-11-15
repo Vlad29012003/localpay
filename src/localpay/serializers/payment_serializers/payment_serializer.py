@@ -1,8 +1,10 @@
 from asgiref.sync import sync_to_async
 from rest_framework import serializers
-from localpay.models import User_mon, Pays
-from datetime import datetime
-import httpx
+from localpay.models import User_mon, Pays , Comment
+from datetime import datetime 
+import httpx 
+from django.utils import timezone
+
 from bs4 import BeautifulSoup
 import requests
 
@@ -136,10 +138,14 @@ class PaymentUpdateSerializer(serializers.ModelSerializer):
         user_data = User_mon.objects.get(id=instance.user.id)
         print(user_data)
 
-        if self.validated_data['annulment']:
+        if instance.annulment != True:
 
             transaction_sum_float = float(instance.money)
             transaction_sum_int = int(transaction_sum_float)  
+
+            old_balance = user_data.balance
+            old_avail_balance = user_data.avail_balance
+
 
             print(f"Transaction Sum (int): {transaction_sum_int}")
             print(f"User Balance before: {user_data.balance}")
@@ -147,6 +153,24 @@ class PaymentUpdateSerializer(serializers.ModelSerializer):
 
             user_data.balance += transaction_sum_int
             user_data.avail_balance += transaction_sum_int
+            user_data.save()
+
+            Comment.objects.create(
+                user2=user_data,
+                text="Аннулирование платежа",
+                type_pay="Аннулирование",
+                old_balance=old_balance,
+
+                new_balance=transaction_sum_int,
+
+                
+                mont_balance=user_data.balance,
+                old_avail_balance=old_avail_balance,
+                new_avail_balance=transaction_sum_int,
+                mont_avail_balance=user_data.avail_balance,
+                created_at=timezone.now()
+            )
+
 
 
             print(f"User Balance after: {user_data.balance}")  
@@ -156,9 +180,11 @@ class PaymentUpdateSerializer(serializers.ModelSerializer):
 
             instance.annulment = True 
             instance.save() 
+        else:
+            print('123456789')
         return instance
 
-    def update(self, instance, validated_data):
+    def update(self, instance, validated_data): 
 
         instance = self.update_balance(instance)
         return instance

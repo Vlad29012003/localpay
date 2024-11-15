@@ -9,17 +9,31 @@ from localpay.schema.swagger_schema import search_param
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from drf_yasg.utils import swagger_auto_schema
-from datetime import datetime
+from datetime import datetime , timedelta , time
 from .logging_config import payment_logger
 import json
+from rest_framework.pagination import LimitOffsetPagination
+from rest_framework.response import Response
 
 
+class CustomLimitOffsetPagination(LimitOffsetPagination):
+    default_limit = 50  # количество элементов на странице по умолчанию
+    limit_query_param = 'limit'  # параметр запроса для установки лимита
+    offset_query_param = 'offset'  # параметр запроса для установки смещения
 
-# List of payment history (Only for admin and supervisor)
+    def get_paginated_response(self, data):
+        return Response({
+            'count': self.count,               # Общее количество элементов
+            'limit': self.get_limit(self.request),    # Лимит (количество элементов на порцию)
+            'offset': self.get_offset(self.request),  # Текущее смещение
+            'results': data,                   # Данные текущей порции
+        })
+
 class PaymentHistoryListAPIView(ListAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAdmin | IsSupervisor]
     serializer_class = PaymentHistorySerializer
+    pagination_class = CustomLimitOffsetPagination  # Используем наш класс пагинации на основе смещения и лимита
 
     @swagger_auto_schema(manual_parameters=[search_param])
     def list(self, request, *args, **kwargs):
@@ -29,8 +43,8 @@ class PaymentHistoryListAPIView(ListAPIView):
 
         queryset = Pays.objects.all()
 
+        # Фильтрация по поисковому запросу
         if search_query:
-
             search_parts = search_query.split()
             if len(search_parts) == 2:
                 name_query, surname_query = search_parts
@@ -38,114 +52,204 @@ class PaymentHistoryListAPIView(ListAPIView):
                     Q(user__name__icontains=name_query) & Q(user__surname__icontains=surname_query)
                 )
             else:
-
-
                 queryset = queryset.filter(
-                    Q(ls_abon__icontains=search_query) |  
-                    Q(user__login__icontains=search_query)|
-                    Q(user__name__icontains = search_query)|
-                    Q(user__surname__icontains = search_query)
+                    Q(ls_abon__icontains=search_query) |
+                    Q(user__login__icontains=search_query) |
+                    Q(user__name__icontains=search_query) |
+                    Q(user__surname__icontains=search_query)
                 )
 
+        # Фильтрация по датам
         if date_from:
             queryset = queryset.filter(date_payment__gte=datetime.fromisoformat(date_from))
         if date_to:
-            queryset = queryset.filter(date_payment__lte=datetime.fromisoformat(date_to))
-
-        total_count = queryset.count()
+            # Если date_payment - это DateTimeField, включаем конечный день целиком
+            date_to_obj = datetime.fromisoformat(date_to) + timedelta(days=1)
+            date_to_end_of_day = datetime.combine(date_to_obj, time.max)
+            queryset = queryset.filter(date_payment__lte=date_to_end_of_day)
 
         queryset = queryset.order_by('-date_payment')
 
+        # Количество всех записей
+        total_count = queryset.count()
 
-        info_message = {"Message":f"User {request.user.login} {request.user.login} requested payment history with search {search_query} Date from {date_from}, Date to {date_to}. Total count {total_count}"}  
+        # Логирование
+        info_message = {
+            "Message": f"User {request.user.login} requested payment history with search '{search_query}' "
+                       f"Date from {date_from}, Date to {date_to}. Total count {total_count}"
+        }
         payment_logger.info(json.dumps(info_message))
 
+        # Применяем встроенную пагинацию DRF на основе смещения и лимита
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
 
-        page_size = int(request.query_params.get('page_size', 50))
-        page_number = request.GET.get('page', 1)
-
-        paginator = Paginator(queryset, page_size)
-
-        try:
-            payments = paginator.page(page_number)
-        except PageNotAnInteger:
-            payments = paginator.page(1)
-        except EmptyPage:
-            payments = paginator.page(paginator.num_pages)
-
-        serializer = self.get_serializer(payments, many=True)
-
-        return Response({
-            'count': total_count,  
-            'total_pages': paginator.num_pages,  
-            'page_size': page_size, 
-            'current_page': page_number,  
-            'results': serializer.data, 
-        }, status=status.HTTP_200_OK)
+        # Если пагинация не применяется (например, когда количество объектов меньше, чем limit), возвращаем все данные
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def get_queryset(self):
         return Pays.objects.all()
     
+# # List of payment history (Only for admin and supervisor)
+# class PaymentHistoryListAPIView(ListAPIView):
+#     authentication_classes = [JWTAuthentication]
+#     permission_classes = [IsAdmin | IsSupervisor]
+#     serializer_class = PaymentHistorySerializer
+
+#     @swagger_auto_schema(manual_parameters=[search_param])
+#     def list(self, request, *args, **kwargs):
+#         search_query = request.query_params.get('search', '')
+#         date_from = request.query_params.get('date_from', None)
+#         date_to = request.query_params.get('date_to', None)
+
+#         queryset = Pays.objects.all()
+
+#         if search_query:
+
+#             search_parts = search_query.split()
+#             if len(search_parts) == 2:
+#                 name_query, surname_query = search_parts
+#                 queryset = queryset.filter(
+#                     Q(user__name__icontains=name_query) & Q(user__surname__icontains=surname_query)
+#                 )
+#             else:
 
 
+#                 queryset = queryset.filter(
+#                     Q(ls_abon__icontains=search_query) |  
+#                     Q(user__login__icontains=search_query)|
+#                     Q(user__name__icontains = search_query)|
+#                     Q(user__surname__icontains = search_query)
+#                 )
+
+#         if date_from:
+#             queryset = queryset.filter(date_payment__gte=datetime.fromisoformat(date_from))
+#         if date_to:
+#             queryset = queryset.filter(date_payment__lte=datetime.fromisoformat(date_to) + timedelta(days=1) )
+
+#         total_count = queryset.count()
+
+#         queryset = queryset.order_by('-date_payment')
 
 
-# Payment history User only for Admin 
-class UserPaymentHistoryListAPIView(PaymentHistoryListAPIView):
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAdmin]
+#         info_message = {"Message":f"User {request.user.login} {request.user.login} requested payment history with search {search_query} Date from {date_from}, Date to {date_to}. Total count {total_count}"}  
+#         payment_logger.info(json.dumps(info_message))
+
+
+#         # page_size = int(request.query_params.get('page_size', 50))
+#         # page_number = request.GET.get('page')
+
+#         # paginator = Paginator(queryset, page_size)
+
+#         # try:
+#         #     payments = paginator.page(page_number)
+#         # except PageNotAnInteger:
+#         #     payments = paginator.page(1)
+#         # except EmptyPage:
+#         #     payments = paginator.page(paginator.num_pages)
+
+#         # page_size = int(request.query_params.get('page_size', 50))
+#         # page_number = int(request.GET.get('page', 1))
+
+#         # paginator = Paginator(queryset, page_size)
+
+#         # # В зависимости от номера страницы, собираем данные с нескольких страниц
+#         # total_pages = paginator.num_pages
+
+#         # # Даем возможность собрать данные с нескольких страниц (например, до 3 страниц)
+#         # pages_to_fetch = range(1, min(total_pages + 1, page_number + 2))  # Максимум 2 страницы после текущей
+
+#         # # Получаем все данные с выбранных страниц
+#         # combined_results = []
+#         # for page_num in pages_to_fetch:
+#         #     try:
+#         #         page = paginator.page(page_num)
+#         #         combined_results.extend(page.object_list)
+#         #     except PageNotAnInteger:
+#         #         page = paginator.page(1)
+#         #         combined_results.extend(page.object_list)
+#         #     except EmptyPage:
+#         #         break
+
+#         serializer = self.get_serializer(combined_results, many=True)
+
+#         return Response({
+#             'count': total_count,  
+#             'total_pages': paginator.num_pages,  
+#             'page_size': page_size, 
+#             'current_page': page_number,  
+#             'results': serializer.data, 
+#         }, status=status.HTTP_200_OK)
+
+#     def get_queryset(self):
+#         return Pays.objects.all()
     
 
-    def get_queryset(self):
-        user_id = self.kwargs.get('user_id')
-        try:
-            user = User_mon.objects.get(id=user_id)
-        except User_mon.DoesNotExist:
-            return Pays.objects.none()
 
-        return Pays.objects.filter(user=user)
 
-    def list(self, request, user_id):  
-        search_query = request.query_params.get('search', '')
-        date_from = request.query_params.get('date_from', None)
-        date_to = request.query_params.get('date_to', None)
-        queryset = self.get_queryset()
 
-        if date_from:
-            queryset = queryset.filter(date_payment__gte=datetime.fromisoformat(date_from))
-        if date_to:
-            queryset = queryset.filter(date_payment__lte=datetime.fromisoformat(date_to))
+# # Payment history User only for Admin 
+# class UserPaymentHistoryListAPIView(PaymentHistoryListAPIView):
+#     authentication_classes = [JWTAuthentication]
+#     permission_classes = [IsAdmin]
+    
 
-        if search_query:
-            queryset = queryset.filter(
-                Q(ls_abon__icontains=search_query) |
-                Q(status_payment__icontains=search_query)
-            )
+#     def get_queryset(self):
+#         user_id = self.kwargs.get('user_id')
+#         try:
+#             user = User_mon.objects.get(id=user_id)
+#         except User_mon.DoesNotExist:
+#             return Pays.objects.none()
 
-        total_count = queryset.count()
+#         return Pays.objects.filter(user=user)
 
-        payment_info = {"Message":f"User {request.user.login} {request.user.login} request user payment history search {search_query} Date from {date_from} , Date to {date_to} Total count {total_count}"}
-        payment_logger.info(json.dumps(payment_info))
+#     def list(self, request, user_id):  
+#         search_query = request.query_params.get('search', '')
+#         date_from = request.query_params.get('date_from', None)
+#         date_to = request.query_params.get('date_to', None)
+#         queryset = self.get_queryset()
 
-        page_size = int(request.query_params.get('page_size', 50))
-        page_number = request.GET.get('page', 1)
+#         if date_from:
+#             queryset = queryset.filter(date_payment__gte=datetime.fromisoformat(date_from))
+#         if date_to:
+#             queryset = queryset.filter(date_payment__lte=datetime.fromisoformat(date_to))
 
-        paginator = Paginator(queryset, page_size)
+#         if search_query:
+#             queryset = queryset.filter(
+#                 Q(ls_abon__icontains=search_query) |
+#                 Q(status_payment__icontains=search_query)
+#             )
 
-        try:
-            payments = paginator.page(page_number)
-        except PageNotAnInteger:
-            payments = paginator.page(1)
-        except EmptyPage:
-            payments = paginator.page(paginator.num_pages)
+#         total_count = queryset.count()
 
-        serializer = self.get_serializer(payments, many=True)
+#         payment_info = {"Message":f"User {request.user.login} {request.user.login} request user payment history search {search_query} Date from {date_from} , Date to {date_to} Total count {total_count}"}
+#         payment_logger.info(json.dumps(payment_info))
 
-        return Response({
-            'count': total_count,
-            'total_pages': paginator.num_pages,
-            'page_size': page_size,
-            'current_page': page_number,
-            'results': serializer.data,
-        }, status=status.HTTP_200_OK)
+#         page_size = int(request.query_params.get('page_size', 50))
+#         page_number = request.GET.get('page', 1)
+
+#         paginator = Paginator(queryset, page_size)
+
+#         try:
+#             payments = paginator.page(page_number)
+#         except PageNotAnInteger:
+#             payments = paginator.page(1)
+#         except EmptyPage:
+#             payments = paginator.page(paginator.num_pages)
+
+#         serializer = self.get_serializer(payments, many=True)
+
+#         return Response({
+#             'count': total_count,
+#             'total_pages': paginator.num_pages,
+#             'page_size': page_size,
+#             'current_page': page_number,
+#             'results': serializer.data,
+#         }, status=status.HTTP_200_OK)
+
+
+
 
