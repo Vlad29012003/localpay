@@ -1,5 +1,24 @@
 from django.db import models
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
+from django.db.models import Q
+
+
+
+class BaseSearchManager(models.Manager):
+    def search(self, query=None, fields=None):
+        qs = self.get_queryset()
+        if query and fields:
+            terms = query.strip().split()
+            final_query = Q()
+            for term in terms:
+                term_query = Q()
+                for field in fields:
+                    term_query |= Q(**{f"{field}__icontains": term})
+                final_query &= term_query
+            qs = qs.filter(final_query).distinct()
+        return qs
+
+
 
 # models for register users
 class UserManager(BaseUserManager):
@@ -52,6 +71,8 @@ class User_mon(AbstractBaseUser):
 
 
     objects = UserManager()
+    search_manager = BaseSearchManager()
+
     USERNAME_FIELD = 'login'
     REQUIRED_FIELDS = ['name']
     class Meta:

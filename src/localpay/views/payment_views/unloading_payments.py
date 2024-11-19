@@ -19,6 +19,8 @@ class CombinedPaymentComparisonView(APIView):
         date_to = request.data.get('date_to')
 
         if not date_from or not date_to:
+            date_from = None
+            date_to = None
             return Response({"error": "date_from и date_to обязательны"}, status=status.HTTP_400_BAD_REQUEST)
 
         all_localpay_payments = self.get_localpay_payments(request, date_from, date_to, user_id=user_id)

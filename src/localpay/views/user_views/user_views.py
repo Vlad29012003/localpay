@@ -5,7 +5,7 @@ from rest_framework import status
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
-from localpay.models import User_mon
+from localpay.models import User_mon 
 from localpay.serializers.user import UserSerializer , RegionSerializer
 from localpay.schema.swagger_schema import search_param
 from localpay.permission import IsUser , IsSupervisor , IsAdmin
@@ -111,26 +111,29 @@ class UserListAPIView(ListAPIView):
 
     @swagger_auto_schema(manual_parameters=[search_param])
     def list(self, request, *args, **kwargs):
-        search_query = request.query_params.get('search', '')
+        search_query = request.query_params.get('search', '').strip()
+        fields = ['name', 'surname', 'login']
 
 
         info_message = {"Message":f'User {request.user.login} is requesting user list with search query:' ,"SearchQuery":list(search_query)}
         user_logger.info(json.dumps(info_message))
 
+        queryset = User_mon.search_manager.search(query=search_query, fields=fields)
+
         # search for name surname and login
-        if search_query:
-            queryset = User_mon.objects.filter(
-                Q(name__icontains=search_query) |
-                Q(surname__icontains=search_query) |
-                Q(login__icontains=search_query)
-            )
-            info_messager = {"Message":f'Search user {search_query} returned {queryset.count()} result'}
-            user_logger.info(json.dumps(info_messager))
-        else:
-            # take all users
-            queryset = User_mon.objects.all()
-            error_message = {"Message":f'No Search user send all users'}
-            user_logger.info(json.dumps(error_message))
+        # if search_query:
+        #     queryset = User_mon.objects.filter(
+        #         Q(name__icontains=search_query) |
+        #         Q(surname__icontains=search_query) |
+        #         Q(login__icontains=search_query)
+        #     )
+        #     info_messager = {"Message":f'Search user {search_query} returned {queryset.count()} result'}
+        #     user_logger.info(json.dumps(info_messager))
+        # else:
+        #     # take all users
+        #     queryset = User_mon.objects.all()
+        #     error_message = {"Message":f'No Search user send all users'}
+        #     user_logger.info(json.dumps(error_message))
             
 
         # pagination 
