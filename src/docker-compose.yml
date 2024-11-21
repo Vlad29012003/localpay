@@ -5,6 +5,7 @@ services:
     image: postgres:16
     environment:
     - POSTGRES_DB=${POSTGRES_DB} 
+    - POSTGRES_DB=test_localPayDev
     - POSTGRES_USER=${POSTGRES_USER}
     - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     volumes:
@@ -90,52 +91,6 @@ services:
       - strict.perms=false
     networks:
       - app-network
-
-  # kibana:
-  #   image: docker.elastic.co/kibana/kibana:8.10.0
-  #   environment:
-  #     - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
-  #   ports:
-  #     - "5601:5601"
-  #   networks:
-  #     - app-network
-  #   depends_on:
-  #     - elasticsearch
-
-
-  # logstash:
-  #   image: docker.elastic.co/logstash/logstash:8.10.0
-  #   volumes:
-  #     - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro
-
-  #   environment:
-  #     LS_JAVA_OPTS: "-Xmx256m -Xms256m" # Ограничиваем использование памяти
-  #   ports:
-  #     - "5000:5000"
-  #   networks:
-  #     - app-network
-  #   depends_on:
-  #     - elasticsearch
-
-  # elasticsearch:
-  #   image: docker.elastic.co/elasticsearch/elasticsearch:8.10.0
-  #   environment:
-  #     - discovery.type=single-node
-  #     - bootstrap.memory_lock=true
-  #     - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-  #     - xpack.security.enabled=false
-
-  #   ulimits:
-  #     memlock:
-  #       soft: -1
-  #       hard: -1
-  #   volumes:
-  #     - es_data:/usr/share/elasticsearch/data
-  #   ports:
-  #     - "9200:9200"
-  #   networks:
-  #     - app-network
-
 
 
 volumes:
