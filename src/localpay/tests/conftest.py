@@ -7,8 +7,6 @@ import factory
 User = get_user_model()
 
 
-
-
 class UserFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = User_mon
