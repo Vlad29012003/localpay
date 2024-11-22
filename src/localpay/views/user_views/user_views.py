@@ -4,7 +4,6 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.db.models import Q
 from localpay.models import User_mon 
 from localpay.serializers.user import UserSerializer , RegionSerializer
 from localpay.schema.swagger_schema import search_param
@@ -125,23 +124,6 @@ class UserListAPIView(ListAPIView):
 
         queryset = User_mon.search_manager.search(query=search_query, fields=fields)
 
-        # search for name surname and login
-        # if search_query:
-        #     queryset = User_mon.objects.filter(
-        #         Q(name__icontains=search_query) |
-        #         Q(surname__icontains=search_query) |
-        #         Q(login__icontains=search_query)
-        #     )
-        #     info_messager = {"Message":f'Search user {search_query} returned {queryset.count()} result'}
-        #     user_logger.info(json.dumps(info_messager))
-        # else:
-        #     # take all users
-        #     queryset = User_mon.objects.all()
-        #     error_message = {"Message":f'No Search user send all users'}
-        #     user_logger.info(json.dumps(error_message))
-            
-
-        # pagination 
         total_count = queryset.count()
         page_size = int(request.query_params.get('page_size', 50))  
         page_number = request.GET.get('page', 1)

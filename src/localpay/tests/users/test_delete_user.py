@@ -93,7 +93,6 @@ def test_delete_user_permission_denied(authenticated_client, create_user):
     # Попытка обычного пользователя удалить другого пользователя
     response = authenticated_client.delete(f"/user/{user.id}/delete_user/")
 
-    # Проверяем, что возвращен код ошибки 204 (так как в API для отказа используется 204 статус)
     assert response.status_code == status.HTTP_204_NO_CONTENT
     assert response.data is None
 
@@ -113,8 +112,7 @@ def test_delete_user_unauthorized(client, create_user):
         role='user'
     )
 
-    # Попытка удалить пользователя без аутентификации
     response = client.delete(f"/user/{user.id}/delete_user/")
 
-    # Проверяем, что возвращен код ошибки 401 (неавторизован)
+    # Проверяем,код ошибки 401
     assert response.status_code == status.HTTP_401_UNAUTHORIZED

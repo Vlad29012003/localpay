@@ -67,7 +67,7 @@ def test_non_admin_cannot_create_user(api_client):
     assert response.status_code == status.HTTP_401_UNAUTHORIZED
 
 
-# Проверка на то что пользователь не может залогинеться если логин совпадает с логином другого пользователя
+# Проверка на то что пользователь не может залогинеться если логин совпадает с логином другого пользователя 
 @pytest.mark.django_db
 def test_create_user_with_existing_login(authenticated_client):
      # Создаем пользователя с определённым login
