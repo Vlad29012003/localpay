@@ -19,8 +19,9 @@ class UserSerializer(serializers.ModelSerializer):
             'refill', 'write_off', 'comment', 'role', 'is_active', 'planup_id' , 'comments'
         ]
         extra_kwargs = {
-            'password': {'write_only': True},
+            'password': {'write_only': True , 'required': True},
             'date_reg': {'read_only': True},
+            'login': {'required': True},
         }
 
     def create(self, validated_data):

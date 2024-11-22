@@ -12,6 +12,7 @@ User = get_user_model()
 class UserFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = User_mon
+        skip_postgeneration_save = True
     
     login = factory.Sequence(lambda n: f'user{n}')
     name = factory.Faker('first_name')
