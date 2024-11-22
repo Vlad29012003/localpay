@@ -89,17 +89,22 @@ class UpdateUserAPIView(APIView):
 class DeleteUserAPIView(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAdmin]
+
     def delete(self, request, pk):
         try:
             user = User_mon.objects.get(pk=pk)
         except User_mon.DoesNotExist:
-            error_message = {"message": "User with this {pk} not found"}
+            error_message = {"message": f"User with id {pk} not found"}
             user_logger.info(json.dumps(error_message))
 
-            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+            return Response({"detail": "Not found"}, status=status.HTTP_404_NOT_FOUND)
+        
+
         user.delete()
-        success_message = {"Message":f'successfully deleate a user with id {pk}'}
+
+        success_message = {"Message": f"Successfully deleted user with id {pk}"}
         user_logger.info(json.dumps(success_message))
+
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
