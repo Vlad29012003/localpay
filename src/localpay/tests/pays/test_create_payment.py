@@ -18,7 +18,6 @@ def authenticated_user_client(db):
     )
     client = APIClient()
     client.force_authenticate(user=admin_user)
-    
     return client
 
 
