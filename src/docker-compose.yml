@@ -2,14 +2,16 @@ version: "3.8"
 
 services:
   db:
-    image: postgres:16
+    image: postgres:17
     environment:
-    - POSTGRES_DB=${POSTGRES_DB} 
-    - POSTGRES_DB=test_localPayDev
+    - POSTGRES_DB=${POSTGRES_DB}
     - POSTGRES_USER=${POSTGRES_USER}
     - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    - POSTGRES_PORT=${POSTGRES_PORT}
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5433"
     networks:
       - app-network
 
@@ -53,6 +55,7 @@ services:
       - "8000:8000"
     depends_on:
       - db
+      - pgbouncer
     environment:
       - DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE}
       - POSTGRES_DB=${POSTGRES_DB}
@@ -63,6 +66,9 @@ services:
       - DEBUG=${DEBUG}
     networks:
       - app-network
+    env_file:
+      - .env
+    
 
 
   nginx:
@@ -77,6 +83,7 @@ services:
       - web
     networks:
       - app-network
+      
   
   filebeat:
     image: elastic/filebeat:8.15.2
@@ -94,7 +101,6 @@ services:
 
 
 volumes:
-  # es_data:
   postgres_data:
   static_volume:
   react_build:

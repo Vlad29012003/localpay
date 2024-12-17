@@ -129,6 +129,8 @@ class Pays(models.Model):
     comment = models.TextField(blank=True,verbose_name='Комментарии')
     updated_at = models.DateTimeField(auto_now=True)
 
+    objects = models.Manager()
+    search_manager = BaseSearchManager()
 
     class Meta:
          verbose_name = 'История  платежа'
